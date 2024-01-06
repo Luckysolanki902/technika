@@ -9,7 +9,12 @@ Make sure yarn is installed. If not, you can install it globally using npm:
 npm install --global yarn
 ```
 
-To use this code, clone the repository and install the required packages using yarn, using this command:
+##To clone this code in your pc, use:
+```bash
+git clone https://github.com/Luckysolanki902/technika
+```
+
+Install the required packages using yarn, using this command:
 ```bash
 yarn install
 ```
