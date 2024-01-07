@@ -5,7 +5,6 @@ import Menu from './Menu';
 
 const Sidebar = () => {
   const [open, setOpen] = useState(false);
-
   const click = () => {
     setOpen(!open);
   };
