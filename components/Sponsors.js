@@ -15,7 +15,7 @@ const Sponsors = () => {
                 <SponsorCarousel sponsorsimgs={sponsorImages} reversedirection={false}/>
             </div>
             <div style={{ display: 'flex', justifyContent: 'center', width: '100vw' }}>
-                <Image width={3366} height={5799} src={'/images/sponsors.png'} alt='' className={styles.title}></Image>
+                <Image width={3366} height={5799} src={'/images/Sponsors.png'} alt='' className={styles.title}></Image>
 
             </div>
 
