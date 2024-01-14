@@ -75,17 +75,17 @@ const Sidebar = () => {
           )}
         </div>
       </div>
-      <div className={`${open ? styles.container : styles.hide}`}>
-        <div className={`${open ? styles.imgContainer : styles.imgContainerHi}`}>
-          <Image src={img} width={162.858} height={91.4} alt="Logo" />
-          <div className={styles.logoText}>echnika</div>
+      <div className={open ? styles.container : styles.hide}>
+        <div className={open ? styles.imgContainer : styles.imgContainerHi}>
+          <Image style={{display:!open? 'none': ''}} src={img} width={162.858} height={91.4} alt="Logo" />
+          <div style={{display:!open? 'none': ''}} className={styles.logoText}>echnika</div>
         </div>
-        <Menu text={'menu'} border={true} />
-        <Menu text={'team'} />
-        <Menu text={'about'} />
-        <Menu text={'events'} />
-        <Menu text={'sponsors'} />
-        <Menu text={'merchandises'} />
+        <Menu text={'menu'} hide={!open} border={true} />
+        <Menu text={'team'} hide={!open} />
+        <Menu text={'about'} hide={!open} />
+        <Menu text={'events'} hide={!open} />
+        <Menu text={'sponsors'} hide={!open} />
+        <Menu text={'merchandises'} hide={!open} />
       </div>
     </div>
   );

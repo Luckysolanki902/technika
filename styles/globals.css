@@ -6,12 +6,49 @@
 :root,
 html,
 body {
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
-  background-color: black;
+  background-color: #000000;
+  overflow-x: hidden;
+  --gradient-angle:0deg;
 }
+
 
 * {
   box-sizing: border-box;
 }
+
+.carouseldiv{
+  padding: 10rem;
+}
+@media (width<1000px){
+  .carouseldiv{
+    padding: 8rem;
+  }
+}
+@media (width<800px){
+  .carouseldiv{
+    padding: 6rem;
+  }
+}
+@media (width<600px){
+  .carouseldiv{
+    padding: 4rem;
+  }
+}
+@media (width<500px){
+  .carouseldiv{
+    padding: 3rem;
+  }
+}
+@media (width<400px){
+  .carouseldiv{
+    padding: 2rem;
+  }
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+

@@ -2,9 +2,9 @@ import styles from "./compstyles/menu.module.css"
 
 import React from 'react'
 
-const Menu = ({ text, border }) => {
+const Menu = ({ text, border, hide }) => {
     return (
-        <div className={border ? styles.menu : styles.bor} >{text}</div>
+        <div style={{display: hide ? 'none': 'block'}} className={border ? styles.menu : styles.bor} >{text}</div>
     )
 }
 

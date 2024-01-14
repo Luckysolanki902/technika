@@ -1,0 +1,27 @@
+/* vertical-text.css */
+.verticalText {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%; /* Ensure responsiveness */
+    /* transform: rotate(-90deg); */
+  }
+  
+  .text {
+    display: inline-block;
+    color: transparent;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: center;
+    white-space: nowrap;
+  
+    /* Apply text-shadow for gradient stroke */
+    text-shadow: 2px 2px 1px linear-gradient(to right, #ff00d6, #7725c9);
+  
+    /* Add subtle border to enhance visibility */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  

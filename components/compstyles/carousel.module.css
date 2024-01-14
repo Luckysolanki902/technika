@@ -1,0 +1,34 @@
+.carbg {
+    width: 100%;
+    height: 35rem;
+    display: flex;
+    justify-self: center;
+    align-items: center;
+    border-radius: 2rem;
+    padding: 0.23rem;
+    background: linear-gradient(to bottom, rgba(255, 0, 212, 0.544), rgba(119, 37, 201, 0.647));
+}
+
+.carImg {
+    width: 100%;
+    height: 35rem;
+    border-radius: 2rem;
+    object-fit: cover;
+    opacity: 0.5;
+}
+
+@media (width<800px) {
+    .carImg {
+        width: 100%;
+        height: 25rem;
+        border-radius: 2rem;
+    }
+}
+
+@media (width<600px) {
+    .carImg {
+        width: 100%;
+        height: 15rem;
+        border-radius: 2rem;
+    }
+}

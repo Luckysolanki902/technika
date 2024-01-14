@@ -1,11 +1,12 @@
 .mainDiv {
-    width: 100%;
+    width: 100vw;
     height: 100vh;
     background: rgba(0, 0, 0, 0.92);
 }
 
+
 .mainDivHi {
-    width: 100%;
+    width: 100vw;
     height: 70px;
     background: transparent;
     stroke-width: 1px;
@@ -14,13 +15,15 @@
 }
 
 .top {
-    width: 100%;
+    width: auto;
     height: 70px;
     padding: 10px;
     display: flex;
     align-items: center;
     justify-content: right;
+    
 }
+
 
 .circle {
     width: 40px;
@@ -52,7 +55,7 @@
 }
 
 .hide {
-    height: 0px;
+    height: 0;
     opacity: 0;
     /* display: none; */
 }
@@ -156,4 +159,10 @@
 .mainDiv{
     display: none;
 }
+.mainDivHi{
+    display: none;
+}
+}
+.mainDiv ::-webkit-scrollbar, .mainDivHi::-webkit-scrollbar{
+    display: none;
 }
