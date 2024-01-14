@@ -27,10 +27,10 @@ const CarouselTop = () => {
                     dynamicMainBullets:2,
                 }}
                 loop={true} speed={1000} simulateTouch={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} >
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem'}}> <div > <Image src="https://source.unsplash.com/random?animal" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem'}}> <div > <Image src="https://source.unsplash.com/random?lion" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem'}}> <div > <Image src="https://source.unsplash.com/random?zebra" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem'}}> <div > <Image src="https://source.unsplash.com/random?rainbow" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?animal" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?lion" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?zebra" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?rainbow" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
             </Swiper>
             <div className="swiper-pagination"></div>
         </>

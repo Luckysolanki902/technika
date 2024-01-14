@@ -124,6 +124,9 @@
     .mainText {
         font-size: 2.3rem;
     }
+    .cardBorderDiv {border-radius: 27px;}
+    .cardDiv {border-radius: 27px;}
+    .black{border-radius: 27px;}
 }
 
 @media screen and (max-width: 600px) {

@@ -1,12 +1,36 @@
-import React from 'react'
-import Image from 'next/image'
+import React, { useEffect } from 'react';
+import Image from 'next/image';
+import  useMediaQuery  from '@mui/material/useMediaQuery';
+import styles from './compstyles/land.module.css';
 
 const Land = () => {
-  return (
-    <div>
-      <Image src={'/images/hometopfull.png'} width={5184} height={3456} alt='technika hbtu' aria-describedby='Technika HBTU 2024'  style={{width:'100vw', height:'auto'}}></Image>
-    </div>
-  )
-}
+  
+  const isLargeScreen = useMediaQuery('(min-width: 800px)');
 
-export default Land
+  return (
+    <div style={{ position: 'relative', width: '100%', height: 'auto' }} className={styles.maincontainer}>
+      <div className={styles.bg}>
+
+        <Image
+          src={isLargeScreen ? '/images/hometopfull3.png' : '/images/hometopfull2.png'}
+          width={5184}
+          height={3456} 
+          alt='bg'
+          aria-describedby='Technika HBTU 2024'
+          className={styles.bgImage}
+        ></Image>
+      </div>
+      <div className={styles.centeredLogo}>
+        <Image
+          src={'/images/tlogo.png'}
+          width={1080}
+          height={720}
+          alt='technika hbtu'
+          aria-describedby='Technika HBTU 2024'
+        />
+      </div>
+    </div>
+  );
+};
+
+export default Land;

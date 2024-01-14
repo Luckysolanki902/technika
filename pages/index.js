@@ -19,7 +19,7 @@ export default function Home() {
         <div className='carouseldiv'>
           <CarouselTop />
         </div>
-        <div>
+        <div style={{marginTop:'5rem'}}>
           <Tshirtmodel />
 
         </div>
