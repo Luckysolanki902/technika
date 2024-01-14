@@ -1,4 +1,4 @@
-# Technika Fest - HBTU
+# Technika - HBTU
 Welcome to the official GitHub repository for Technika Fest at HBTU! 🚀
 
 
