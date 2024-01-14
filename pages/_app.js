@@ -1,6 +1,5 @@
 import Sidebar from '@/components/Sidebar'
 import '@/styles/globals.css'
-import ColorSmokeTrail from '@/components/Animations/ColorSmokeTrail'
 export default function App({ Component, pageProps }) {
   return <>
     <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '9999999999' }}>

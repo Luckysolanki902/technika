@@ -5,10 +5,9 @@ import Sidebar from '@/components/Sidebar'
 import CarouselTop from '@/components/CarouselTop'
 import Events from '@/components/Events'
 import Land from '@/components/Land'
-import Sponsors from '@/components/Sponsors'
 import Tshirtmodel from '@/components/Tshirtmodel'
 import TeamCardsEffect from '@/components/TeamCardsEffect'
-import ColorSmokeTrail from '@/components/Animations/ColorSmokeTrail'
+import Sponsors from '@/components/Sponsors'
 export default function Home() {
   return (
     <div className={styles.mainDiv}>
@@ -24,8 +23,7 @@ export default function Home() {
 
         </div>
         <Events />
-        {/* <Sponsors/> */}
-        {/* <TeamCardsEffect/> */}
+<Sponsors/>
 
       </div>
     </div>
