@@ -1,29 +1,6 @@
-# Technika
+# Technika - HBTU
+Welcome to the official GitHub repository for Technika Fest at HBTU! 🚀
 
-This is the repository for the Technika HBTU website.
 
-### Getting Started
-Make sure yarn is installed. If not, you can install it globally using npm:
-
-```bash
-npm install --global yarn
-```
-
-##To clone this code in your pc, use:
-```bash
-git clone https://github.com/Luckysolanki902/technika
-```
-
-Install the required packages using yarn, using this command:
-```bash
-yarn install
-```
-To run this on localhost use command:
-```bash
-yarn dev
-```
-
-To install any package use in package.json like you use to do in npm as npm install <package_name>, use:
-```bash
-yarn add <package_name>
-```
+## About Technika Fest
+Technika Fest is an annual celebration of technology, innovation, and creativity at HBTU (Harcourt Butler Technical University). This festival brings together students, enthusiasts, and professionals to showcase their technical prowess, participate in exciting competitions, and learn from the experiences.
