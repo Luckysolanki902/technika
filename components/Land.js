@@ -16,7 +16,7 @@ const Land = () => {
         data-cursor-text="Welcome to Technika"
         data-cursor-size='170px'
 
-          src={isLargeScreen ? '/images/hometopfull3.png' : '/images/hometopfull2.png'}
+          src={isLargeScreen ? '/images/hometopfull3.png' : '/images/hometop.jpg'}
           width={5184}
           height={3456} 
           alt='bg'
@@ -24,7 +24,7 @@ const Land = () => {
           className={styles.bgImage}
         ></Image>
       </div>
-      <div className={styles.centeredLogo}>
+      <div className={styles.centeredLogo}> 
         <Image
           src={'/images/tlogo.png'}
           width={1080}

@@ -28,7 +28,7 @@ const TeamCardsEffect = () => {
         loop={true}
         speed={500}
         simulateTouch={true}
-        autoplay={{ delay: 3000, disableOnInteraction: false }}
+        autoplay={{ delay: 1500, disableOnInteraction: false }}
       >
         <SwiperSlide>{<Card name={"Akki"} />}</SwiperSlide>
         <SwiperSlide>{<Card name={"Mem2"} />}</SwiperSlide>
