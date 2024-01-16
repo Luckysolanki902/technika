@@ -1,11 +1,19 @@
-import styles from "./compstyles/menu.module.css"
+import Link from "next/link";
+import styles from "./compstyles/menu.module.css";
+import React from 'react';
+import { useRouter } from "next/router";
 
-import React from 'react'
 
-const Menu = ({ text, border, hide }) => {
+
+const Menu = ({ text, href, hide }) => {
+    const router = useRouter();
+    const isActive = router.pathname === href;
+
     return (
-        <div style={{display: hide ? 'none': 'block'}} className={border ? styles.menu : styles.bor} >{text}</div>
-    )
-}
+        <Link href={href} style={{ display: hide ? 'none' : 'block', textDecoration: 'none' }}className={isActive ? styles.menu : styles.bor}>
+            {text}
+        </Link>
+    );
+};
 
-export default Menu
+export default Menu;

@@ -7,10 +7,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    z-index: 4444;
+    z-index: 4;
     background: black;
     max-width: 400px;
     margin: 0 auto;
+    color: rgb(113, 5, 237);
 
 }
 
@@ -26,7 +27,12 @@
     flex-shrink: 0;
     /* border: 4.034px solid  rgba(255, 0, 214, 0.74); */
     background: linear-gradient(171deg, rgba(222, 17, 227, 0.17) 17.33%, rgba(119, 37, 201, 0.10) 60.21%);
+transition: all 0.6s ease-in;
+}
 
+.cardBorderDiv:hover{
+scale: 0.99;
+transform: translateY(1%);
 }
 
 

@@ -1,13 +1,15 @@
 import Events from '@/components/Events'
+import FormTab from '@/components/FormTab'
 import SponsorCarousel from '@/components/SponsorCarousel'
 import Sponsors from '@/components/Sponsors'
 import React from 'react'
 
 const index = () => {
   return (
-    <div style={{ backgroundColor: 'white', width: '100vw', height: '100vh' }}>
-      {/* <Events /> */}
-      <Sponsors />
+    <div>
+      <FormTab />
+      {/* <Form /> */}
+
     </div>
   )
 }

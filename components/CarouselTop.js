@@ -11,7 +11,6 @@ import 'swiper/css/effect-fade';
 register();
 
 const CarouselTop = () => {
-
     return (
         <>
             <Swiper style={{ height: 'auto', borderRadius: '2rem', "--swiper-pagination-color": "#C508A7", "--swiper-pagination-bullet-size": "0.8rem",
@@ -27,10 +26,10 @@ const CarouselTop = () => {
                     dynamicMainBullets:2,
                 }}
                 loop={true} speed={1000} simulateTouch={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} >
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?animal" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?lion" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?zebra" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}}> <div > <Image src="https://source.unsplash.com/random?rainbow" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 1' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?animal" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 2' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?lion" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 3' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?zebra" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 4' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?rainbow" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
             </Swiper>
             <div className="swiper-pagination"></div>
         </>

@@ -8,9 +8,11 @@ import Land from '@/components/Land'
 import Tshirtmodel from '@/components/Tshirtmodel'
 import TeamCardsEffect from '@/components/TeamCardsEffect'
 import Sponsors from '@/components/Sponsors'
+import 'react-creative-cursor/dist/styles.css';
 export default function Home() {
   return (
     <div className={styles.mainDiv}>
+
       {/* <Sidebar /> */}
       <div>
         {/* <Events/> */}

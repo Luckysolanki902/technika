@@ -1,0 +1,22 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+
+.txt {
+  width: 100vw;
+  text-align: center;
+  background-image: linear-gradient(to left, #ffffff40, #ffffff40);
+  background-clip: text;
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: calc(1em / 16);
+  -webkit-background-clip: text;
+  font-family: Jost;
+  font-size: 7.56719rem;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+@media (width<800px){
+    .txt{
+        font-size: 6rem;
+    }
+}

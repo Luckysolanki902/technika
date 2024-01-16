@@ -1,6 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@100;200;300;400;500;600;700;800;900&family=Krona+One&display=swap');
+
+
 @font-face {
   font-family: 'gos';
-  src: url('/fonts/gos.ttf'); 
+  src: url('/fonts/gos.ttf');
 }
 
 :root,
@@ -11,7 +15,7 @@ body {
   padding: 0;
   background-color: #000000;
   overflow-x: hidden;
-  --gradient-angle:0deg;
+  --gradient-angle: 0deg;
 }
 
 
@@ -19,41 +23,65 @@ body {
   box-sizing: border-box;
 }
 
-.carouseldiv{
-  padding:0 12rem;
+.carouseldiv {
+  padding: 0 12rem;
 }
-@media (width<1000px){
-  .carouseldiv{
-    padding:0 10rem;
-  }
+
+
+input[type=radio] {
+  accent-color: #451C4F;
+  width: 20px;
+  height: 20px;
+  margin-left: 0.9rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
 }
-@media (width<800px){
-  .carouseldiv{
-    padding:0 7rem;
-  }
-}
-@media (width<600px){
-  .carouseldiv{
-    padding:0 4rem;
-  }
-}
-@media (width<500px){
-  .carouseldiv{
-    padding:0 3rem;
-  }
-}
-@media (width<400px){
-  .carouseldiv{
-    padding:0 2rem;
+
+@media (width<1000px) {
+  .carouseldiv {
+    padding: 0 10rem;
   }
 }
 
-::-webkit-scrollbar{
+@media (width<800px) {
+  .carouseldiv {
+    padding: 0 7rem;
+  }
+
+  input[type=radio] {
+    width: 15px;
+    height: 15px;
+    margin-left: 0.8rem;
+    margin-right: 0.6rem;
+    background:transparent;
+  }
+}
+
+@media (width<600px) {
+  .carouseldiv {
+    padding: 0 4rem;
+  }
+}
+
+@media (width<500px) {
+  .carouseldiv {
+    padding: 0 3rem;
+  }
+}
+
+@media (width<400px) {
+  .carouseldiv {
+    padding: 0 2rem;
+  }
+}
+
+::-webkit-scrollbar {
   display: none;
 }
-@media (width> 800px){
 
-  .carouseldiv{
+@media (width> 800px) {
+
+  .carouseldiv {
     margin-top: -3rem;
   }
 }

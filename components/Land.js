@@ -4,7 +4,8 @@ import  useMediaQuery  from '@mui/material/useMediaQuery';
 import styles from './compstyles/land.module.css';
 
 const Land = () => {
-  
+
+
   const isLargeScreen = useMediaQuery('(min-width: 800px)');
 
   return (
@@ -12,6 +13,9 @@ const Land = () => {
       <div className={styles.bg}>
 
         <Image
+        data-cursor-text="Welcome to Technika"
+        data-cursor-size='170px'
+
           src={isLargeScreen ? '/images/hometopfull3.png' : '/images/hometopfull2.png'}
           width={5184}
           height={3456} 

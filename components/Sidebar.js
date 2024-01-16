@@ -1,13 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './compstyles/sidebar.module.css';
 import Image from 'next/image';
 import Menu from './Menu';
-
+import { useRouter } from 'next/router';
 const Sidebar = () => {
+  const router = useRouter()
   const [open, setOpen] = useState(false);
   const click = () => {
     setOpen(!open);
   };
+  useEffect(() => {
+    // Close the sidebar when the route changes
+    setOpen(false);
+  }, [router.asPath]);
 
   const img = '/images/logo.png'
 
@@ -80,12 +85,15 @@ const Sidebar = () => {
           <Image style={{display:!open? 'none': ''}} src={img} width={162.858} height={91.4} alt="Logo" />
           <div style={{display:!open? 'none': ''}} className={styles.logoText}>echnika</div>
         </div>
-        <Menu text={'menu'} hide={!open} border={true} />
-        <Menu text={'team'} hide={!open} />
-        <Menu text={'about'} hide={!open} />
-        <Menu text={'events'} hide={!open} />
-        <Menu text={'sponsors'} hide={!open} />
-        <Menu text={'merchandises'} hide={!open} />
+        // ... (your existing code)
+
+<Menu text={'home'} hide={!open} href="/" />
+<Menu text={'team'} hide={!open} href="/team" />
+<Menu text={'about'} hide={!open} href="/about" />
+<Menu text={'events'} hide={!open} href="/events" />
+<Menu text={'sponsors'} hide={!open} href="/sponsors" />
+<Menu text={'merchandises'} hide={!open} href="/merchandises" />
+
       </div>
     </div>
   );
