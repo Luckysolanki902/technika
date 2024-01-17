@@ -1,37 +1,42 @@
 .pro {
-  display: inline-flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
   border-radius: 1rem;
   background: linear-gradient(to bottom,
       rgba(255, 0, 214, 0.74),
       rgba(119, 37, 201, 1));
   width: 14.4rem;
   height: 17.025rem;
+
 }
 
 .in {
   height: 98%;
   width: 98%;
-  padding: 1.1875rem 1.89269rem 2.3175rem 0.8125rem;
-  gap: 1.6885rem;
+  padding: 0.8rem 0;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   background-color: black;
+  justify-content: space-between;
+  padding-top: 0;
+  padding-bottom: 0.5rem;
+
 }
 
 .proin {
-  width: 8.17175rem;
-  height: 9.999rem;
+  width: 100%;
+  height: auto;
   background-color: black;
   overflow: hidden;
   border-radius: 1.01513rem;
   position: relative;
   box-shadow: 0px 3.248px 3.248px 0px rgba(0, 0, 0, 0.25),
     0px 3.248px 3.248px 4.061px rgba(0, 0, 0, 0.25) inset;
+
 }
 
 .protxt {
@@ -47,7 +52,9 @@
 }
 
 .proimg {
-  object-fit: cover;
+  object-fit: contain;
+  width: 100%;
+  height: auto;
 }
 
 .imgOver {
@@ -60,7 +67,7 @@
     0px 3.248px 3.248px 4.061px rgba(0, 0, 0, 0.25) inset;
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: 1780px) {
   .pro {
     width: 15.4rem;
     height: 19.025rem;
@@ -87,8 +94,8 @@
   }
 
   .proimg {
-    width: 9.17175rem;
-    height: 10.999rem;
+    width: 100%;
+    height: auto;
   }
 }
 

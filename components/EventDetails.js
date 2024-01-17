@@ -1,10 +1,8 @@
 import React from 'react';
 import Dialog from '@mui/material/Dialog';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
 import Paper from '@mui/material/Paper';
 import styles from './compstyles/eventdetails.module.css'
-import { Cancel,CloseIcon } from '@mui/icons-material';
+import { Cancel } from '@mui/icons-material';
 import Link from 'next/link';
 
 const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, onClose }) => {
@@ -59,7 +57,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                 </div>
 
                 <div className={styles.venuePar}>
-                    <div className={styles.venue}>Venue </div><div>Radha Krishnan Auditorium</div>
+                    <div className={styles.venue}>Venue </div><div>{venue}</div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
                     <div className={styles.button}>

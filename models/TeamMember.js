@@ -3,7 +3,7 @@
 const mongoose = require('mongoose');
 
 const teamMemberSchema = new mongoose.Schema({
-  Name: {
+  NAME: {
     type: String,
     required: true,
   },
@@ -19,7 +19,7 @@ const teamMemberSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  ProfileUrl: {
+  updatedImageUrl: {
     type: String,
     required: true,
   },

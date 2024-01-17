@@ -2,13 +2,15 @@ import React from "react";
 import style from "./compstyles/card.module.css";
 import Image from "next/image";
 
-const Card = ({ name }) => {
+const Card = ({ name, position, updatedImageUrl }) => {
+  console.log(`/local_images/imagestsc/${updatedImageUrl}`)
+
   return (
     <div className={style.pro}>
       <div className={style.in}>  
         <div className={style.proin}>
           <Image
-            src={"/images/img.jpg"}
+            src={`/local_images/imagestsc/${updatedImageUrl}`}
             height={500}
             width={500}
             alt="profile"

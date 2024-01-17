@@ -9,7 +9,7 @@ const Sponsors = () => {
   
 
     return (
-        <div>
+        <div id='sponsors'>
             <div>
 
                 <SponsorCarousel sponsorsimgs={sponsorImages} reversedirection={false}/>
