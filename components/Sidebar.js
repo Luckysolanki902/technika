@@ -82,17 +82,16 @@ const Sidebar = () => {
       </div>
       <div className={open ? styles.container : styles.hide}>
         <div className={open ? styles.imgContainer : styles.imgContainerHi}>
-          <Image style={{display:!open? 'none': ''}} src={img} width={162.858} height={91.4} alt="Logo" />
-          <div style={{display:!open? 'none': ''}} className={styles.logoText}>echnika</div>
+          <Image style={{ display: !open ? 'none' : '' }} src={img} width={162.858} height={91.4} alt="Logo" />
+          <div style={{ display: !open ? 'none' : '' }} className={styles.logoText}>echnika</div>
         </div>
-        // ... (your existing code)
 
-<Menu text={'home'} hide={!open} href="/" />
-<Menu text={'team'} hide={!open} href="/team" />
-<Menu text={'about'} hide={!open} href="/about" />
-<Menu text={'events'} hide={!open} href="/events" />
-<Menu text={'sponsors'} hide={!open} href="/sponsors" />
-<Menu text={'merchandises'} hide={!open} href="/merchandises" />
+        <Menu text={'home'} hide={!open} href="/" />
+        <Menu text={'team'} hide={!open} href="/team" />
+        <Menu text={'about'} hide={!open} href="/about" />
+        <Menu text={'events'} hide={!open} href="/events" />
+        <Menu text={'sponsors'} hide={!open} href="/sponsors" />
+        <Menu text={'merchandises'} hide={!open} href="/merchandises" />
 
       </div>
     </div>

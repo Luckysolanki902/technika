@@ -1,8 +1,13 @@
+const adminEmails = [
+    'admin1@example.com',
+    'admin2@example.com',
+    
+];
+
 export default function handler(req, res) {
     if (req.method === 'POST') {
         const { email, password } = req.body;
 
-        const adminEmails = process.env.ADMIN_EMAILS.split(',');
         const adminPassword = process.env.ADMIN_PASSWORD;
 
         if (adminEmails.includes(email) && password === adminPassword) {

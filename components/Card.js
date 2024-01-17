@@ -7,13 +7,13 @@ const Card = ({ name }) => {
     <div className={style.pro}>
       <div className={style.in}>  
         <div className={style.proin}>
-          {/* <Image
+          <Image
             src={"/images/img.jpg"}
-            height={159.984}
-            width={130.748}
+            height={500}
+            width={500}
             alt="profile"
             className={style.proimg}
-          /> */}
+          />
           <div className={style.imgOver}></div>
         </div>
         <div className={style.protxt}>{name}</div>

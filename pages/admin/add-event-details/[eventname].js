@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { TextField, CircularProgress, Snackbar, Alert } from '@mui/material';
+import { TextField, CircularProgress, Snackbar, Alert, TextareaAutosize } from '@mui/material';
 import { useRouter } from 'next/router';
 
 const AddEvent = () => {
@@ -60,7 +60,7 @@ const AddEvent = () => {
     };
 
     fetchEventInfo();
-    
+
   }, [eventname]);
 
   const handleChange = (field) => (e) => {
@@ -86,14 +86,14 @@ const AddEvent = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setAdding(true);
-  
+
     // Remove empty guidelines
     const nonEmptyGuidelines = eventData.guidelines.filter((guideline) => guideline.trim() !== '');
     const updatedEventData = {
       ...eventData,
       guidelines: nonEmptyGuidelines,
     };
-  
+
     try {
       const response = await fetch('/api/add-eventdetails', {
         method: 'POST',
@@ -102,7 +102,7 @@ const AddEvent = () => {
         },
         body: JSON.stringify(updatedEventData),
       });
-  
+
       if (response.ok) {
         handleSnackbarOpen();
       } else {
@@ -115,12 +115,12 @@ const AddEvent = () => {
       setAdding(false);
     }
   };
-  
+
 
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit} style={{ padding: '20px', maxHeight: '100vh', marginTop: '5rem', marginBottom: '4rem' }}>
+        <form onSubmit={handleSubmit} style={{ padding: '20px', maxHeight: '100vh', margin:' 4rem 1rem' }}>
           <TextField
             label="Guidelines"
             variant="standard"
@@ -142,20 +142,23 @@ const AddEvent = () => {
               required
             />
           ))}
-          <button type="button" style={{padding:'0.6rem 1rem', fontSize:'1rem', borderRadius:'0.6rem', cursor:'pointer'}} onClick={handleAddGuideline}>
+          <button type="button" style={{ padding: '0.6rem 1rem', fontSize: '1rem', borderRadius: '0.6rem', cursor: 'pointer' }} onClick={handleAddGuideline}>
             Add one more guideline
           </button>
-          <TextField
+          <h4 style={{marginBottom:'-1.3rem'}}>About The Event</h4>
+          <TextareaAutosize
             label="About"
-            variant="standard"
-            fullWidth
-            margin="normal"
+            minRows={4}
+            placeholder="Enter event details..."
             value={eventData.about}
             onChange={handleChange('about')}
             required
+            
+            style={{ width: '100%', marginBottom: '1rem', outline:'none', fontSize:'1rem', marginTop:'2rem', borderRadius:'1rem', padding:'0.6rem 1rem', fontFamily:'Jost' }}
           />
+
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <button type="submit" style={{ marginTop: '3rem', padding: '0.6rem 1rem', borderRadius: '0.7rem', width: '70%', cursor: 'pointer' }}>
+            <button type="submit" style={{ marginTop: '3rem', padding: '1rem', borderRadius: '0.7rem', width: '40%', cursor: 'pointer', fontWeight:'700' }}>
               {adding ? <CircularProgress size={25} style={{ fontWeight: '900' }} color="inherit" /> : 'Add Details'}
             </button>
           </div>

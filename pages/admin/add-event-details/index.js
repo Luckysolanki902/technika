@@ -29,7 +29,7 @@ const IndexPage = () => {
     return (
         <div className={styles.container}>
             <div className={styles.subContainer}>
-                <h2 className={styles.heading}>Choose an event to edit</h2>
+                <h2 className={styles.heading}>Choose an event to Add Details of</h2>
                 {events.map((event) => (
                     <Link className={styles.eventLink} href={linkPath(event.name)} key={event.id} passHref>
                        {event.name.toUpperCase()}

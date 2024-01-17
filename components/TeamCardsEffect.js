@@ -10,9 +10,9 @@ import { EffectCards } from "swiper/modules";
 import Card from "./Card";
 register();
 
-const TeamCardsEffect = () => {
+const TeamCardsEffect = ({ teamMembers }) => {
   return (
-    <div style={{width:'100%', display:'flex', justifyContent:'center'}}>
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       <Swiper
         style={{
           height: "auto",
@@ -24,19 +24,19 @@ const TeamCardsEffect = () => {
         effect="cards"
         modules={[EffectCards]}
         perSlideOffset={80}
-        // replace the divs i made with the Card of yours
         loop={true}
         speed={500}
         simulateTouch={true}
         autoplay={{ delay: 1500, disableOnInteraction: false }}
       >
-        <SwiperSlide>{<Card name={"Akki"} />}</SwiperSlide>
-        <SwiperSlide>{<Card name={"Mem2"} />}</SwiperSlide>
-        <SwiperSlide>{<Card name={"Mem3"} />}</SwiperSlide>
-        <SwiperSlide>{<Card name={"Akkii"} />}</SwiperSlide>
-        <SwiperSlide>{<Card name={"Akkiii"} />}</SwiperSlide>
+        {teamMembers.map((member, index) => (
+          <SwiperSlide key={index}>
+            {<Card name={member.NAME} />} {/* Assuming the member object has a 'Name' property */}
+          </SwiperSlide>
+        ))}
       </Swiper>
     </div>
   );
 };
+
 export default TeamCardsEffect;
