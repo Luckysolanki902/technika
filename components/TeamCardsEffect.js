@@ -12,7 +12,7 @@ register();
 
 const TeamCardsEffect = () => {
   return (
-    <>
+    <div style={{width:'100%', display:'flex', justifyContent:'center'}}>
       <Swiper
         style={{
           height: "auto",
@@ -36,7 +36,7 @@ const TeamCardsEffect = () => {
         <SwiperSlide>{<Card name={"Akkii"} />}</SwiperSlide>
         <SwiperSlide>{<Card name={"Akkiii"} />}</SwiperSlide>
       </Swiper>
-    </>
+    </div>
   );
 };
 export default TeamCardsEffect;

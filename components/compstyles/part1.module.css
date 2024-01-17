@@ -17,6 +17,8 @@
     text-align: center;
     font-family: Jost;
     font-weight: 300;
+    line-height: 1.5rem;
+    text-align: center;
 }
 
 .mainbg {
@@ -32,7 +34,7 @@
 }
 
 .formContent {
-    margin: 3rem auto;
+    margin: 6rem auto;
     border-radius: 2rem;
     padding: 4rem;
     padding-top: 0;
@@ -47,6 +49,7 @@
     margin-bottom: 2rem;
     
 }
+
 
 .partContent {
     margin: 1rem auto;
@@ -73,9 +76,21 @@
     margin-top: 2rem;
 }
 
+.guidelines{
+    font-family: 'Jost';
+    font-size: 1.5rem;
+
+}
+.guidelineDisk{
+    width: 1rem;
+    height: 1rem;
+    margin-right: 1rem;
+    transform: translateY(66%);
+}
+
 .formTitle {
     font-family: "Krona One";
-    font-size: 5rem;
+    font-size: 3rem;
     color: transparent;
     -webkit-text-stroke: 0.1px #c5c5c5;
     text-align: center;
@@ -160,11 +175,11 @@
     }
 
 }
-@media(width>1000px){
+/* @media(width>1000px){
     .mainbg{
         margin-top: -3rem;
     }
-}
+} */
 
 
 
@@ -187,7 +202,7 @@
     }
 
     .formTitle {
-        font-size: 3.5rem;
+        font-size: 2.8rem;
     }
 
     .inpDiv {
@@ -240,7 +255,7 @@
     }
 
     .formTitle {
-        font-size: 3rem;
+        font-size: 2.2rem;
     }
 
     .inpDiv {
@@ -272,5 +287,15 @@
     }
     .dndheading{
         font-size: 0.9rem;
+    }
+    .guidelineDisk{
+        width: 0.8rem;
+        height: 0.8rem;
+        margin-right: 1rem;
+        transform: translateY(80%);
+    }
+    .guidelines{
+        font-size: 1.3rem;
+    
     }
 }

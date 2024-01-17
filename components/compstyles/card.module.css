@@ -94,3 +94,10 @@
       height: 10.999rem;
     }
   }
+
+  @media (width< 400px){
+    .pro{
+      width: 12rem;
+      height: 14.5rem;
+    }
+  }

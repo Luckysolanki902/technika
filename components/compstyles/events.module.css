@@ -25,6 +25,9 @@
     display: inline-block;
     color: transparent;
     letter-spacing: 5px;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+
 }
 
 .heading::before {

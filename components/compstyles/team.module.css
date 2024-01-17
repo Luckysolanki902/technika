@@ -11,7 +11,7 @@
 }
 
 .top {
-  margin-top: 10vw;
+  margin-top: 1rem;
   background-image: linear-gradient(to left, white, black);
   background-clip: text;
   -webkit-text-stroke-color: transparent;
@@ -28,60 +28,170 @@
 }
 
 .caraCont {
-  width: 80%;
+  width: 100%;
   height: 18.375rem;
   overflow: hidden;
   display: flex;
   justify-content: center;
   padding-left: 9%;
-  z-index: 999;
 }
 
-@media screen and (min-width: 1300px) {
-  .caraCont {
-    padding-top: 5px;
-    width: 100%;
-    height: 20.375rem;
-    margin-left: 6vw;
-  }
+.bottom {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-@media screen and (width >= 1080px) {
+.bt {
+  width: 90%;
+  /* height: 100%; */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+@media screen and (width <700px) {
   .top {
-    margin-top: 3vw;
-    font-size: 4rem;
-    margin-bottom: 30px;
-  }
-
-  .caraCont {
-    padding-top: 5px;
-    width: 100%;
-    height: 20.375rem;
-    /* padding-left: 50%; */
-  }
-}
-@media screen and (width >= 450px) {
-  .top {
-    margin-top: 3vw;
+    margin-top: 0.7rem;
     font-size: 4rem;
     margin-bottom: 20px;
   }
-
   .caraCont {
+    padding-top: 6px;
+    margin-top: 14px;
+    width: 90%;
+    height: 20.375rem;
+    display: flex;
+    justify-content: center;
+   margin: auto;
+
+
+  }
+
+  .bottom {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .bt {
+    width: 72%;
+    justify-content: center;
+    margin: auto;
+  }
+}
+
+@media screen and (width >=600px) {
+  .caraCont {
+    padding-top: 6px;
+    margin-top: 14px;
     width: 80%;
     height: 20.375rem;
-    padding-left: 20%;
+    padding-left: 5%;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .bt {
+    width: 35%;
+    justify-content: center;
   }
 }
-@media screen and (width >= 600px) {
+@media screen and (width> 1050px) {
   .caraCont {
-    width: 60%;
+    padding-top: 6px;
+    margin-top: 14px;
+    width: 90%;
     height: 20.375rem;
+    padding-left: 12%;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .bt {
+    width: 29%;
+    justify-content: center;
   }
 }
-@media screen and (width >= 786px) {
+@media screen and (width> 1200px) {
   .caraCont {
-    width: 60%;
+    padding-top: 6px;
+    margin-top: 14px;
+    width: 80%;
     height: 20.375rem;
+    padding-left: 10%;
   }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .bt {
+    width: 29%;
+    justify-content: center;
+  }
+}
+
+@media screen and (width> 1450px) {
+  .caraCont {
+    padding-top: 6px;
+    margin-top: 14px;
+    width: 70%;
+    height: 20.375rem;
+    padding-left: 10%;
+  }
+
+  .bottom {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .bt {
+    width: 29%;
+    justify-content: center;
+  }
+}
+
+
+@media(width<800px){
+.caraCont{
+  width: 99%;
+  margin: auto;
+  padding-left: 6%;
+}
+}
+@media(width<600px){
+.caraCont{
+  width: 80%;
+}
+}
+@media(width<550px){
+.caraCont{
+  width: 90%;
+  margin: auto;
+  padding-left: 12%;
+
+}
+}
+@media(width<400px){
+.caraCont{
+  width: 90%;
+  margin: auto;
+  padding-left: 13%;
+}
 }

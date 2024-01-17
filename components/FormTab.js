@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import styles from '@/components/compstyles/part1.module.css';
 import { useDropzone } from 'react-dropzone';
@@ -10,9 +10,10 @@ import MuiAlert from '@mui/material/Alert';
 import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
 
-const FormTab = () => {
+const FormTab = ({updatedEventName}) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [formData, setFormData] = useState({
+        eventname:updatedEventName,
         college: '',
         fullname: '',
         email: '',
@@ -83,6 +84,7 @@ const FormTab = () => {
         e.preventDefault();
         setSubmitting(true)
         try {
+            const currentTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
             const requiredFieldsPart1 = [
                 { name: 'fullname', label: 'Full Name' },
                 { name: 'gender', label: 'Gender' },
@@ -109,14 +111,17 @@ const FormTab = () => {
                 setSnackbarMessage('Please upload an image for non-HBTU college.');
                 return;
             }
-            
+            const formDataWithDateTime = {
+                ...formData,
+                datetime: currentTime,
+            };
             // Make a POST request to submit the form data using fetch
             const response = await fetch('/api/submiteventform', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formData),
+                body: JSON.stringify(formDataWithDateTime),
             });
 
             // Check if the request was successful (status code 2xx)
@@ -149,11 +154,11 @@ const FormTab = () => {
 
     return (
         <div className={styles.mainbg}>
-            <div className={styles.formContent} data-cursor-color='rgba(255, 255, 255, 0.6)'>
+            <div className={styles.formContent} data-cursor-color='rgba(255, 155, 255, 0.7)'>
                 <div style={{ padding: '20px' }}>
                     <h1 className={styles.mainHeading}>Event Registration Form</h1>
                     <h3 className={styles.subHeading}> (free for university students)</h3>
-                    <h2 className={styles.formTitle}>Robotic</h2>
+                    <h2 className={styles.formTitle}>{updatedEventName}</h2>
                     <div style={{ display: "flex" }}>
                         <div
                             className={styles.tabIndexDiv}
@@ -394,7 +399,7 @@ const FormTab = () => {
                         </form>
                     </SwipeableViews>
                 </div>
-            </div>
+            </div> 
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}

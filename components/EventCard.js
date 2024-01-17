@@ -3,7 +3,7 @@ import styles from './compstyles/eventcard.module.css'
 const Card = ({ text, prize }) => {
   return (
     <div className={styles.fullCard} >
-      <div className={styles.cardBorderDiv} data-cursor-color="rgba(150, 150, 150, 0.1)" data-cursor-size='200px'>
+      <div className={styles.cardBorderDiv} >
         <div class={styles.glow} />
         <div className={styles.black}>
 
