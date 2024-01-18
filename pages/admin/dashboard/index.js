@@ -25,14 +25,14 @@ const AdminDashboard = () => {
                 </div>
                 <h3 className={styles.subheading} style={{ color: 'white', fontFamily: 'Jost' }}>Event Details and Guidelines</h3>
                 <div className={styles.buttons}>
-                    <Link href="/admin/add-event" className={styles.button}>
+                    <Link href="/admin/add-event-details" className={styles.button}>
                         Add Details
                     </Link>
-                    <Link href="/admin/edit-events" className={styles.button}>
-                        Edit Team Member
-                    </Link>
-                    <Link href="/admin/delete-event" className={styles.button}>
-                        Delete Team Member
+                </div>
+                <h3 className={styles.subheading} style={{ color: 'white', fontFamily: 'Jost' }}>Team</h3>
+                <div className={styles.buttons}>
+                    <Link href="/admin/add-team-member" className={styles.button}>
+                        Add A Team Member
                     </Link>
                 </div>
             </div>
