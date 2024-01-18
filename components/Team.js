@@ -3,7 +3,8 @@ import style from "./compstyles/team.module.css";
 import Text from "./Text";
 import TeamCardsEffect from "./TeamCardsEffect";
 
-const Team = () => {
+
+const Team = ({ showThreeDepartments }) => {
   const [teamData, setTeamData] = useState([]);
 
   useEffect(() => {
@@ -22,7 +23,6 @@ const Team = () => {
       }
     };
     fetchData();
-    console.log(teamData);
   }, []);
 
   // Extract unique departments from teamData
@@ -33,14 +33,19 @@ const Team = () => {
       <div className={style.top}>team</div>
       <div className={style.bottom}>
         {uniqueDepartments.map((department, index) => (
-          <div className={style.bt} key={index}>
-            <div>
-              {<Text prop={department} />}
+          // Check if showThreeDepartments is true and include specific departments
+          (showThreeDepartments
+            ? ["Content", "Design", "Web Development",].includes(department)
+            : true) && (
+            <div className={style.bt} key={index}>
+              <div>
+                {<Text prop={department} />}
+              </div>
+              <div className={style.caraCont}>
+                <TeamCardsEffect teamMembers={teamData.filter((member) => member.Department === department)} />
+              </div>
             </div>
-            <div className={style.caraCont}>
-              <TeamCardsEffect teamMembers={teamData.filter((member) => member.Department === department)} />
-            </div>
-          </div>
+          )
         ))}
       </div>
     </div>

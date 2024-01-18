@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   border-radius: 1rem;
   background: linear-gradient(to bottom,
       rgba(255, 0, 214, 0.74),
@@ -12,9 +13,9 @@
 }
 
 .in {
-  height: 98%;
+  height: 99%;
   width: 98%;
-  padding: 0.8rem 0;
+  padding: 1.1875rem 1.1875rem 1.1875rem 1.1875rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -29,7 +30,8 @@
 
 .proin {
   width: 100%;
-  height: auto;
+  height: 12rem;
+  margin-top: 4px;
   background-color: black;
   overflow: hidden;
   border-radius: 1.01513rem;
@@ -41,6 +43,7 @@
 
 .protxt {
   width: 90%;
+  height: 20%;
   text-align: center;
   font-family: Krona One;
   font-size: 1rem;
@@ -52,7 +55,7 @@
 }
 
 .proimg {
-  object-fit: contain;
+  object-fit: cover;
   width: 100%;
   height: auto;
 }
