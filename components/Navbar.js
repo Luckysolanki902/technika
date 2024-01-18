@@ -5,7 +5,7 @@ import Menu from './Menu';
 import { useRouter } from 'next/router';
 import { width } from '@mui/system';
 import { Link } from '@mui/material';
-import Sidebar from '@/components/Sidebar'
+
 
 const Navbar = () => {
   const router = useRouter()
@@ -49,7 +49,7 @@ const Navbar = () => {
     </Link>
     
   </div>
-<Sidebar/>
+
     </div>
   );
 };
