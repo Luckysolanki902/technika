@@ -1,6 +1,6 @@
 const adminEmails = [
     'admin1@example.com',
-    'admin2@example.com',
+    '220104066@HBTU.ac.in',
     
 ];
 
@@ -16,6 +16,6 @@ export default function handler(req, res) {
             res.status(401).json({ success: false });
         }
     } else {
-        res.status(405).end(); // Method Not Allowed
+        res.status(405).end(); // Me Not Allowedthod
     }
 }
