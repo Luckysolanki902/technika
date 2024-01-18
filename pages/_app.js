@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import TypeAdminPassword from '@/components/TypeAdminPassword';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import Navbar from '@/components/Navbar'
 
 const darkTheme = createTheme({
   palette: {
