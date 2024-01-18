@@ -92,7 +92,7 @@ const Sidebar = () => {
         <Menu text={'events'} hide={!open} href="/events" />
         <Menu text={'sponsors'} hide={!open} href="/#sponsors" />
         <Menu text={'merchandises'} hide={!open} href="/merchandises" />
-
+        <Menu text={'admin'} hide={!open} href="/admin/dashboard" />
       </div>
     </div>
   );
