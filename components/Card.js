@@ -2,7 +2,7 @@ import React from "react";
 import style from "./compstyles/card.module.css";
 import Image from "next/image";
 
-const Card = ({ name, position, updatedImageUrl }) => {
+const Card = ({ name, position, updatedImageUrl, number }) => {
   console.log(`/local_images/imagestsc/${updatedImageUrl}`)
 
   return (
@@ -13,7 +13,7 @@ const Card = ({ name, position, updatedImageUrl }) => {
             src={`/local_images/imagestsc/${updatedImageUrl}`}
             height={500}
             width={500}
-            alt="profile"
+            alt={number}
             className={style.proimg}
           />
           <div className={style.imgOver}></div>
