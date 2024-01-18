@@ -16,7 +16,7 @@ const teamMemberSchema = new mongoose.Schema({
     required: true,
   },
   PhoneNumber: {
-    type: String,
+    type: Number,
     required: true,
   },
   updatedImageUrl: {
