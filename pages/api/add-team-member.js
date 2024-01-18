@@ -5,10 +5,8 @@ import TeamMember from '../../models/TeamMember';
 const addTeamMemberHandler = async (req, res) => {
   if (req.method === 'POST') {
     try {
-      const { NAME, Department, Position, PhoneNumber, ImageExtension } = req.body;
+      const { NAME, Department, Position, PhoneNumber, updatedImageUrl } = req.body;
 
-      // Generate updatedImageUrl based on PhoneNumber and ImageExtension
-      const updatedImageUrl = `IMG_${PhoneNumber}.${ImageExtension}`;
 
       const teamMember = new TeamMember({
         NAME,
