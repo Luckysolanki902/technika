@@ -9,6 +9,8 @@ import Tshirtmodel from '@/components/Tshirtmodel'
 import TeamCardsEffect from '@/components/TeamCardsEffect'
 import Sponsors from '@/components/Sponsors'
 import 'react-creative-cursor/dist/styles.css';
+import Footer from '@/components/Footer'
+import Team from '@/components/Team'
 export default function Home() {
   return (
     <div className={styles.mainDiv}>
@@ -20,12 +22,14 @@ export default function Home() {
         <div className='carouseldiv'>
           <CarouselTop />
         </div>
-        <div style={{marginTop:'5rem'}}>
+        <div style={{ marginTop: '5rem' }}>
           <Tshirtmodel />
 
         </div>
         <Events />
-<Sponsors/>
+        <Team showThreeDepartments={true} />
+        <Sponsors />
+        <Footer />
 
       </div>
     </div>

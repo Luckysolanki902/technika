@@ -8,20 +8,22 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 80px;
 }
 
 .top {
   margin-top: 1rem;
-  background-image: linear-gradient(to left, white, black);
+  background-image: linear-gradient(to right, rgba(73, 73, 73, 1), rgba(255, 255, 255, 1));
   background-clip: text;
   -webkit-text-stroke-color: transparent;
   -webkit-text-stroke-width: calc(2em / 16);
   -webkit-background-clip: text;
+  color: black;
   text-transform: capitalize;
   margin-bottom: 30px;
   text-align: center;
   font-family: Krona One;
-  font-size: 2.58831rem;
+  font-size: 5.25rem;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
@@ -194,4 +196,21 @@
   margin: auto;
   padding-left: 13%;
 }
+}
+
+@media screen and (max-width: 800px) {
+  .top   {
+      font-size: 4.75rem;
+  }
+}
+
+@media screen and (max-width:600px) {
+  .top   {
+      font-size: 3rem;
+  }
+
+  .top   {
+      font-family: 3rem;
+  }
+
 }

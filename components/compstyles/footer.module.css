@@ -1,0 +1,177 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+
+.main {
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10vw;
+}
+
+.txt {
+    width: 62.61194rem;
+    flex-shrink: 0;
+    color: white;
+    text-align: center;
+    font-family: Jost;
+    font-size: 3.33044rem;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.tag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    flex-shrink: 0;
+    color: #FFF;
+    text-align: center;
+    font-family: Krona One;
+    font-size: 3.33044rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-top: 80px;
+}
+
+.hash {
+    background: linear-gradient(201deg, rgba(255, 0, 214, 0.74), rgba(119, 37, 201, 1));
+    text-align: center;
+    font-family: Krona One;
+    font-size: 8.72975rem;
+    margin-right: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.right {
+    color: #FFF;
+    text-align: center;
+    font-family: Krona One;
+    font-size: 1.53rem;
+    margin-top: 1vw;
+}
+
+.soci {
+    width: 40%;
+    height: 100px;
+    margin-top: 6vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6vw;
+}
+
+.social {
+    color: aliceblue;
+    text-align: center;
+    font-family: Krona One;
+    font-size: 3rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    cursor: pointer;
+    transition: cubic-bezier(0.175, 0.885, 0.32, 1.275) 0.3s;
+}
+
+.social:hover {
+    font-size: 3.3rem;
+}
+
+@media screen and (max-width: 1010px) {
+    .txt {
+        width: 43.5rem;
+        flex-shrink: 0;
+        color: #FFF;
+        text-align: center;
+        font-family: Jost;
+        font-size: 2rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .tag {
+        font-size: 2rem;
+        margin-top: 40px;
+    }
+
+    .hash {
+        font-size: 5.2765rem;
+    }
+
+    .right {
+        font-size: 1rem;
+
+    }
+
+    .soci {
+        margin-top: 2vw;
+    }
+
+    .social {
+        font-size: 2.5rem;
+    }
+
+    .social:hover {
+        font-size: 2.6rem;
+    }
+
+    .right {
+        margin-top: -1vw;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+    .txt {
+        width: 23.5rem;
+        flex-shrink: 0;
+        color: #FFF;
+        text-align: center;
+        font-family: Jost;
+        font-size: 1.25rem;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+    }
+
+    .tag {
+        font-size: 1.25rem;
+        margin-top: 10px;
+    }
+
+    .hash {
+        font-size: 3.2765rem;
+    }
+
+    .right {
+        font-size: 0.580rem;
+
+    }
+
+    .soci {
+        margin-top: 0;
+    }
+
+    .social {
+        font-size: 2rem;
+    }
+
+    .social:hover {
+        font-size: 2.1rem;
+    }
+
+    .right {
+        margin-top: -2vw;
+    }
+}
