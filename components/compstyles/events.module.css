@@ -62,13 +62,13 @@
 @media (min-width: 800px) {
     .wrapper {
         width: 100vw;
-      padding-left: 2rem;
-      padding-right: 2rem;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-      column-gap: 2rem;
-      /* background-color: red; */
-      justify-content: space-evenly;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        column-gap: 2rem;
+        justify-content: space-between; /* Adjusted to space-between */
     }}
 
 @media screen and (max-width: 800px) {

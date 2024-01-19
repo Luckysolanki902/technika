@@ -14,7 +14,6 @@ const EventCard = ({ text, prize }) => {
           </div>
         </div>
       </div>
-      <p className={styles.prize}>Prize:{prize}</p>
     </div>
   )
 }
