@@ -1,7 +1,8 @@
 const adminEmails = [
     'adminstudentsec@technika.com',
     '220104066@HBTU.ac.in',
-    'akash07151@gmail.com'
+    'akash07151@gmail.com',
+    "210110025@hbtu.ac.in",
 ];
 
 export default function handler(req, res) {
