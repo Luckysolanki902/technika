@@ -18,7 +18,7 @@ console.log(position)
           <div className={style.imgOver}></div>
         </div>
         <div className={style.protxt}>{name}</div>
-        <div className={style.protxt}>{position}</div>
+        <div className={style.pos}>{position}</div>
       </div>
     </div>
   );

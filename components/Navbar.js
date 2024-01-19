@@ -55,7 +55,7 @@ const Navbar = () => {
 </div>
 
   <div style={{padding:"5px",paddingRight:"10px"}}>
-  <Link href={"/admin"} style={{outline:"none !important",textDecoration:"none",color:"white"}}>
+  <Link href={"/admin/dashboard"} style={{outline:"none !important",textDecoration:"none",color:"white"}}>
   <img src='https://drive.google.com/thumbnail?id=1C0rcGbRPwWnkqbKB7llA49TJ91OZdw6_' height={"40px"}/>
     </Link>
     

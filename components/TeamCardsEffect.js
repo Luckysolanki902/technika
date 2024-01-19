@@ -32,7 +32,7 @@ const TeamCardsEffect = ({ teamMembers }) => {
       >
         {teamMembers.map((member, index) => (
           <SwiperSlide key={index}>
-            {<Card name={member.NAME} postion={member.Position} updatedImageUrl={member.updatedImageUrl} number={member.PhoneNumber}/>} {/* Assuming the member object has a 'Name' property */}
+            {<Card name={member.NAME} position={member.Position} updatedImageUrl={member.updatedImageUrl} number={member.PhoneNumber}/>} {/* Assuming the member object has a 'Name' property */}
           </SwiperSlide>
         ))}
       </Swiper>
