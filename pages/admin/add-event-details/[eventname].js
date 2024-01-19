@@ -20,7 +20,7 @@ const AddEvent = () => {
   };
 
   const [eventData, setEventData] = useState({
-    name: eventname || '',
+    name: '',
     category: '',
     date: '',
     timeFrom: '',
@@ -63,8 +63,13 @@ const AddEvent = () => {
 
   }, [eventname]);
 
+  useEffect(()=>{
+    console.log(eventData)
+  }, [eventData])
+
   const handleChange = (field) => (e) => {
     setEventData({ ...eventData, [field]: e.target.value });
+    console.log(eventData)
   };
 
   const handleAddGuideline = () => {
@@ -85,6 +90,8 @@ const AddEvent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+console.log(eventData)
+
     setAdding(true);
 
     // Remove empty guidelines
@@ -102,7 +109,6 @@ const AddEvent = () => {
         },
         body: JSON.stringify(updatedEventData),
       });
-
       if (response.ok) {
         handleSnackbarOpen();
       } else {

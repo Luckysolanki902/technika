@@ -1,0 +1,22 @@
+.techart {
+    width: 60vw;
+    height: auto;
+    margin-top: 9rem;
+}
+
+.mainDiv {
+    color: white;
+    text-align: center;
+}
+
+.mainDiv h1{
+    margin: 0.6rem;
+    font-family: 'Krona One';
+}
+@media(width<800px) {
+    .techart {
+        width: 90vw;
+        margin-top: 2rem;
+        height: auto;
+    }
+}

@@ -8,7 +8,7 @@ const IndexPage = () => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState('');
     const linkPath = (name) => {
-        return `/admin/add-event-details/${encodeURIComponent(name.toLowerCase().replace(/\s+/g, '-'))}`;
+        return `/admin/add-event-details/${name}}`;
     };
 
     useEffect(() => {
