@@ -4,7 +4,7 @@ const EventCard = ({ text, prize }) => {
   return (
     <div className={styles.fullCard} >
       <div className={styles.cardBorderDiv} >
-        <div class={styles.glow} />
+        <div className={styles.glow} />
         <div className={styles.black}>
 
           <div className={styles.cardDiv}>

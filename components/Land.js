@@ -15,7 +15,7 @@ const Land = () => {
         <Image
         data-cursor-text="Welcome to Technika"
         data-cursor-size='170px'
-
+priority={true}
           src={isLargeScreen ? '/images/hometopfull3.png' : '/images/hometop.jpg'}
           width={5184}
           height={3456} 
