@@ -269,7 +269,7 @@
 }
 @media (width< 400px) {
     .name {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .tvflexChild h2 {
