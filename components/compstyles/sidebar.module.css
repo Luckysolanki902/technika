@@ -16,7 +16,8 @@
 }
 
 .top {
-    width: auto;
+    width: 70%;
+    margin-left: auto;
     height: 70px;
     padding: 10px;
     display: flex;
