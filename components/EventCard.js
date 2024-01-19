@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styles from './compstyles/eventcard.module.css'
-const Card = ({ text, prize }) => {
+const EventCard = ({ text, prize }) => {
   return (
     <div className={styles.fullCard} >
       <div className={styles.cardBorderDiv} >
@@ -19,4 +19,4 @@ const Card = ({ text, prize }) => {
   )
 }
 
-export default Card; 
+export default EventCard; 

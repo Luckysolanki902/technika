@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import Card from "@/components/EventCard";
 import style from './compstyles/events.module.css';
 import EventDetails from './EventDetails';
+import EventCard from '@/components/EventCard';
 
 const Events = () => {
   const [events, setEvents] = useState([]);
@@ -64,7 +64,7 @@ const Events = () => {
         <div className={style.wrapper}>
           {events.map((event) => (
             <div onClick={() => handleEventClick(event)}>
-              <Card
+              <EventCard
                 key={event._id}
                 text={event.name}
                 prize={"2000"}

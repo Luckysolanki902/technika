@@ -13,8 +13,7 @@ const Navbar = () => {
   const img = '/images/logo.png'
  
   return (
-    <div  style={{width:"100%",color:"white",height:"100%",fontStyle:"italic",fontSize:"1.6rem",fontFamily:"sans-serif",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
-   
+    <div  style={{width:"100%",color:"white",height:"100%",fontStyle:"italic",fontSize:"1.4rem",fontFamily:"sans-serif",display:"flex",justifyContent:"space-around",alignItems:"center"}}>
    
   <div style={{padding:"5px",paddingRight:"10px"}}>
   <Link href={"/"} style={{outline:"none !important",textDecoration:"none",color:"white"}}>

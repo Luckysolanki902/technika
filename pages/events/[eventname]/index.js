@@ -47,7 +47,7 @@ const EventDetailsPage = () => {
             <div>
               {eventDetails && eventDetails.guidelines.map((guideline, index) => (
                 <ul key={index}>
-                  <li style={{ listStyleType: 'none', display: 'flex', alignItems: 'flex-start', textAlign: 'left', marginRight: '1rem' }} className={styles.guidelines}>
+                  <li style={{ listStyleType: 'none', display: 'flex', alignItems: 'flex-start', textAlign: 'left', marginRight: '1rem', color:'rgba(255, 255, 255, 0.8)' }} className={styles.guidelines}>
                     <CircleIcon className={styles.guidelineDisk} /> {guideline}
                   </li>
                 </ul>

@@ -59,9 +59,9 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                     <div className={styles.venue}>Venue </div><div>{venue}</div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <div className={styles.button}>
+                    <Link href={`/events/${name}`} className={styles.button} style={{textDecoration:'none'}}>
                         Click To Know Details
-                    </div>
+                    </Link>
                 </div>
 
                 <Link href={linkPath} style={{ display: 'flex', justifyContent: 'center', textDecoration: 'none', color: 'white' }}>

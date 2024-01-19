@@ -85,7 +85,7 @@
     width: 1rem;
     height: 1rem;
     margin-right: 1rem;
-    transform: translateY(66%);
+    transform: translateY(25%);
 }
 
 .formTitle {
@@ -292,7 +292,7 @@
         width: 0.8rem;
         height: 0.8rem;
         margin-right: 1rem;
-        transform: translateY(80%);
+        transform: translateY(28%);
     }
     .guidelines{
         font-size: 1.3rem;
