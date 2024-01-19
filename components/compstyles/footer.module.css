@@ -17,7 +17,7 @@
     color: white;
     text-align: center;
     font-family: Jost;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -32,7 +32,7 @@
     color: #FFF;
     text-align: center;
     font-family: Krona One;
-    font-size: 3rem;
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -43,7 +43,7 @@
     background: linear-gradient(201deg, rgba(255, 0, 214, 0.74), rgba(119, 37, 201, 1));
     text-align: center;
     font-family: Krona One;
-    font-size: 6.72975rem;
+    font-size: 4.72975rem;
     margin-right: 20px;
     font-style: normal;
     font-weight: 400;
@@ -59,7 +59,7 @@
     font-family: Krona One;
     font-size: 1.53rem;
     margin-top: 1vw;
-    margin-bottom: 10px;
+    margin-bottom: 70px;
 }
 
 .soci {
@@ -158,6 +158,7 @@
 
     .right {
         font-size: 0.580rem;
+        margin-bottom: 30px;
 
     }
 
