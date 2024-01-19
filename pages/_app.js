@@ -86,23 +86,23 @@ export default function App({ Component, pageProps }) {
           </style>
         </ThemeProvider>
       ) : (
-        <>
+        <div style={{position:'relative'}}>
           {!isAdminPage && <>
             {isLargeScreen &&<div style={{height:'0'}}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55'/>
-              <div style={{top:"28px",height:"10%",width:"100%",position:"relative",zIndex:1}}> 
+              <div style={{top:"0",height:"3rem",width:"100%",position:"absolute",zIndex:1}}> 
             <Navbar /> 
 
              </div>
         
         </div> }
-            <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '9999999999' }}>
+            <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '999' }}>
               <Sidebar />
             </div>
           </>}
           <div>
             <Component {...pageProps} />
           </div>
-        </>
+        </div>
       )}
     </>
   );

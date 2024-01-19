@@ -4,8 +4,8 @@ import React from 'react'
 
 const index = () => {
   return (
-    <div>
-        <Team  name={"Akki"} />
+    <div className='parPageDiv'>
+        <Team  />
     </div>
   )
 }

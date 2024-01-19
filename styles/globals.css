@@ -85,3 +85,9 @@ input[type=radio] {
 ::-webkit-scrollbar {
   display: none;
 }
+
+@media (width>1000px){
+  .parPageDiv{
+    margin-top: 5rem;
+  }
+}
