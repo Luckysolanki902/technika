@@ -1,19 +1,25 @@
-import Link from "next/link";
-import styles from "./compstyles/menu.module.css";
-import React from 'react';
-import { useRouter } from "next/router";
+// Menu.js
+import { useRouter } from 'next/router';
+import styles from './compstyles/menu.module.css';
 
+const Menu = ({ text, href, hide, onNavbarLinkClick }) => {
+  const router = useRouter();
+  const isActive = router.pathname === href;
 
+  const handleClick = () => {
+    if (typeof onNavbarLinkClick === 'function') {
+      onNavbarLinkClick();
+      router.push(href);
+    } else {
+      console.error('onNavbarLinkClick is not a function');
+    }
+  };
 
-const Menu = ({ text, href, hide }) => {
-    const router = useRouter();
-    const isActive = router.pathname === href;
-
-    return (
-        <Link href={href} style={{ display: hide ? 'none' : 'block', textDecoration: 'none' }}className={isActive ? styles.menu : styles.bor}>
-            {text}
-        </Link>
-    );
+  return (
+    <div onClick={handleClick} className={isActive ? styles.menu : styles.bor} style={{ display: hide ? 'none' : 'block' }}>
+      {text}
+    </div>
+  );
 };
 
 export default Menu;

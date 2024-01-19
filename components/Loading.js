@@ -1,9 +1,11 @@
-// components/Loading.js
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated, config } from 'react-spring';
+import { useMediaQuery } from '@mui/material';
 
 const Loading = () => {
   const [isVisible, setIsVisible] = useState(true);
+  const isMediumScreen = useMediaQuery('(max-width:800px)');
+  const isSmallScreen = useMediaQuery('(max-width:500px)');
 
   useEffect(() => {
     const timeout = setTimeout(() => {
@@ -14,6 +16,8 @@ const Loading = () => {
       clearTimeout(timeout);
     };
   }, []);
+
+  const widthPercentage = isMediumScreen ? (isSmallScreen ? 80 : 60) : 50;
 
   const fadeOut = useSpring({
     opacity: isVisible ? 1 : 0,
@@ -39,7 +43,11 @@ const Loading = () => {
       <img
         src="/intro/intro.gif"
         alt="Loading GIF"
-        style={{ width: '50%', height: 'auto', objectFit: 'cover' }}
+        style={{
+          width: `${widthPercentage}%`,
+          height: 'auto',
+          objectFit: 'cover',
+        }}
       />
     </animated.div>
   );

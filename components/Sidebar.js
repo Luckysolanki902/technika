@@ -3,7 +3,7 @@ import styles from './compstyles/sidebar.module.css';
 import Image from 'next/image';
 import Menu from './Menu';
 import { useRouter } from 'next/router';
-const Sidebar = () => {
+const Sidebar = ({onNavbarLinkClick}) => {
   const router = useRouter()
   const [open, setOpen] = useState(false);
   const click = () => {
@@ -86,13 +86,13 @@ const Sidebar = () => {
           <div style={{ display: !open ? 'none' : '' }} className={styles.logoText}>echnika</div>
         </div>
 
-        <Menu text={'home'} hide={!open} href="/" />
-        <Menu text={'team'} hide={!open} href="/team" />
-        <Menu text={'about us'} hide={!open} href="/about" />
-        <Menu text={'events'} hide={!open} href="/events" />
-        <Menu text={'sponsors'} hide={!open} href="/#sponsors" />
-        <Menu text={'merchandises'} hide={!open} href="/merchandises" />
-        <Menu text={'admin'} hide={!open} href="/admin/dashboard" />
+        <Menu text={'home'} hide={!open} href="/" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'team'} hide={!open} href="/team" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'about us'} hide={!open} href="/about" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'events'} hide={!open} href="/events" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'sponsors'} hide={!open} href="/#sponsors" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'merchandises'} hide={!open} href="/merchandises" onNavbarLinkClick={onNavbarLinkClick}/>
+        <Menu text={'admin'} hide={!open} href="/admin/dashboard" onNavbarLinkClick={onNavbarLinkClick}/>
       </div>
     </div>
   );

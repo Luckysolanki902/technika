@@ -53,7 +53,11 @@ export default function App({ Component, pageProps }) {
   const handleLogin = () => {
     setIsLoggedIn(true);
   };
+  const [navbarLinkClicked, setNavbarLinkClicked] = useState(false);
 
+  const handleNavbarLinkClick = () => {
+    setNavbarLinkClicked(true);
+  };
   return (
     <>
       <Head>
@@ -90,17 +94,17 @@ export default function App({ Component, pageProps }) {
           {!isAdminPage && <>
             {isLargeScreen &&<div style={{height:'0'}}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55'/>
               <div style={{top:"0",height:"3rem",width:"100%",position:"absolute",zIndex:1}}> 
-            <Navbar /> 
+            <Navbar onNavbarLinkClick={handleNavbarLinkClick} /> 
 
              </div>
         
         </div> }
             <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '999' }}>
-              <Sidebar />
+              <Sidebar onNavbarLinkClick={handleNavbarLinkClick} />
             </div>
           </>}
           <div>
-            <Component {...pageProps} />
+            <Component {...pageProps} navbarLinkClicked={navbarLinkClicked}/>
           </div>
         </div>
       )}
