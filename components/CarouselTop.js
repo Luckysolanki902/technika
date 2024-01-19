@@ -11,6 +11,12 @@ import 'swiper/css/effect-fade';
 register();
 
 const CarouselTop = () => {
+    
+    const maddyLink = 'https://www.maddycustom.com';
+    const handlemaddyClick = () => {
+        window.open(maddyLink, '_blank');
+    };
+    
     return (
         <>
             <Swiper style={{ height: 'auto', borderRadius: '2rem', "--swiper-pagination-color": "#C508A7", "--swiper-pagination-bullet-size": "0.8rem",
@@ -30,6 +36,7 @@ const CarouselTop = () => {
                 <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 2' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/second.png" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
                 <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 3' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/third.png" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
                 <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 4' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/four.png" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 4' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/fifth.jpg" alt="image5" width={1600} height={900} onClick={handlemaddyClick} className={styles.carImg} /></div></SwiperSlide>
             </Swiper>
             <div className="swiper-pagination"></div>
         </>
