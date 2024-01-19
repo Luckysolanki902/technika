@@ -16,8 +16,8 @@ const AdminDashboard = () => {
                     <Link href="/admin/add-event" className={styles.button}>
                         Add Event
                     </Link>
-                    <Link href="/admin/delete-event" className={styles.button}>
-                        Delete Event
+                    <Link href="/admin/delete-events" className={styles.button}>
+                        Delete Events
                     </Link>
                     <Link href="/admin/edit-events" className={styles.button}>
                         Edit Events
