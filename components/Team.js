@@ -26,7 +26,7 @@ const Team = ({ showThreeDepartments }) => {
 
   const departmentOrder = [
     "Joint Secretary (Management)",
-    "Student Secretary",
+    "Student Secretary ",
     "Joint Secretary (Technical)",
     "Events",
     "Web Development",
@@ -57,7 +57,7 @@ const Team = ({ showThreeDepartments }) => {
         {departmentsToMap.map((department, index) => (
           <div className={style.bt} key={index}>
             <div>
-              {<Text prop={department} areFirstThree={index <= 2} />}
+              {<Text prop={department} isStudentSec={department === 'Student Secretary '} />}
             </div>
             <div className={style.caraCont}>
               <TeamCardsEffect teamMembers={teamData.filter((member) => member.Department === department)} />

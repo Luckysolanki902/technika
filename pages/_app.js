@@ -88,10 +88,10 @@ export default function App({ Component, pageProps }) {
       ) : (
         <>
           {!isAdminPage && <>
-            {isLargeScreen &&<div style={{height:'0'}}><Cursor isGelly={true} />
-           <div style={{top:0,height:"10%",width:"100%",position:"fixed",zIndex:100000000000000000000}}> 
+            {isLargeScreen &&<div style={{height:'0'}}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55'/>
+           <div style={{top:0,height:"10%",width:"100%",position:"fixed",zIndex:99999999}}> 
             <Navbar /> 
-  
+
              </div>
         
         </div> }

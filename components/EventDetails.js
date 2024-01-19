@@ -39,7 +39,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                 </Paper>
             )}
         >
-            <div style={{position:'absolute', top:'1rem', right:'1rem',  color:'rgba(255, 0, 214, 0.74)', cursor:'pointer'}} onClick={handleClose}>
+            <div style={{position:'absolute', top:'1rem', left:'1rem',  color:'rgba(255, 0, 214, 0.74)', cursor:'pointer'}} onClick={handleClose}>
             <Cancel fontSize='large'/>
 
             </div>

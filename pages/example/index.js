@@ -1,10 +1,10 @@
-import TShirtScene from '@/components/Tshirt3D'
+import { TshirtModelLoader } from '@/components/Tshirt3D'
 import React from 'react'
 
 const index = () => {
   return (
     <div>
-        <TShirtScene/>
+      <TshirtModelLoader/>
     </div>
   )
 }

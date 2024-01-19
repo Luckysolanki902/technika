@@ -9,4 +9,4 @@ const Tshirtmodel = () => {
   )
 }
 
-export default Tshirtmodel; 
+export default Tshirtmodel;

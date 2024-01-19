@@ -1,43 +1,45 @@
-// Tshirt3d.js
-import React, { useRef } from 'react';
-import { Canvas, extend, useThree, useFrame } from 'react-three-fiber';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
-import { GLTFLoader } from 'three/addons/loaders/GLTFLoader';
-import { useLoader } from 'react-three-fiber';
+import React, { useRef, useEffect, useState } from 'react';
+import { Canvas, useFrame } from '@react-three/fiber';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader';
 
-extend({ OrbitControls });
+function TshirtModel({ gltf }) {
+  const modelRef = useRef();
 
-const Tshirt3d = ({ modelPath }) => {
-  const tShirtRef = useRef();
-  const { camera, gl } = useThree();
+  useEffect(() => {
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.01; // Update rotation on every render
+    }
+  }, [modelRef]);
 
-  // Load GLB model
-  const gltf = useLoader(GLTFLoader, modelPath);
-
-  // Set up orbit controls
   useFrame(() => {
-    tShirtRef.current.rotation.y += 0.005;
+    if (modelRef.current) {
+      modelRef.current.rotation.y += 0.01; // Update rotation on every frame
+    }
   });
 
   return (
-    <group>
-      <mesh ref={tShirtRef}>
-        {/* Add the GLB model to the scene */}
-        <primitive object={gltf.scene} />
-      </mesh>
-      <OrbitControls args={[camera, gl.domElement]} />
-    </group>
-  );
-};
-
-const TShirtScene = () => {
-  return (
-    <Canvas camera={{ position: [0, 0, 5] }}>
-      <ambientLight intensity={0.5} />
+    <>
+      <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Tshirt3d modelPath="/models/tshirt.glb" />
-    </Canvas>
+      <primitive object={modelRef.current} />
+    </>
   );
-};
+}
 
-export default TShirtScene;
+export function TshirtModelLoader() {
+  const [loading, setLoading] = useState(true);
+  const [gltf, setGltf] = useState(null);
+
+  useEffect(() => {
+    const loadModel = async () => {
+      const loader = new GLTFLoader();
+      const loadedGltf = await loader.loadAsync('/models/tshirt.glb');
+      setGltf(loadedGltf.scene);
+      setLoading(false);
+    };
+
+    loadModel();
+  }, []);
+
+  return loading ? <div>Loading...</div> : <Canvas>{gltf && <TshirtModel gltf={gltf} />}</Canvas>;
+}
