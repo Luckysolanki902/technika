@@ -7,7 +7,8 @@
 
 
 .mainDivHi {
-    width: 100vw;
+    width: 70vw;
+    margin-left: auto;
     height: 70px;
     background: transparent;
     stroke-width: 1px;
