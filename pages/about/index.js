@@ -1,6 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import styles from './about.module.css'
+import Footer from '@/components/Footer'
 const index = () => {
   return (
     <div className={styles.mainDiv}>
@@ -60,6 +61,7 @@ const index = () => {
         </div>
 
       </div>
+      <Footer/>
     </div>
   )
 }
