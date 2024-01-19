@@ -25,8 +25,8 @@ const Team = ({ showThreeDepartments }) => {
 
 
   const departmentOrder = [
-    "Joint Secretary (Management)",
     "Student Secretary ",
+    "Joint Secretary (Management)",
     "Joint Secretary (Technical)",
     "Events",
     "Web Development",
