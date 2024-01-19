@@ -17,7 +17,7 @@
     color: white;
     text-align: center;
     font-family: Jost;
-    font-size: 3.33044rem;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 500;
     line-height: normal;
@@ -32,7 +32,7 @@
     color: #FFF;
     text-align: center;
     font-family: Krona One;
-    font-size: 3.33044rem;
+    font-size: 3rem;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
@@ -43,7 +43,7 @@
     background: linear-gradient(201deg, rgba(255, 0, 214, 0.74), rgba(119, 37, 201, 1));
     text-align: center;
     font-family: Krona One;
-    font-size: 8.72975rem;
+    font-size: 6.72975rem;
     margin-right: 20px;
     font-style: normal;
     font-weight: 400;
@@ -59,6 +59,7 @@
     font-family: Krona One;
     font-size: 1.53rem;
     margin-top: 1vw;
+    margin-bottom: 10px;
 }
 
 .soci {
@@ -134,24 +135,25 @@
 
 @media screen and (max-width: 768px) {
     .txt {
-        width: 23.5rem;
+        width: 21rem;
         flex-shrink: 0;
         color: #FFF;
         text-align: center;
         font-family: Jost;
-        font-size: 1.25rem;
+        font-size: 1rem;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
     }
 
     .tag {
-        font-size: 1.25rem;
+        font-size: 1rem;
         margin-top: 10px;
     }
 
     .hash {
-        font-size: 3.2765rem;
+         font-size: 2.5rem;
+        margin-right: 5px;
     }
 
     .right {
