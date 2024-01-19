@@ -39,7 +39,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                 </Paper>
             )}
         >
-            <div style={{ position: 'absolute', top: '1rem', left: '1rem', color: 'rgba(255, 0, 214, 0.74)', cursor: 'pointer', zIndex:'99999' }} onClick={handleClose} >
+            <div style={{ position: 'absolute', top: '1rem', left: '1rem', color: 'rgba(255, 0, 214, 0.74)', cursor: 'pointer', zIndex: '99999' }} onClick={handleClose} >
                 <Cancel fontSize='large' />
             </div>
             <h1 className={styles.name}>{capitalizedName}</h1>
@@ -59,7 +59,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                     <div className={styles.venue}>Venue </div><div>{venue}</div>
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
-                    <Link href={`/events/${name}`} className={styles.button} style={{textDecoration:'none'}}>
+                    <Link href={`/events/${name}`} className={styles.button} style={{ textDecoration: 'none' }}>
                         Click To Know Details
                     </Link>
                 </div>

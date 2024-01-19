@@ -237,6 +237,10 @@
         font-size: 1rem;
         padding: 0.7rem;
     }
+    .submitButton {
+        margin-top: 3rem;
+        font-size: 1.6rem;
+    }
 
 }
 
@@ -260,6 +264,8 @@
         font-size: 1rem;
         padding: 0.7rem;
         text-align: center;
+        margin: 2.5rem 2rem;
+
     }
     .button {
         font-size: 1rem;

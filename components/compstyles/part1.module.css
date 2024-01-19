@@ -263,7 +263,7 @@
     }
 
     .subHeading {
-        font-size: 0.9rem;
+        font-size: 1rem;
     }
 
     .inputBox {
@@ -297,5 +297,12 @@
     .guidelines{
         font-size: 1.3rem;
     
+    }
+}
+
+@media (width<400px){
+    .formTitle{
+        font-size: 1.8rem;
+        -webkit-text-stroke: 0.3px white;
     }
 }
