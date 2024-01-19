@@ -12,7 +12,7 @@ const Card = ({ name, position, updatedImageUrl, number }) => {
             src={`/local_images/imagestsc/${updatedImageUrl}`}
             height={500}
             width={500}
-            alt={number}
+            alt={'member'}
             className={style.proimg}
           />
           <div className={style.imgOver}></div>

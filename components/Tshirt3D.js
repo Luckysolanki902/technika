@@ -31,14 +31,24 @@ export function TshirtModelLoader() {
   const [gltf, setGltf] = useState(null);
 
   useEffect(() => {
-    const loadModel = async () => {
-      const loader = new GLTFLoader();
-      const loadedGltf = await loader.loadAsync('/models/tshirt.glb');
-      setGltf(loadedGltf.scene);
-      setLoading(false);
-    };
+    const loader = new GLTFLoader();
 
-    loadModel();
+    loader.load('/models/tshirt.glb', (loadedGltf) => {
+      const tshirt = loadedGltf.scene;
+      tshirt.scale.setScalar(5); // Example: Scaling the tshirt
+      scene.add(tshirt); // Assuming `scene` is available in your context
+      setGltf(tshirt);
+      setLoading(false);
+    },
+    // onProgress callback
+    (xhr) => {
+      console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+    },
+    // onError callback
+    (error) => {
+      console.error('Error loading GLB file:', error);
+      setLoading(false);
+    });
   }, []);
 
   return loading ? <div>Loading...</div> : <Canvas>{gltf && <TshirtModel gltf={gltf} />}</Canvas>;
