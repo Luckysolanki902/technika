@@ -38,14 +38,13 @@ const AddTeamMember = () => {
         setLoading(true);
 
         try {
-            const { ImageExtension, ...dataToSend } = formData;
 
             const response = await fetch('/api/add-team-member', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(dataToSend),
+                body: JSON.stringify(formData),
             });
 
             if (!response.ok) {
