@@ -11,6 +11,8 @@ import Card from "./Card";
 register();
 
 const TeamCardsEffect = ({ teamMembers }) => {
+  const isMultipleImages = teamMembers.length > 1;
+
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       <Swiper
@@ -23,8 +25,7 @@ const TeamCardsEffect = ({ teamMembers }) => {
         }}
         effect="cards"
         modules={[EffectCards]}
-        perSlideOffset={80}
-        loop={true}
+        loop={isMultipleImages}
         speed={500}
         simulateTouch={true}
         autoplay={{ delay: 1500, disableOnInteraction: false }}

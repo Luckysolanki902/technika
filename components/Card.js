@@ -3,7 +3,6 @@ import style from "./compstyles/card.module.css";
 import Image from "next/image";
 
 const Card = ({ name, position, updatedImageUrl, number }) => {
-  console.log(`/local_images/imagestsc/${updatedImageUrl}`)
 
   return (
     <div className={style.pro}>
