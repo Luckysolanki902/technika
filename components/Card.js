@@ -3,7 +3,7 @@ import style from "./compstyles/card.module.css";
 import Image from "next/image";
 
 const Card = ({ name, position, updatedImageUrl, number }) => {
-
+console.log(position)
   return (
     <div className={style.pro}>
       <div className={style.in}>  
@@ -18,6 +18,7 @@ const Card = ({ name, position, updatedImageUrl, number }) => {
           <div className={style.imgOver}></div>
         </div>
         <div className={style.protxt}>{name}</div>
+        <div className={style.protxt}>{position}</div>
       </div>
     </div>
   );

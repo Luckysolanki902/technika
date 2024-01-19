@@ -39,9 +39,8 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                 </Paper>
             )}
         >
-            <div style={{position:'absolute', top:'1rem', left:'1rem',  color:'rgba(255, 0, 214, 0.74)', cursor:'pointer'}} onClick={handleClose}>
-            <Cancel fontSize='large'/>
-
+            <div style={{ position: 'absolute', top: '1rem', left: '1rem', color: 'rgba(255, 0, 214, 0.74)', cursor: 'pointer', zIndex:'99999' }} onClick={handleClose} >
+                <Cancel fontSize='large' />
             </div>
             <h1 className={styles.name}>{capitalizedName}</h1>
             <div className={styles.dialogContent}>
@@ -65,7 +64,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                     </div>
                 </div>
 
-                <Link href={linkPath} style={{ display: 'flex', justifyContent: 'center', textDecoration:'none', color:'white' }}>
+                <Link href={linkPath} style={{ display: 'flex', justifyContent: 'center', textDecoration: 'none', color: 'white' }}>
                     <div className={styles.submitButton}>
                         <div>register</div>
                     </div>
