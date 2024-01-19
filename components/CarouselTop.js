@@ -26,10 +26,10 @@ const CarouselTop = () => {
                     dynamicMainBullets:2,
                 }}
                 loop={true} speed={1000} simulateTouch={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} >
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 1' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?animal" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 2' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?lion" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 3' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?zebra" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 4' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="https://source.unsplash.com/random?rainbow" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 1' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/first.png" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 2' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/second.png" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 3' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/third.png" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Our memories 4' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/four.png" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
             </Swiper>
             <div className="swiper-pagination"></div>
         </>
