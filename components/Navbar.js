@@ -43,7 +43,7 @@ const Navbar = () => {
     
   </div>
   <div style={{padding:"5px",paddingRight:"10px"}}>
-  <Link href={"/sponsors"} style={{outline:"none !important",textDecoration:"none",color:"white"}}>
+  <Link href={"/#sponsors"} style={{outline:"none !important",textDecoration:"none",color:"white"}}>
   <img src="https://drive.google.com/thumbnail?id=108j70VZnWLgngkGHdMA5vAnfuxREVp-z" height={"40px"}/>
     </Link>
     
