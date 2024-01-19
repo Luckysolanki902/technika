@@ -1,7 +1,7 @@
 const adminEmails = [
     'adminstudentsec@technika.com',
     '220104066@HBTU.ac.in',
-    
+    'akash07151@gmail.com'
 ];
 
 export default function handler(req, res) {
@@ -16,6 +16,6 @@ export default function handler(req, res) {
             res.status(401).json({ success: false });
         }
     } else {
-        res.status(405).end(); // Me Not Allowedthod
+        res.status(405).end(); 
     }
 }
