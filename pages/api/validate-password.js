@@ -1,5 +1,5 @@
 const adminEmails = [
-    'admin1@example.com',
+    'adminstudentsec@technika.com',
     '220104066@HBTU.ac.in',
     
 ];
