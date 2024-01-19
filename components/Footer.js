@@ -5,14 +5,18 @@ import { FaInstagram } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 const Footer = () => {
 
-    const youtubeLink = 'https://youtube.com/@Technika_24?si=wu_E0a1S4GhV9TEU'; // Replace with your actual YouTube channel link
-    const instaLink = 'https://www.instagram.com/technika_24?igsh=ZXkzYWdkdWVhM3g1'; // Replace with your actual YouTube channel link
+    const youtubeLink = 'https://youtube.com/@Technika_24?si=wu_E0a1S4GhV9TEU'; 
+    const instaLink = 'https://www.instagram.com/technika_24?igsh=ZXkzYWdkdWVhM3g1'; 
+    const linkedinLink = 'https://www.linkedin.com/company/technical-sub-council-hbtu/';
 
     const handleYoutubeClick = () => {
         window.open(youtubeLink, '_blank');
     };
     const handleInstaClick = () => {
         window.open(instaLink, '_blank');
+    };
+    const handlelinkedClick = () => {
+        window.open(linkedinLink, '_blank');
     };
 
     return (
@@ -29,7 +33,7 @@ const Footer = () => {
             <div className={styles.soci}>
                 <BsYoutube className={styles.social} onClick={handleYoutubeClick} />
                 <FaInstagram className={styles.social} onClick={handleInstaClick} />
-                <FaLinkedin className={styles.social} />
+                <FaLinkedin className={styles.social} onClick={handlelinkedClick} />
             </div>
             <div className={styles.right}>
                 © Technical Sub-Council , HBTU Kanpur | Privacy Policy
