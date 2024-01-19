@@ -15,7 +15,7 @@
 .in {
   height: 99%;
   width: 98%;
-  padding: 1.1875rem 1.1875rem 1.1875rem 1.1875rem;
+  padding: 0.8rem 0;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -30,8 +30,8 @@
 
 .proin {
   width: 100%;
-  height: 12rem;
-  margin-top: 4px;
+  height: auto;
+/*   margin-top: 4px; */
   background-color: black;
   overflow: hidden;
   border-radius: 1.01513rem;
@@ -43,7 +43,7 @@
 
 .protxt {
   width: 90%;
-  height: 20%;
+/*   height: 20%; */
   text-align: center;
   font-family: Krona One;
   font-size: 1rem;
@@ -55,7 +55,7 @@
 }
 
 .proimg {
-  object-fit: cover;
+  object-fit: contain;
   width: 100%;
   height: auto;
 }
