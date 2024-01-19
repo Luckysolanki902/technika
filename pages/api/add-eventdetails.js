@@ -6,8 +6,6 @@ const addEventDetailsHandler = async (req, res) => {
     if (req.method === 'POST') {
         try {
             const eventData = req.body;
-
-
             const newEvent = new EventDetails(eventData);
             await newEvent.save();
 

@@ -7,8 +7,8 @@ import styles from './eventdetails.module.css'; // Import the CSS module
 const IndexPage = () => {
     const [events, setEvents] = useState([]);
     const [selectedEvent, setSelectedEvent] = useState('');
-    const linkPath = (name) => {
-        return `/admin/add-event-details/${encodeURIComponent(name.toLowerCase().replace(/\s+/g, '-'))}`;
+    const linkPath = (id) => {
+        return `/admin/add-event-details/${encodeURIComponent(id)}`;
     };
 
     useEffect(() => {
@@ -31,8 +31,8 @@ const IndexPage = () => {
             <div className={styles.subContainer}>
                 <h2 className={styles.heading}>Choose an event to Add Details of</h2>
                 {events.map((event) => (
-                    <Link className={styles.eventLink} href={linkPath(event.name)} key={event.id} passHref>
-                       {event.name.toUpperCase()}
+                    <Link className={styles.eventLink} href={linkPath(event._id)} key={event._id} passHref>
+                        {event.name.toUpperCase()}
                     </Link>
                 ))}
             </div>

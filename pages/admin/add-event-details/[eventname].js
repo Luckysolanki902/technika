@@ -1,3 +1,4 @@
+// pages/add-event/[eventname].js
 import { useState, useEffect } from 'react';
 import { TextField, CircularProgress, Snackbar, Alert, TextareaAutosize } from '@mui/material';
 import { useRouter } from 'next/router';
@@ -7,6 +8,7 @@ const AddEvent = () => {
   const { eventname } = router.query;
   const [adding, setAdding] = useState(false);
   const [snackbarOpen, setSnackbarOpen] = useState(false);
+
   const handleSnackbarClose = (event, reason) => {
     if (reason === 'clickaway') {
       return;
@@ -28,13 +30,15 @@ const AddEvent = () => {
     venue: '',
     about: '',
     guidelines: [''], // At least one guideline input by default
+    eventid: '',
   });
 
   useEffect(() => {
     const fetchEventInfo = async () => {
       if (eventname) {
+        console.log(eventname)
         try {
-          const response = await fetch(`/api/get-event-info/${eventname}`);
+          const response = await fetch(`/api/get-event-info-id/${eventname}`);
           if (response.ok) {
             const data = await response.json();
             const { event } = data;
@@ -48,6 +52,7 @@ const AddEvent = () => {
                 timeFrom: event.timeFrom || '',
                 timeTo: event.timeTo || '',
                 venue: event.venue || '',
+                eventid: eventname,
               });
             }
           } else {
@@ -60,16 +65,10 @@ const AddEvent = () => {
     };
 
     fetchEventInfo();
-
   }, [eventname]);
-
-  useEffect(()=>{
-    console.log(eventData)
-  }, [eventData])
 
   const handleChange = (field) => (e) => {
     setEventData({ ...eventData, [field]: e.target.value });
-    console.log(eventData)
   };
 
   const handleAddGuideline = () => {
@@ -90,7 +89,6 @@ const AddEvent = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-console.log(eventData)
 
     setAdding(true);
 
@@ -102,7 +100,7 @@ console.log(eventData)
     };
 
     try {
-      const response = await fetch('/api/add-eventdetails', {
+      const response = await fetch(`/api/add-eventdetails`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -122,11 +120,10 @@ console.log(eventData)
     }
   };
 
-
   return (
     <>
       <div>
-        <form onSubmit={handleSubmit} style={{ padding: '20px', maxHeight: '100vh', margin:' 4rem 1rem' }}>
+        <form onSubmit={handleSubmit} style={{ padding: '20px', maxHeight: '100vh', margin: ' 4rem 1rem' }}>
           <TextField
             label="Guidelines"
             variant="standard"
@@ -151,7 +148,7 @@ console.log(eventData)
           <button type="button" style={{ padding: '0.6rem 1rem', fontSize: '1rem', borderRadius: '0.6rem', cursor: 'pointer' }} onClick={handleAddGuideline}>
             Add one more guideline
           </button>
-          <h4 style={{marginBottom:'-1.3rem'}}>About The Event</h4>
+          <h4 style={{ marginBottom: '-1.3rem' }}>About The Event</h4>
           <TextareaAutosize
             label="About"
             minRows={4}
@@ -159,12 +156,12 @@ console.log(eventData)
             value={eventData.about}
             onChange={handleChange('about')}
             required
-            
-            style={{ width: '100%', marginBottom: '1rem', outline:'none', fontSize:'1rem', marginTop:'2rem', borderRadius:'1rem', padding:'0.6rem 1rem', fontFamily:'Jost' }}
+
+            style={{ width: '100%', marginBottom: '1rem', outline: 'none', fontSize: '1rem', marginTop: '2rem', borderRadius: '1rem', padding: '0.6rem 1rem', fontFamily: 'Jost' }}
           />
 
           <div style={{ width: '100%', display: 'flex', justifyContent: 'center' }}>
-            <button type="submit" style={{ marginTop: '3rem', padding: '1rem', borderRadius: '0.7rem', width: '40%', cursor: 'pointer', fontWeight:'700' }}>
+            <button type="submit" style={{ marginTop: '3rem', padding: '1rem', borderRadius: '0.7rem', width: '40%', cursor: 'pointer', fontWeight: '700' }}>
               {adding ? <CircularProgress size={25} style={{ fontWeight: '900' }} color="inherit" /> : 'Add Details'}
             </button>
           </div>
