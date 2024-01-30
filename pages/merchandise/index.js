@@ -1,10 +1,12 @@
 import Footer from '@/components/Footer'
+import Mod from '@/components/Mod'
 import React from 'react'
 
 const index = () => {
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', width: '100vw', flexDirection: 'column' }}>
+        <Mod />
         <div style={{ color: '#7f7f7f', textAlign: 'center', fontSize: '2rem', fontFamily: 'Jost' }}>...COMING SOON...</div>
       </div>
         <Footer />
