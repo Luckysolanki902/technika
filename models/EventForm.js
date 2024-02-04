@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
 
 const eventFormSchema = new mongoose.Schema({
+    eventName:String,
     fullname: String,
     email: String,
     branch: String,
@@ -8,7 +9,7 @@ const eventFormSchema = new mongoose.Schema({
     year: String,
     gender: String,
     college: String,
-    imageName: String,
+    imageUrl: String,
 });
 
 mongoose.models = {}

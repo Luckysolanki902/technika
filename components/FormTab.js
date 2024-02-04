@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, { useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import styles from '@/components/compstyles/part1.module.css';
 import { useDropzone } from 'react-dropzone';
@@ -10,10 +10,9 @@ import MuiAlert from '@mui/material/Alert';
 import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
 
-const FormTab = ({updatedEventName}) => {
+const FormTab = ({ updatedEventName }) => {
     const [tabIndex, setTabIndex] = useState(0);
     const [formData, setFormData] = useState({
-        eventname:updatedEventName,
         college: '',
         fullname: '',
         email: '',
@@ -27,7 +26,8 @@ const FormTab = ({updatedEventName}) => {
     const [submitting, setSubmitting] = useState(false);
     const [showWarning, setShowWarning] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('')
-
+    const [otherCollege, setOtherCollege] = useState('')
+const [severity, setSeverity] = useState('warning')
     const handleOpenDialog = () => {
         setOpenDialog(true);
     };
@@ -80,6 +80,10 @@ const FormTab = ({updatedEventName}) => {
         }));
     };
 
+    const handleOtherCollegeNameChange = (e)=>{
+        setOtherCollege(e.target.value)
+    }
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         setSubmitting(true)
@@ -99,21 +103,32 @@ const FormTab = ({updatedEventName}) => {
             if (emptyFields.length > 0) {
                 // Show warning if any required field in part 1 is empty
                 const missingFields = emptyFields.map(field => field.label).join(', ');
+                setSeverity('warning')
+
                 setShowWarning(true);
                 setSnackbarMessage(`Please fill in the following fields: ${missingFields}`);
                 setTabIndex(0); // Set tab index to 0 (part 1)
                 return;
             }
+            if(formData.college === 'Other' && otherCollege ===''){
+                setSeverity('warning')
+
+                setShowWarning(true);
+                setSnackbarMessage(`Please fill the name of your college.`);
+                return;
+            }
 
             if (formData.college !== 'HBTU Kanpur' && !imageFile) {
                 // Show warning if college is not HBTU and no image is uploaded
+                setSeverity('warning')
                 setShowWarning(true);
-                setSnackbarMessage('Please upload an image for non-HBTU college.');
+                setSnackbarMessage('Please upload your payment recipt');
                 return;
             }
-            const formDataWithDateTime = {
+            const updatedFormData = {
                 ...formData,
-                datetime: currentTime,
+                eventName: updatedEventName,
+                college: formData.college === 'Other' ? otherCollege : formData.college,
             };
             // Make a POST request to submit the form data using fetch
             const response = await fetch('/api/submiteventform', {
@@ -121,21 +136,25 @@ const FormTab = ({updatedEventName}) => {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(formDataWithDateTime),
+                body: JSON.stringify(updatedFormData),
             });
 
             // Check if the request was successful (status code 2xx)
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
                 setFormData({
-                    firstname: '',
-                    lastname: '',
+                    college: '',
+                    fullname: '',
                     email: '',
                     branch: '',
                     phone: '',
                     year: '1st',
                     gender: 'male',
                 });
+                setImageFile(null)
+                setSeverity('success')
+                setShowWarning(true);
+                setSnackbarMessage(`Congratulations! You've been successfully registered for this event. Get ready for an amazing experience!`)
 
                 console.log('Form submitted successfully');
             } else {
@@ -249,9 +268,7 @@ const FormTab = ({updatedEventName}) => {
                                             <label htmlFor="other">Other</label>
                                         </div>
                                     </div>
-
                                 </div>
-
                                 <div className={styles.inpDiv}>
                                     <label htmlFor="email">Email</label>
                                     <input
@@ -306,15 +323,19 @@ const FormTab = ({updatedEventName}) => {
                                     >
                                         <option value="">Select Branch</option>
                                         <option value="CSE">CSE</option>
-                                        <option value="ME">ME</option>
-                                        <option value="ECE">ECE</option>
+                                        <option value="IT">IT</option>
+                                        <option value="ET">ET</option>
                                         <option value="EE">EE</option>
-                                        <option value="T">T</option>
+                                        <option value="ME">ME</option>
+                                        <option value="CE">CE</option>
                                         <option value="CHE">CHE</option>
-                                        <option value="FT">FT</option>
-                                        <option value="LT">LT</option>
-                                        <option value="BT PL">BT PL</option>
                                         <option value="PT">PT</option>
+                                        <option value="PL">PL</option>
+                                        <option value="FT">FT</option>
+                                        <option value="OT">OT</option>
+                                        <option value="BE">BE</option>
+                                        <option value="LT">LT</option>
+                                        <option value="BBA">BBA</option>
                                     </select>
                                 </div>
 
@@ -349,6 +370,20 @@ const FormTab = ({updatedEventName}) => {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
+                                {formData.college ==='Other' && <>
+                                <div className={styles.inpDiv}>
+                                    <label htmlFor="othercollegename">College Name</label>
+                                    <input
+                                        className={styles.inputBox}
+                                        type="text"
+                                        name="othercollegename"
+                                        id="othercollegename"
+                                        value={formData.firstname}
+                                        onChange={handleOtherCollegeNameChange}
+                                        required
+                                    />
+                                </div>
+                                </>}
                                 {formData.college !== 'HBTU Kanpur' ? <>
                                     <div className={styles.inpDiv}>
                                         <div className={styles.qrdiv} onClick={handleOpenDialog}>
@@ -399,7 +434,7 @@ const FormTab = ({updatedEventName}) => {
                         </form>
                     </SwipeableViews>
                 </div>
-            </div> 
+            </div>
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
@@ -437,7 +472,7 @@ const FormTab = ({updatedEventName}) => {
                     elevation={6}
                     variant="filled"
                     onClose={handleWarningClose}
-                    severity="warning"
+                    severity={severity}
                 >
                     {snackbarMessage}
                 </MuiAlert>

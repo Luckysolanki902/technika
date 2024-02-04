@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import { useMediaQuery } from '@mui/material';
+import Image from 'next/image';
 
 const Loading = () => {
   const [isVisible, setIsVisible] = useState(true);
@@ -40,9 +41,11 @@ const Loading = () => {
         zIndex: 9999,
       }}
     >
-      <img
+      <Image
         src="/intro/intro.gif"
-        alt="Loading GIF"
+        alt="Loading"
+        width={1080}
+        height={1080}
         style={{
           width: `${widthPercentage}%`,
           height: 'auto',

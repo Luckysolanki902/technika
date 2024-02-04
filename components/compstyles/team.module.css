@@ -28,6 +28,23 @@
   font-weight: 400;
   line-height: normal;
 }
+.top2 {
+  margin-top: 1rem;
+  background-image: linear-gradient(to right, rgba(73, 73, 73, 1), rgba(255, 255, 255, 1));
+  background-clip: text;
+  -webkit-text-stroke-color: transparent;
+  -webkit-text-stroke-width: calc(2em / 16);
+  -webkit-background-clip: text;
+  color: black;
+  text-transform: capitalize;
+  margin-bottom: 30px;
+  text-align: center;
+  font-family: Krona One;
+  font-size: 4.7rem;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 
 .caraCont {
   width: 100%;
@@ -60,6 +77,11 @@
   .top {
     margin-top: 0.7rem;
     font-size: 4rem;
+    margin-bottom: 20px;
+  }
+  .top2 {
+    margin-top: 0.7rem;
+    font-size: 3.5rem;
     margin-bottom: 20px;
   }
   .caraCont {
@@ -202,15 +224,15 @@
   .top   {
       font-size: 4.75rem;
   }
+  .top2   {
+      font-size: 4rem;
+  }
 }
 
 @media screen and (max-width:600px) {
-  .top   {
-      font-size: 3rem;
-  }
 
-  .top   {
-      font-family: 3rem;
+  .top2   {
+      font-size: 2.2rem;
   }
 
 }

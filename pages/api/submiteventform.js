@@ -3,10 +3,10 @@ import EventForm from '@/models/EventForm';
 
 const handler = async (req, res) => {
     try {
-        const formDataWithDateTime = req.body;
-
+        const updatedFormData = req.body;
+console.log(updatedFormData)
         // Save form data to MongoDB
-        await EventForm.create(formDataWithDateTime);
+        await EventForm.create(updatedFormData);
 
         res.status(200).json({ success: true, message: 'Form submitted successfully' });
     } catch (error) {
