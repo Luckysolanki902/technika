@@ -79,6 +79,7 @@
     letter-spacing: 1.5px;
     cursor: pointer;
     transition: all 0.3s ease;
+    margin-bottom: 10rem!important;
 }
 .submitButton:hover{
     scale: 0.99;
