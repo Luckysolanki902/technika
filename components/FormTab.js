@@ -409,7 +409,7 @@ const FormTab = ({ updatedEventName }) => {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-                                {formData.college === 'Other' && freeforall && <>
+                                {formData.college === 'Other' && <>
                                     <div className={styles.inpDiv}>
                                         <label htmlFor="othercollegename">College Name</label>
                                         <input
