@@ -35,6 +35,12 @@ const AdminDashboard = () => {
                         Add A Team Member
                     </Link>
                 </div>
+                <h3 className={styles.subheading} style={{ color: 'white', fontFamily: 'Jost' }}>Event Registrations</h3>
+                <div className={styles.buttons}>
+                    <Link href="/admin/seeEventRegistrations" className={styles.button}>
+                        See all registrations to events
+                    </Link>
+                </div>
             </div>
         </div>
     );
