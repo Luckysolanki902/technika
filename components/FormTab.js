@@ -11,6 +11,7 @@ import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
 
 const FormTab = ({ updatedEventName }) => {
+    const freeforall = false;
     const [tabIndex, setTabIndex] = useState(0);
     const [formData, setFormData] = useState({
         college: '',
@@ -214,7 +215,7 @@ const FormTab = ({ updatedEventName }) => {
             <div className={styles.formContent} data-cursor-color='rgba(255, 155, 255, 0.7)'>
                 <div style={{ padding: '20px' }}>
                     <h1 className={styles.mainHeading}>Event Registration Form</h1>
-                    <h3 className={styles.subHeading}> (free for university students)</h3>
+                    <h3 className={styles.subHeading}> ( Your Spot Awaits! )</h3>
                     <h2 className={styles.formTitle}>{updatedEventName}</h2>
                     <div style={{ display: "flex" }}>
                         <div
@@ -422,7 +423,7 @@ const FormTab = ({ updatedEventName }) => {
                                         />
                                     </div>
                                 </>}
-                                {formData.college !== 'HBTU Kanpur' ? <>
+                                {(formData.college !== 'HBTU Kanpur' && freeforall) ? <>
                                     <div className={styles.inpDiv}>
                                         <div className={styles.qrdiv} onClick={handleOpenDialog}>
                                             <div>Click to view QR</div>
@@ -459,7 +460,9 @@ const FormTab = ({ updatedEventName }) => {
 
                                 </> : <>
                                     <p style={{ color: 'white', marginTop: '2rem', textAlign: 'center', margin: "2rem 3rem" }} className={styles.dndheading}>
-                                        Participating in events is absolutely free for students of HBTU
+                                        {/* Participating in events is absolutely free for students of HBTU */}
+                                        Unlock the tech magic! Join us for a sensory experience in the world of innovation!
+
                                     </p>
                                     <h3 style={{ color: 'white', marginTop: '2rem', textAlign: 'center', margin: "2rem 3rem" }} className={styles.dndheading}>
                                         Go Ahead
