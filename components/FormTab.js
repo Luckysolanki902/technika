@@ -20,6 +20,7 @@ const FormTab = ({ updatedEventName }) => {
         phone: '',
         year: '1st',
         gender: 'male',
+        imageUrl: '',
     });
     const [imageFile, setImageFile] = useState(null);
     const [openDialog, setOpenDialog] = useState(false);
@@ -27,7 +28,7 @@ const FormTab = ({ updatedEventName }) => {
     const [showWarning, setShowWarning] = useState(false);
     const [snackbarMessage, setSnackbarMessage] = useState('')
     const [otherCollege, setOtherCollege] = useState('')
-const [severity, setSeverity] = useState('warning')
+    const [severity, setSeverity] = useState('warning')
     const handleOpenDialog = () => {
         setOpenDialog(true);
     };
@@ -35,10 +36,31 @@ const [severity, setSeverity] = useState('warning')
         setOpenDialog(false);
     };
 
+    const uploadImage = async (file) => {
+        try {
+            const data = new FormData();
+            data.append("file", file);
+            data.append("upload_preset", "paymentsForEvents");
+
+            const response = await fetch("https://api.cloudinary.com/v1_1/dg5ay449d/image/upload", {
+                method: "post",
+                body: data
+            });
+
+
+            const result = await response.json();
+
+            return result.url
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
+
     const onDrop = (acceptedFiles) => {
         const file = acceptedFiles[0];
         setImageFile(file);
-        handleImageUpload(file);
+
     };
 
     const { getRootProps, getInputProps } = useDropzone({
@@ -80,7 +102,7 @@ const [severity, setSeverity] = useState('warning')
         }));
     };
 
-    const handleOtherCollegeNameChange = (e)=>{
+    const handleOtherCollegeNameChange = (e) => {
         setOtherCollege(e.target.value)
     }
 
@@ -88,7 +110,6 @@ const [severity, setSeverity] = useState('warning')
         e.preventDefault();
         setSubmitting(true)
         try {
-            const currentTime = new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' });
             const requiredFieldsPart1 = [
                 { name: 'fullname', label: 'Full Name' },
                 { name: 'gender', label: 'Gender' },
@@ -110,7 +131,7 @@ const [severity, setSeverity] = useState('warning')
                 setTabIndex(0); // Set tab index to 0 (part 1)
                 return;
             }
-            if(formData.college === 'Other' && otherCollege ===''){
+            if (formData.college === 'Other' && otherCollege === '') {
                 setSeverity('warning')
 
                 setShowWarning(true);
@@ -125,11 +146,28 @@ const [severity, setSeverity] = useState('warning')
                 setSnackbarMessage('Please upload your payment recipt');
                 return;
             }
-            const updatedFormData = {
+            let updatedFormData = {
                 ...formData,
                 eventName: updatedEventName,
                 college: formData.college === 'Other' ? otherCollege : formData.college,
-            };
+            };   
+            if (imageFile) {
+                try {
+                    const imageUrl = await uploadImage(imageFile);
+                    // Update the formData with the uploaded imageUrl
+                    updatedFormData = {
+                        ...formData,
+                        imageUrl:imageUrl,
+                        eventName: updatedEventName,
+                        college: formData.college === 'Other' ? otherCollege : formData.college,
+                    };
+                    console.log(formData)
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+
+
             // Make a POST request to submit the form data using fetch
             const response = await fetch('/api/submiteventform', {
                 method: 'POST',
@@ -370,19 +408,19 @@ const [severity, setSeverity] = useState('warning')
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
-                                {formData.college ==='Other' && <>
-                                <div className={styles.inpDiv}>
-                                    <label htmlFor="othercollegename">College Name</label>
-                                    <input
-                                        className={styles.inputBox}
-                                        type="text"
-                                        name="othercollegename"
-                                        id="othercollegename"
-                                        value={formData.firstname}
-                                        onChange={handleOtherCollegeNameChange}
-                                        required
-                                    />
-                                </div>
+                                {formData.college === 'Other' && <>
+                                    <div className={styles.inpDiv}>
+                                        <label htmlFor="othercollegename">College Name</label>
+                                        <input
+                                            className={styles.inputBox}
+                                            type="text"
+                                            name="othercollegename"
+                                            id="othercollegename"
+                                            value={formData.firstname}
+                                            onChange={handleOtherCollegeNameChange}
+                                            required
+                                        />
+                                    </div>
                                 </>}
                                 {formData.college !== 'HBTU Kanpur' ? <>
                                     <div className={styles.inpDiv}>
