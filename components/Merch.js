@@ -14,9 +14,9 @@ const data = [
     '/merch/noteopen.webp',
 ]
 
-const Merch = () => {
+const Merch = ({ isMerchandisePage }) => {
     return (
-        <div className={styles.main}>
+        <div className={isMerchandisePage? styles.main2 : styles.main}>
             {
                 data.map((item,index) => (
                     <div key={index}>
