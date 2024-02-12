@@ -12,6 +12,7 @@ import 'react-creative-cursor/dist/styles.css';
 import Footer from '@/components/Footer'
 import Team from '@/components/Team'
 import Loading from '@/components/Loading'
+import Merch from '@/components/Merch'
 export default function Home({ navbarLinkClicked }) {
   const [showLoading, setShowLoading] = useState(true);
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function Home({ navbarLinkClicked }) {
           <Tshirtmodel />
 
         </div>
+        <Merch />
         <Events />
         <Team showThreeDepartments={true} />
         <Sponsors />

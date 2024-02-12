@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
+
+.main {
+    /* background-color: red; */
+    /* height: 30vh; */
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 60px;
+    display: flex;
+    align-items: center;
+    overflow-x: auto;
+}
+
+.main2 {
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 50px;
+
+}
+
+.box {
+    width: 16.063rem;
+    height: 19.023rem;
+    border-radius: 10px;
+    margin-right: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(to bottom,
+            rgba(255, 0, 214, 0.74),
+            rgba(119, 37, 201, 1));
+}
+
+.in {
+    height: 97%;
+    width: 96%;
+    border-radius: 10px;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.in img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    background-position: center;
+}
+
+.buy {
+    height: 2.011rem;
+    width: 5.963rem;
+    background: linear-gradient(to bottom,
+            rgba(255, 0, 214, 0.74),
+            rgba(119, 37, 201, 1));
+    border-radius: 0.278rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    margin-top: 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    transition: all ease 0.3s;
+    font-family: Jost;
+    font-weight: 700;
+    text-align: center;
+}
+
+.buy:hover {
+    box-shadow: 0 0 10px white;
+    transform: scale(0.98);
+}
+
+@media screen and (max-width: 768px) {
+    .box {
+        margin-right: 25px;
+    }
+
+    .main2{
+        justify-content: center;
+    }
+}
