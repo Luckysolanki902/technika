@@ -1,16 +1,15 @@
 @import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 
 .main {
-    /* background-color: red; */
-    /* height: 30vh; */
     width: 90%;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 60px;
     display: flex;
     align-items: center;
-    column-gap: 45px;
+    column-gap: 4rem;
     overflow-x: auto;
+    margin-top: 40px;
 }
 
 .main2 {
@@ -28,21 +27,22 @@
 }
 
 .box {
-    width: 16.063rem;
-    height: 19.023rem;
-    border-radius: 10px;
+    width: 18vw;
+    height: 18vw;
+    border-radius: 2.5rem;
     display: flex;
     align-items: center;
     justify-content: center;
     background: linear-gradient(to bottom,
             rgba(255, 0, 214, 0.74),
             rgba(119, 37, 201, 1));
+    /* box-shadow: 0 4px 4px 0 rgba(255, 0, 214, 0.74), 0 4px 4px 0 rgba(119, 37, 201, 1); */
 }
 
 .in {
     height: 97%;
-    width: 96%;
-    border-radius: 10px;
+    width: 97%;
+    border-radius: 2.5rem;
     background: white;
     display: flex;
     align-items: center;
@@ -69,7 +69,7 @@
     justify-content: center;
     color: white;
     margin-top: 15px;
-    margin-left: 5px;
+    margin-left: 20px;
     cursor: pointer;
     transition: all ease 0.3s;
     font-family: Jost;
@@ -84,6 +84,27 @@
 
 @media screen and (max-width: 768px) {
     .main {
-        column-gap: 30px;
+        column-gap: 1.5rem;
+    }
+
+    .box {
+        border-radius: 0.9rem;
+        width: 35vw;
+        height: 35vw;
+    }
+
+    .in {
+        border-radius: 0.9rem;
+    }
+
+    .in img {
+        height: 100%;
+        width: 90%;
+    }
+
+    .buy {
+        margin-left: 8px;
+        height: 1.991rem;
+        width: 4.963rem;
     }
 }
