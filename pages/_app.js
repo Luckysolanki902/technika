@@ -7,6 +7,7 @@ import { useRouter } from 'next/router';
 import Head from 'next/head';
 import TypeAdminPassword from '@/components/TypeAdminPassword';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
+import LoadingBar from 'react-top-loading-bar';
 import Navbar from '@/components/Navbar'
 
 const darkTheme = createTheme({
@@ -18,10 +19,37 @@ export default function App({ Component, pageProps }) {
   const isLargeScreen = useMediaQuery('(min-width: 1000px)');
 
   const router = useRouter();
-  const [progress, setProgress] = useState(0);
   const isAdminPage = router.pathname.startsWith('/admin') && router.pathname !== '/admin/dashboard';
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    let interval;
+    const startProgress = () => {
+      setProgress((prev) => {
+        const newProgress = prev + 1; // Adjust the increment value as needed
+        return newProgress >= 100 ? 100 : newProgress;
+      });
+    };
+
+    router.events.on('routeChangeStart', () => {
+      setProgress(0);
+      interval = setInterval(startProgress, 50); // Adjust the interval as needed
+    });
+
+    router.events.on('routeChangeComplete', () => {
+      clearInterval(interval);
+      setProgress(100);
+    });
+
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, [router.events]);
+
+
 
   useEffect(() => {
 
@@ -80,6 +108,13 @@ export default function App({ Component, pageProps }) {
 
 
       </Head>
+      <LoadingBar
+        height={3}
+        color='#ff00ae70'
+        progress={progress}
+        waitingTime={600}
+        onLoaderFinished={() => setProgress(0)}
+      />
       {isAdminPage ? (
         <ThemeProvider theme={darkTheme}>
           {loading ? (

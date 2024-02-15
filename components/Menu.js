@@ -6,7 +6,7 @@ const Menu = ({ text, href, hide, onNavbarLinkClick }) => {
   const router = useRouter();
   const isActive = router.pathname === href;
 
-  const handleClick = () => {
+  const handleClick = () => {zz
     if (typeof onNavbarLinkClick === 'function') {
       onNavbarLinkClick();
       router.push(href);
