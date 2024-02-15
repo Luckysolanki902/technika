@@ -7,22 +7,22 @@ const merchandiseItems = [
   {
     itemName: 'diary',
     imageSrc: '/images/merch/noteopen.webp',
-    price: '₹39',
+    price: '₹49',
   },
   {
     itemName: 'keychain',
     imageSrc: '/images/merch/keychain3.jpg',
-    price: '₹39',
+    price: '₹29',
   },
   {
     itemName: 'coffeemug',
     imageSrc: '/images/merch/cup2.jpg',
-    price: '₹39',
+    price: '₹129',
   },
   {
     itemName: 'pen',
     imageSrc: '/images/merch/pen2.jpg',
-    price: '₹39',
+    price: '₹12',
   },
 ];
 
