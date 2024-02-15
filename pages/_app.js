@@ -63,6 +63,7 @@ export default function App({ Component, pageProps }) {
       <Head>
         <title>{`Technika HBTU `}</title>
         <meta name="description" content={`Technika HBTU - The official technical fest of HBTU`} />
+        <link rel="icon" type="image/png" href="/fav2.png" style={{ width: '100%', height: '100%' }} />
       </Head>
       {isAdminPage ? (
         <ThemeProvider theme={darkTheme}>
