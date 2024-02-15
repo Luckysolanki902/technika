@@ -13,6 +13,7 @@ import Footer from '@/components/Footer'
 import Team from '@/components/Team'
 import Loading from '@/components/Loading'
 import Merch from '@/components/Merch'
+import MerchandiseSlider from '@/components/MerchandiseSlider'
 export default function Home({ navbarLinkClicked }) {
   const [showLoading, setShowLoading] = useState(true);
   useEffect(() => {
@@ -37,7 +38,8 @@ export default function Home({ navbarLinkClicked }) {
           <Tshirtmodel />
 
         </div>
-        <Merch />
+        {/* <Merch /> */}
+        <MerchandiseSlider/>
         <Events />
         <Team showThreeDepartments={true} />
         <Sponsors />

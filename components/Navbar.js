@@ -9,7 +9,6 @@ import { Link } from '@mui/material';
 const Navbar = ({ onNavbarLinkClick }) => {
   const router = useRouter()
 
-
   const img = '/images/logo.png'
 
   return (

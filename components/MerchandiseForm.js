@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import styles from '@/components/compstyles/part1.module.css';
 import { useDropzone } from 'react-dropzone';
@@ -6,11 +6,55 @@ import { Upload, Cancel } from '@mui/icons-material';
 import { Button, Box, CircularProgress, Snackbar } from '@mui/material';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import MuiAlert from '@mui/material/Alert';
-
+import { useRouter } from 'next/router';
 import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
 
-const FormTab = ({ updatedEventName }) => {
+const itemDetails = {
+    diary: {
+        item: 'diary',
+        heading: 'Diary',
+        price: '₹49',
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/noteopen.webp',
+        qr: '/images/merchqr/diary.jpg'
+    },
+    keychain: {
+        item: 'keychain',
+        heading: 'Key Chain',
+        price: '₹29',
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/noteopen.webp',
+        qr: '/images/merchqr/keychain.jpg'
+
+
+    },
+    coffeemug: {
+        item: 'coffeemug',
+        heading: 'Coffee Mug',
+        price: '₹129',
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/noteopen.webp',
+        qr: '/images/merchqr/coffeemug.jpg'
+
+
+    },
+    pen: {
+        item: 'pen',
+        heading: 'Pen',
+        price: '₹12',
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/noteopen.webp',
+        qr: '/images/merchqr/pen.jpg'
+
+
+    },
+};
+
+
+
+
+const MerchandiseForm = ({ item }) => {
     const freeforall = false;
     const [tabIndex, setTabIndex] = useState(0);
     const [formData, setFormData] = useState({
@@ -30,6 +74,19 @@ const FormTab = ({ updatedEventName }) => {
     const [snackbarMessage, setSnackbarMessage] = useState('')
     const [otherCollege, setOtherCollege] = useState('')
     const [severity, setSeverity] = useState('warning')
+
+    const [itemDetail, setItemDetail] = useState(null);
+
+
+    console.log('myitem', item)
+
+
+
+    const itemKiDetails = itemDetails[item];
+    console.log('itemKidetails', itemKiDetails);
+
+
+
     const handleOpenDialog = () => {
         setOpenDialog(true);
     };
@@ -41,9 +98,9 @@ const FormTab = ({ updatedEventName }) => {
         try {
             const data = new FormData();
             data.append("file", file);
-            data.append("upload_preset", "paymentsForEvents");
+            data.append("upload_preset", "merchandise");
 
-            const response = await fetch("https://api.cloudinary.com/v1_1/dg5ay449d/image/upload", {
+            const response = await fetch("https://api.cloudinary.com/v1_1/dg5ay449d/image/merchandise", {
                 method: "post",
                 body: data
             });
@@ -149,17 +206,17 @@ const FormTab = ({ updatedEventName }) => {
             }
             let updatedFormData = {
                 ...formData,
-                eventName: updatedEventName,
+                eventName: item,
                 college: formData.college === 'Other' ? otherCollege : formData.college,
-            };   
+            };
             if (imageFile) {
                 try {
                     const imageUrl = await uploadImage(imageFile);
                     // Update the formData with the uploaded imageUrl
                     updatedFormData = {
                         ...formData,
-                        imageUrl:imageUrl,
-                        eventName: updatedEventName,
+                        imageUrl: imageUrl,
+                        eventName: item,
                         college: formData.college === 'Other' ? otherCollege : formData.college,
                     };
                     console.log(formData)
@@ -168,9 +225,8 @@ const FormTab = ({ updatedEventName }) => {
                 }
             }
 
-
             // Make a POST request to submit the form data using fetch
-            const response = await fetch('/api/submiteventform', {
+            const response = await fetch('/api/buymerchandise', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -182,6 +238,7 @@ const FormTab = ({ updatedEventName }) => {
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
                 setFormData({
+                    item: itemKiDetails.heading,
                     college: '',
                     fullname: '',
                     email: '',
@@ -196,6 +253,7 @@ const FormTab = ({ updatedEventName }) => {
                 setSnackbarMessage(`Congratulations! You've been successfully registered for this event. Get ready for an amazing experience!`)
 
                 console.log('Form submitted successfully');
+                useRouter().push('/thankyou')
             } else {
                 console.error('Error submitting form:', response.statusText);
             }
@@ -214,9 +272,9 @@ const FormTab = ({ updatedEventName }) => {
         <div className={styles.mainbg}>
             <div className={styles.formContent} data-cursor-color='rgba(255, 155, 255, 0.7)'>
                 <div style={{ padding: '20px' }}>
-                    <h1 className={styles.mainHeading}>Event Registration Form</h1>
-                    <h3 className={styles.subHeading}> ( Your Spot Awaits! )</h3>
-                    <h2 className={styles.formTitle}>{updatedEventName}</h2>
+                    <h1 className={styles.mainHeading}>Your Merchandise Awaits</h1>
+
+                    <h2 className={styles.formTitle}>{itemKiDetails.heading}</h2>
                     <div style={{ display: "flex" }}>
                         <div
                             className={styles.tabIndexDiv}
@@ -423,7 +481,7 @@ const FormTab = ({ updatedEventName }) => {
                                         />
                                     </div>
                                 </>}
-                                {(formData.college !== 'HBTU Kanpur' && !freeforall) ? <>
+                                {(!freeforall) ? <>
                                     <div className={styles.inpDiv}>
                                         <div className={styles.qrdiv} onClick={handleOpenDialog}>
                                             <div>Click to view QR</div>
@@ -485,7 +543,7 @@ const FormTab = ({ updatedEventName }) => {
                 <DialogContent
                     style={{
                         height: '90%',
-                        width: '100%',
+                        width: 'auto',
                         display: 'flex',
                         justifyContent: 'center',
                         alignItems: 'center',
@@ -493,11 +551,11 @@ const FormTab = ({ updatedEventName }) => {
                     }}
                 >
                     {/* Render your QR code here */}
-                    <div style={{ width: '50%', height: 'auto', textAlign: 'center' }}>
+                    <div style={{ width: '60%', height: 'auto', textAlign: 'center' }}>
                         <Image
                             width={805}
                             height={799}
-                            src={`/images/luckyqr.jpg`}
+                            src={itemKiDetails.qr}
                             alt="QR Code"
                             style={{ width: '100%', height: 'auto' }}
                         />
@@ -524,4 +582,4 @@ const FormTab = ({ updatedEventName }) => {
     );
 };
 
-export default FormTab;
+export default MerchandiseForm;

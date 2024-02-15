@@ -3,17 +3,15 @@ import style from "./compstyles/team.module.css";
 import React from 'react'
 
 const data = [
-    '/merch/notebook.webp',
-    '/merch/keychain.webp',
-    '/merch/cup.webp',
-    '/merch/keych.webp',
-    '/merch/noteopen.webp',
+    '/images/merch/noteopen.webp',
+    '/images/merch/keychain3.jpg',
+    '/images/merch/cup2.jpg',
 ]
 
 const Merch = ({ isMerchandisePage }) => {
     return (
         <>
-            <div className={isMerchandisePage ? styles.main2 : styles.main}>
+            <div className={styles.main2}>
                 {
                     data.map((item, index) => (
                         <div key={index}>

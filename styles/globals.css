@@ -32,7 +32,7 @@ body {
 
 
 input[type=radio] {
-  accent-color: #451C4F;
+  /* accent-color: #451C4F; */
   width: 20px;
   height: 20px;
   margin-left: 0.9rem;

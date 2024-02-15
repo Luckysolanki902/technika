@@ -49,7 +49,7 @@ const EventDetails = ({ display, name, category, date, timeFrom, timeTo, venue, 
                         <div className={styles.tvflexChild}>
                             <h2>Date</h2>
                             <div>{date}</div>
-                        </div>
+                        </div> 
                         <div className={styles.tvflexChild}>
                             <h2>Timing</h2>
                             <div>{timeFrom} - {timeTo}</div>
