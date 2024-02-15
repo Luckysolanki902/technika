@@ -22,31 +22,31 @@ const Navbar = ({ onNavbarLinkClick }) => {
 
       <div style={{ padding: "5px", paddingRight: "10px" }}>
         <div onClick={() => { onNavbarLinkClick(); router.push('/events'); }} style={{ outline: "none !important", textDecoration: "none", color: "white", cursor:'pointer' }}>
-          <Image src='/images/homepage_icons/event.png' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
+          <Image src='/images/homepage_icons/event.PNG' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
         </div>
       </div>
 
       <div style={{ padding: "5px", paddingRight: "10px" }} >
         <div onClick={() => { onNavbarLinkClick(); router.push('/team'); }} style={{ outline: "none !important", textDecoration: "none", color: "white", cursor:'pointer' }}>
-          <Image src='/images/homepage_icons/team.png' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
+          <Image src='/images/homepage_icons/team.PNG' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
         </div>
       </div>
 
       <div style={{ padding: "5px", paddingRight: "10px" }}>
         <div onClick={() => { onNavbarLinkClick(); router.push('/about'); }} style={{ outline: "none !important", textDecoration: "none", color: "white", cursor:'pointer' }}>
-          <Image  src='/images/homepage_icons/about.png' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
+          <Image  src='/images/homepage_icons/about.PNG' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
         </div>
       </div>
 
       <div style={{ padding: "5px", paddingRight: "10px" }}>
         <div onClick={() => { onNavbarLinkClick(); router.push('/#sponsors'); }} style={{ outline: "none !important", textDecoration: "none", color: "white", cursor:'pointer' }}>
-          <Image src="/images/homepage_icons/sponsors.png" width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
+          <Image src="/images/homepage_icons/sponsors.PNG" width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
         </div>
       </div>
 
       <div style={{ padding: "5px", paddingRight: "10px" }}>
         <div onClick={() => { onNavbarLinkClick(); router.push('/merchandise'); }} style={{ outline: "none !important", textDecoration: "none", color: "white", cursor:'pointer' }}>
-          <Image src='/images/homepage_icons/merchandise.png' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
+          <Image src='/images/homepage_icons/merchandise.PNG' width={801/3} height={311/3} alt='' style={{height:'40px', width:'auto'}}></Image>
         </div>
       </div>
 
