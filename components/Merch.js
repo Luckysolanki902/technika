@@ -1,12 +1,31 @@
 import styles from './compstyles/merch.module.css';
 import style from "./compstyles/team.module.css";
 import React from 'react'
+import Link from 'next/link';
+
 
 const data = [
-    '/images/merch/noteopen.webp',
-    '/images/merch/keychain3.jpg',
-    '/images/merch/cup2.jpg',
-]
+    {
+        itemName: 'diary',
+        imageSrc: '/images/merch/noteopen.webp',
+        price: '₹39',
+    },
+    {
+        itemName: 'keychain',
+        imageSrc: '/images/merch/keychain3.jpg',
+        price: '₹39',
+    },
+    {
+        itemName: 'coffeemug',
+        imageSrc: '/images/merch/cup2.jpg',
+        price: '₹39',
+    },
+    {
+        itemName: 'pen',
+        imageSrc: '/images/merch/pen2.jpg',
+        price: '₹39',
+    },
+];
 
 const Merch = ({ isMerchandisePage }) => {
     return (
@@ -15,20 +34,25 @@ const Merch = ({ isMerchandisePage }) => {
                 {
                     data.map((item, index) => (
                         <div key={index}>
-                            <div className={styles.box}>
-                                <div className={styles.in}>
-                                    <img src={item} alt="" />
+                            <Link href={`/merchandiseform/${item.itemName}`} style={{ textDecoration: 'none' }}>
+                                <div className={styles.box}>
+                                    <div className={styles.in}>
+                                        <img src={item.imageSrc} alt="" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div className={styles.buy}>
-                                Buy Now
-                            </div>
+                                <div className={styles.details}>
+                                    {/* You can display other details here */}
+                                    <p className={styles.keemat}>{item.price}</p>
+                                    <p className={styles.buy}>Buy Now</p>
+                                </div>
+                            </Link>
+
                         </div>
                     ))
                 }
 
 
-            </div>
+            </div >
         </>
     )
 }

@@ -1,6 +1,6 @@
 // pages/api/get-all-events.js
 import connectToMongo from '../../middleware/middleware';
-import MerchandiseForm from '@/components/MerchandiseForm';
+import MerchandiseForm from '@/models/MerchandiseForm';
 
 const getAllEventsHandler = async (req, res) => {
   if (req.method === 'GET') {

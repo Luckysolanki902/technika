@@ -49,6 +49,21 @@
     scale: 1.4;
 }
 
+.details {
+    display: flex;
+    justify-content: space-around;
+    color: white;
+    align-items: center;
+    }
+    .keemat{
+        font-family: Jost;
+        font-size: 1.5rem;
+        font-weight: 900;
+    }
+    
+
+
+
 .buy {
     height: 2.011rem;
     width: 5.963rem;

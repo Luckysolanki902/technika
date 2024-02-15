@@ -1,5 +1,5 @@
 import connectToMongo from '@/middleware/middleware';
-import MerchandiseForm from '@/components/MerchandiseForm';
+import MerchandiseForm from '@/models/MerchandiseForm'
 
 const handler = async (req, res) => {
     try {

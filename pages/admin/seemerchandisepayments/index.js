@@ -103,60 +103,61 @@ const RegistrationPage = () => {
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
             <Container style={{ minHeight: '100vh' }}>
-                <Typography variant="h2" gutterBottom style={{textAlign:'center'}}>
+                <Typography variant="h2" gutterBottom style={{ textAlign: 'center' }}>
                     Event Registrations
                 </Typography>
 
                 <div>
-                    <div style={{width:'100%', display:'flex', justifyContent:'center', padding:'0 30% 2rem 30%', height:'auto'}}>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 30% 2rem 30%', height: 'auto' }}>
 
-                    <TextField
-                        select
-                        label="Filter by Event"
-                        value={eventFilter}
-                        onChange={handleEventFilterChange}
-                        fullWidth
-                    >
-                        <MenuItem value="">All Events</MenuItem>
-                        {registrations && registrations.length > 0 && Array.from(
-                            new Set(registrations.map((reg) => reg.eventName))
-                        ).map((eventName) => (
-                            <MenuItem key={eventName} value={eventName}>
-                                {eventName}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                        <TextField
+                            select
+                            label="Filter by Event"
+                            value={eventFilter}
+                            onChange={handleEventFilterChange}
+                            fullWidth
+                        >
+                            <MenuItem value="">All Events</MenuItem>
+                            {registrations && registrations.length > 0 && Array.from(
+                                new Set(registrations.map((reg) => reg.eventName))
+                            ).map((eventName) => (
+                                <MenuItem key={eventName} value={eventName}>
+                                    {eventName}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </div>
-<div style={{marginTop:'2rem', marginBottom:'2rem'}}>
-    
-                    <TextField
-                        select
-                        label="Search Field"
-                        value={searchFieldOption}
-                        onChange={handleSearchFieldOptionChange}
-                        style={{marginRight:'2rem'}}
-                    >
-                        <MenuItem value="item">Item</MenuItem>
-                        <MenuItem value="fullname">Full Name</MenuItem>
-                        <MenuItem value="email">Email</MenuItem>
-                        <MenuItem value="branch">Branch</MenuItem>
-                        <MenuItem value="gender">Gender</MenuItem>
-                    </TextField>
+                    <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
 
-                    <TextField
-                        label={`Search by ${searchFieldOption}`}
-                        variant="outlined"
-                        value={searchField}
-                        onChange={handleSearchInputChange}
-                    />
-</div>
+                        <TextField
+                            select
+                            label="Search Field"
+                            value={searchFieldOption}
+                            onChange={handleSearchFieldOptionChange}
+                            style={{ marginRight: '2rem' }}
+                        >
+                            <MenuItem value="item">Item</MenuItem>
+                            <MenuItem value="fullname">Full Name</MenuItem>
+                            <MenuItem value="email">Email</MenuItem>
+                            <MenuItem value="branch">Branch</MenuItem>
+                            <MenuItem value="gender">Gender</MenuItem>
+                        </TextField>
+
+                        <TextField
+                            label={`Search by ${searchFieldOption}`}
+                            variant="outlined"
+                            value={searchField}
+                            onChange={handleSearchInputChange}
+                        />
+                    </div>
                 </div>
 
                 <TableContainer component={Paper}>
                     <Table>
                         <TableHead>
                             <TableRow>
-                                <TableCell>Event Name</TableCell>
+                                <TableCell>Item</TableCell>
+                                <TableCell>College</TableCell>
                                 <TableCell>Fullname</TableCell>
                                 <TableCell>Email</TableCell>
                                 <TableCell>Branch</TableCell>
@@ -165,26 +166,21 @@ const RegistrationPage = () => {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            {filteredRegistrations
-                                .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+                            {filteredRegistrations?.slice((currentPage - 1) * pageSize, currentPage * pageSize)
                                 .map((registration) => (
                                     <TableRow key={registration._id}>
-                                        <TableCell>{registration.eventName}</TableCell>
+                                        <TableCell>{registration.item}</TableCell>
+                                        <TableCell>{registration.college}</TableCell>
                                         <TableCell>{registration.fullname}</TableCell>
                                         <TableCell>{registration.email}</TableCell>
                                         <TableCell>{registration.branch}</TableCell>
                                         <TableCell>{registration.gender}</TableCell>
                                         <TableCell>
-                                            {registration.college === 'HBTU Kanpur' ? (
-                                                'Not Needed'
-                                            ) : (
-                                                <button
-                                                    onClick={() => handleImageClick(registration.imageUrl)}
-                                                    disabled={registration.college === 'HBTU Kanpur'}
-                                                >
-                                                    Show Payment Receipt
-                                                </button>
-                                            )}
+                                            <button
+                                                onClick={() => handleImageClick(registration.imageUrl)}
+                                            >
+                                                Show Payment Receipt
+                                            </button>
                                         </TableCell>
                                     </TableRow>
                                 ))}
@@ -193,7 +189,7 @@ const RegistrationPage = () => {
                 </TableContainer>
 
                 <Pagination
-                    count={Math.ceil(filteredRegistrations.length / pageSize)}
+                    count={Math.ceil(filteredRegistrations?.length / pageSize)}
                     page={currentPage}
                     onChange={handlePageChange}
                     style={{ margin: '20px 0' }}

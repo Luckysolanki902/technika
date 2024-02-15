@@ -55,6 +55,7 @@ const itemDetails = {
 
 
 const MerchandiseForm = ({ item }) => {
+    const router = useRouter()
     const freeforall = false;
     const [tabIndex, setTabIndex] = useState(0);
     const [formData, setFormData] = useState({
@@ -75,15 +76,13 @@ const MerchandiseForm = ({ item }) => {
     const [otherCollege, setOtherCollege] = useState('')
     const [severity, setSeverity] = useState('warning')
 
-    const [itemDetail, setItemDetail] = useState(null);
 
 
-    console.log('myitem', item)
+
 
 
 
     const itemKiDetails = itemDetails[item];
-    console.log('itemKidetails', itemKiDetails);
 
 
 
@@ -100,7 +99,7 @@ const MerchandiseForm = ({ item }) => {
             data.append("file", file);
             data.append("upload_preset", "merchandise");
 
-            const response = await fetch("https://api.cloudinary.com/v1_1/dg5ay449d/image/merchandise", {
+            const response = await fetch("https://api.cloudinary.com/v1_1/dg5ay449d/image/upload", {
                 method: "post",
                 body: data
             });
@@ -206,7 +205,7 @@ const MerchandiseForm = ({ item }) => {
             }
             let updatedFormData = {
                 ...formData,
-                eventName: item,
+                item: item,
                 college: formData.college === 'Other' ? otherCollege : formData.college,
             };
             if (imageFile) {
@@ -216,7 +215,7 @@ const MerchandiseForm = ({ item }) => {
                     updatedFormData = {
                         ...formData,
                         imageUrl: imageUrl,
-                        eventName: item,
+                        item: item,
                         college: formData.college === 'Other' ? otherCollege : formData.college,
                     };
                     console.log(formData)
@@ -238,7 +237,7 @@ const MerchandiseForm = ({ item }) => {
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
                 setFormData({
-                    item: itemKiDetails.heading,
+        
                     college: '',
                     fullname: '',
                     email: '',
@@ -250,10 +249,10 @@ const MerchandiseForm = ({ item }) => {
                 setImageFile(null)
                 setSeverity('success')
                 setShowWarning(true);
-                setSnackbarMessage(`Congratulations! You've been successfully registered for this event. Get ready for an amazing experience!`)
+                setSnackbarMessage(`Congratulations! on your order`)
 
                 console.log('Form submitted successfully');
-                useRouter().push('/thankyou')
+                router.push('/thankyou')
             } else {
                 console.error('Error submitting form:', response.statusText);
             }

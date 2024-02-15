@@ -64,6 +64,21 @@ export default function App({ Component, pageProps }) {
         <title>{`Technika HBTU `}</title>
         <meta name="description" content={`Technika HBTU - The official technical fest of HBTU`} />
         <link rel="icon" type="image/png" href="/fav2.png" style={{ width: '100%', height: '100%' }} />
+        <meta property="og:title" content={`Technika HBTU `} />
+        <meta property="og:description" content={`Technika HBTU - The official technical fest of HBTU`} />
+        <meta property="og:image" content={'https://www.technika.ae.org/images/technikashare.png'} />
+        <meta property="og:url" content={`https://www.technika.ae.org`} />
+        <meta property="og:site_name" content="Technika" />
+        <meta httpEquiv="Content-Language" content="en" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        {/* <meta name="robots" content="index, follow" /> */}
+        <meta name="twitter:title" content={`Technika HBTU `} key="tw-title" />
+        <meta name="twitter:description" content={`Technika HBTU - The official technical fest of HBTU`} key="tw-desc" />
+        <meta name="twitter:image" content={'https://www.technika.ae.org/images//technikashare.png'} key="tw-image" />
+        <meta name="twitter:card" content="summary_large_image" key="tw-card" />
+        <meta property="og:keywords" content={`technika, technkia hbtu, hbtu, hbtu fests, technical fest`} />
+
+
       </Head>
       {isAdminPage ? (
         <ThemeProvider theme={darkTheme}>
