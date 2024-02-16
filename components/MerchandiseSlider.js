@@ -24,6 +24,11 @@ const merchandiseItems = [
     imageSrc: '/images/merch/pen2.jpg',
     price: '₹12',
   },
+  {
+    itemName: 'combo',
+    imageSrc: '/images/merch/combo.JPG',
+    price: '₹199',
+  },
 ];
 
 const MerchandiseSlider = () => {

@@ -45,7 +45,7 @@ const Footer = () => {
                 Technika'24
             </div>
             <div className={styles.soci}>
-                <CgMail className={styles.social} onClick={handleMailClick}/>
+                <CgMail className={styles.social} id={styles.email} onClick={handleMailClick}/>
                 <FaPhone className={styles.social} onClick={handlePhoneClick}/>
                 <BsYoutube className={styles.social} onClick={handleYoutubeClick} />
                 <FaInstagram className={styles.social} onClick={handleInstaClick} />

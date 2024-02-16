@@ -52,7 +52,6 @@
   overflow: hidden;
   display: flex;
   justify-content: center;
-  padding-left: 9%;
 }
 
 .bottom {
@@ -115,7 +114,6 @@
     margin-top: 14px;
     width: 80%;
     height: 20.375rem;
-    padding-left: 5%;
   }
 
   .bottom {
@@ -135,7 +133,6 @@
     margin-top: 14px;
     width: 90%;
     height: 20.375rem;
-    padding-left: 12%;
   }
 
   .bottom {
@@ -155,7 +152,6 @@
     margin-top: 14px;
     width: 80%;
     height: 20.375rem;
-    padding-left: 10%;
   }
 
   .bottom {
@@ -176,7 +172,6 @@
     margin-top: 14px;
     width: 70%;
     height: 20.375rem;
-    padding-left: 10%;
   }
 
   .bottom {
@@ -196,7 +191,6 @@
 .caraCont{
   width: 99%;
   margin: auto;
-  padding-left: 6%;
 }
 }
 @media(width<600px){
@@ -208,7 +202,9 @@
 .caraCont{
   width: 90%;
   margin: auto;
-  padding-left: 12%;
+  display: flex;
+  justify-content: center;
+  padding-right: auto;
 
 }
 }
@@ -216,7 +212,6 @@
 .caraCont{
   width: 90%;
   margin: auto;
-  padding-left: 13%;
 }
 }
 

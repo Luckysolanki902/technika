@@ -22,7 +22,7 @@ const CarouselTop = () => {
             <Swiper style={{ height: 'auto', borderRadius: '2rem', "--swiper-pagination-color": "#C508A7", "--swiper-pagination-bullet-size": "0.8rem",
                 "--swiper-pagination-bullet-horizontal-gap": "6px",  "--swiper-pagination-bullet-inactive-color": "#fff",
                 "--swiper-pagination-bullet-inactive-opacity": "0.6", "--swiper-pagination-bottom": "20px",  }}
-                className={styles.carbg}
+                // className={styles.carbg}
                 spaceBetween={5}
                 effect="fade"
                 modules={[EffectFade]} 
@@ -32,11 +32,11 @@ const CarouselTop = () => {
                     dynamicMainBullets:2,
                 }}
                 loop={true} speed={1000} simulateTouch={true} autoplay={{ delay: 3000, disableOnInteraction: false, }} >
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/firstf.png" alt="image1" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto', cursor:'pointer'}} data-cursor-text='Our sponsor' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/fifth.jpg" alt="image5" width={1600} height={900} onClick={handlemaddyClick} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/second.png" alt="image2" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/third.png" alt="image3" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
-                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/four.png" alt="image4" width={1600} height={900} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/firstf.png" alt="image1" width={1600/4} height={900/4} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto', cursor:'pointer'}} data-cursor-text='Our sponsor' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/fifth.jpg" alt="image5" width={1600/4} height={900/4} onClick={handlemaddyClick} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/second.png" alt="image2" width={1600/4} height={900/4} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/third.png" alt="image3" width={1600/4} height={900/4} className={styles.carImg} /></div></SwiperSlide>
+                <SwiperSlide style={{backgroundColor:'black', borderRadius:'2rem', height:'auto'}} data-cursor-text='Glimpses' data-cursor-size='180px' data-cursor-color='rgba(0,0,0,0,2)'> <div > <Image src="/four.png" alt="image4" width={1600/4} height={900/4} className={styles.carImg} /></div></SwiperSlide>
             </Swiper>
             <div className="swiper-pagination"></div>
         </>

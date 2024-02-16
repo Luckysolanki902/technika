@@ -14,6 +14,9 @@ import Team from '@/components/Team'
 import Loading from '@/components/Loading'
 import Merch from '@/components/Merch'
 import MerchandiseSlider from '@/components/MerchandiseSlider'
+import { useSpring, animated } from 'react-spring';
+import { useInView } from 'react-intersection-observer';
+
 export default function Home({ navbarLinkClicked }) {
   const [showLoading, setShowLoading] = useState(true);
   useEffect(() => {
@@ -25,6 +28,43 @@ export default function Home({ navbarLinkClicked }) {
       clearTimeout(timeout);
     };
   }, []);
+
+  const animationProps = useSpring({
+    opacity: 1,
+    transform: 'scale(1)',
+    from: { opacity: 0.7, transform: 'scale(0.8)' },
+    config: { tension: 200, friction: 10 },
+    reset: true, // Reset animation when it goes out of view
+  });
+
+
+  const translateinx = useSpring({
+    opacity: 1,
+    transform: 'translateX(0px)',
+    from: { opacity: 0, transform: 'translateX(50px)' },
+    config: { tension: 120, friction: 16 },
+    reset: true,
+  });
+  const translateinx2 = useSpring({
+    opacity: 1,
+    transform: 'translateY(0px)',
+    from: { opacity: 0, transform: 'translateY(150px)' },
+    config: { tension: 60, friction: 30 },
+    reset: true,
+  });
+
+
+
+
+  const [refMerchandiseSlider, inViewMerchandiseSlider] = useInView({
+    triggerOnce: false,
+  });
+
+  const [refFooter, inViewFooter] = useInView({
+    triggerOnce: true,
+  });
+
+
   return (
     <div className={styles.mainDiv}>
       {showLoading && !navbarLinkClicked && <Loading />}
@@ -34,16 +74,27 @@ export default function Home({ navbarLinkClicked }) {
         <div className='carouseldiv'>
           <CarouselTop />
         </div>
+
         <div style={{ marginTop: '5rem' }}>
           <Tshirtmodel />
 
         </div>
         {/* <Merch /> */}
-        <MerchandiseSlider/>
+        <animated.div ref={refMerchandiseSlider} style={inViewMerchandiseSlider ? animationProps : {}}>
+          {/* <CarouselTop /> */}
+          <MerchandiseSlider />
+        </animated.div>
+
+        {/* <CarouselTop /> */}
         <Events />
-        <Team showThreeDepartments={true} />
+          {/* <CarouselTop /> */}
+          <Team showThreeDepartments={true} />
         <Sponsors />
-        <Footer />
+        <animated.div ref={refFooter} style={inViewFooter ? translateinx2 : {}}>
+          <Footer />
+
+        </animated.div>
+
 
       </div>
     </div>

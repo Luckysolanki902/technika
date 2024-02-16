@@ -31,7 +31,7 @@ const TeamCardsEffect = ({ teamMembers }) => {
         autoplay={{ delay: 1500, disableOnInteraction: false }}
       >
         {teamMembers.map((member, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} style={{display:'flex', justifyContent:'center', alignItems:'flex-start'}}>
             {<Card name={member.NAME} position={member.Position} updatedImageUrl={member.updatedImageUrl} number={member.PhoneNumber}/>} {/* Assuming the member object has a 'Name' property */}
           </SwiperSlide>
         ))}

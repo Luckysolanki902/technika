@@ -15,7 +15,7 @@ const SponsorCarousel = ({ sponsorsimgs, reversedirection }) => {
   const breakpoints = {
     320: {
       slidesPerView: 3,
-      spaceBetween: 30,
+      spaceBetween: 20,
     },
     650: {
       slidesPerView: 4,
@@ -48,7 +48,10 @@ const SponsorCarousel = ({ sponsorsimgs, reversedirection }) => {
         breakpoints={breakpoints}
       >
         {sponsorsimgs.map((image, index) => (
-          <SwiperSlide key={index}>
+          <SwiperSlide key={index} 
+        style={{display:'flex', justifyContent:'center', alignItems:'center'}}
+          
+          >
             <div className={styles.circle} data-cursor-color="rgba(0, 0, 0, 0.1)" data-cursor-size="150px" >
 
               <Image

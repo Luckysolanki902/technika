@@ -13,7 +13,7 @@ const data = [
     {
         itemName: 'keychain',
         imageSrc: '/images/merch/keychain3.jpg',
-        price: '₹29',
+        price: '₹39',
     },
     {
         itemName: 'coffeemug',
@@ -24,6 +24,11 @@ const data = [
         itemName: 'pen',
         imageSrc: '/images/merch/pen2.jpg',
         price: '₹12',
+    },
+    {
+        itemName: 'combo',
+        imageSrc: '/images/merch/combo.JPG',
+        price: '₹199',
     },
 ];
 

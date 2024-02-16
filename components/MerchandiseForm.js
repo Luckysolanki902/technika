@@ -22,10 +22,10 @@ const itemDetails = {
     keychain: {
         item: 'keychain',
         heading: 'Key Chain',
-        price: '₹29',
+        price: '₹39',
         details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: '/images/merch/noteopen.webp',
-        qr: '/images/merchqr/keychain.jpg'
+        qr: '/images/merchqr/keychain2.jpg'
 
 
     },
@@ -46,6 +46,16 @@ const itemDetails = {
         details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: '/images/merch/noteopen.webp',
         qr: '/images/merchqr/pen.jpg'
+
+
+    },
+    combo: {
+        item: 'combo',
+        heading: 'Combo',
+        price: '₹199',
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/combo.JPG',
+        qr: '/images/merchqr/combo.jpg'
 
 
     },
