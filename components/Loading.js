@@ -44,8 +44,8 @@ const Loading = () => {
       <Image
         src="/intro/intro.gif"
         alt="Loading"
-        width={1080}
-        height={1080}
+        width={1080/5}
+        height={1080/5}
         style={{
           width: `${widthPercentage}%`,
           height: 'auto',
