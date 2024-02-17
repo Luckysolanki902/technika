@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }) {
   const isLargeScreen = useMediaQuery('(min-width: 1000px)');
 
   const router = useRouter();
-  const isAdminPage = router.pathname.startsWith('/admin') && router.pathname !== '/admin/dashboard';
+  const isAdminPage = router.pathname.startsWith('/admin');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [loading, setLoading] = useState(true);
   const [progress, setProgress] = useState(0);
