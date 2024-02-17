@@ -12,7 +12,7 @@ const merchandiseItems = [
   {
     itemName: 'keychain',
     imageSrc: '/images/merch/keychain3.jpg',
-    price: '₹29',
+    price: '₹39',
   },
   {
     itemName: 'coffeemug',
