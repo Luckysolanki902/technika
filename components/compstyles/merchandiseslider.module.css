@@ -106,8 +106,21 @@ align-items: center;
 }
 
 
+.specialoffer{
+    position: absolute;
+    top: -0.7rem;
+    left: -1rem;
+    width: 6rem;
+    height: auto;
+}
 
-
+@media (width<700px){
+    .specialoffer{
+        top: -0.4rem;
+        left: -0.56rem;
+        width: 4rem;
+    }
+}
 
 
 

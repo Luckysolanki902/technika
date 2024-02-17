@@ -24,11 +24,11 @@ const merchandiseItems = [
     imageSrc: '/images/merch/pen2.jpg',
     price: '₹12',
   },
-  {
-    itemName: 'combo',
-    imageSrc: '/images/merch/combo.JPG',
-    price: '₹199',
-  },
+  // {
+  //   itemName: 'combo',
+  //   imageSrc: '/images/merch/combo.JPG',
+  //   price: '₹199',
+  // },
 ];
 
 const MerchandiseSlider = () => {
@@ -40,13 +40,22 @@ const MerchandiseSlider = () => {
             <Link href={`/merchandiseform/${item.itemName}`} style={{ textDecoration: 'none' }}>
               <Image className={styles.image} src={item.imageSrc} width={1170 / 3} height={2080 / 3} alt='' />
               <div className={styles.details}>
-                {/* You can display other details here */}
                 <p className={styles.keemat}>{item.price}</p>
                 <p className={styles.buy}>Buy Now</p>
               </div>
             </Link>
           </div>
         ))}
+          <div className={styles.slide} style={{position:'relative'}}>
+          <Image src={'/images/specialoffer.png'} width={512 / 3} height={512 / 3} alt='' className={styles.specialoffer}/>
+            <Link href={`/merchandiseform/combo`} style={{ textDecoration: 'none' }}>
+              <Image className={styles.image} src={'/images/merch/combo.JPG'} width={1170 / 3} height={2080 / 3} alt='' />
+              <div className={styles.details}>
+                <p className={styles.keemat}>{'₹199'}</p>
+                <p className={styles.buy}>Buy Now</p>
+              </div>
+            </Link>
+          </div>
       </div>
     </div>
   );

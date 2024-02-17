@@ -40,7 +40,7 @@
     padding: 1rem;
 }
 
-.in img {
+.merchimg {
     height: 100%;
     width: 100%;
     object-fit: cover;
@@ -89,6 +89,8 @@
     transform: scale(0.98);
 }
 
+
+
 @media screen and (max-width: 768px) {
     .main {
         column-gap: 1.5rem;
@@ -104,7 +106,7 @@
         border-radius: 0.9rem;
     }
 
-    .in img {
+    .merchimg{
         height: 100%;
         width: 90%;
     }
@@ -114,4 +116,21 @@
         height: 1.991rem;
         width: 4.963rem;
     }
+}
+
+.specialoffer{
+    position: absolute;
+    top: -0.7rem;
+    left: -1rem;
+    width: 7rem;
+    height: auto;
+    z-index: 9;
+}
+
+@media (width<700px){
+    .specialoffer{
+        top: -0.4rem;
+        left: -0.56rem;
+        width: 4rem;
+    } 
 }
