@@ -551,9 +551,10 @@ const MerchandiseForm = ({ item }) => {
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
+                
             >
                 <DialogContent
-                style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}
+                style={{display:'flex', flexDirection:'column', alignItems:'center',}}
 
                 >
                     <Button
@@ -566,7 +567,7 @@ const MerchandiseForm = ({ item }) => {
                     </Button>
 
                     {/* Render your QR code here */}
-                    <div style={{ width: '60%', height: 'auto', textAlign: 'center' }}>
+                    <div style={{ width: '100%', height: 'auto', textAlign: 'center' }}>
                         <Image
                             width={805}
                             height={799}

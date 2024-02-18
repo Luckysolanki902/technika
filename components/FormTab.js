@@ -6,6 +6,8 @@ import { Upload, Cancel } from '@mui/icons-material';
 import { Button, Box, CircularProgress, Snackbar } from '@mui/material';
 import QrCode2Icon from '@mui/icons-material/QrCode2';
 import MuiAlert from '@mui/material/Alert';
+import { saveAs } from 'file-saver';
+
 
 import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
@@ -210,6 +212,10 @@ const FormTab = ({ updatedEventName }) => {
 
     const handleWarningClose = () => {
         setShowWarning(false);
+    };
+    const handleDownloadQR = (qrImageUrl) => {
+        // Use the file-saver library to trigger the download
+        saveAs(qrImageUrl, `Technika24_QRCode_for_${updatedEventName}.png`);
     };
 
     return (
@@ -481,21 +487,21 @@ const FormTab = ({ updatedEventName }) => {
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
-                maxWidth="md"
-                fullWidth
             >
                 <DialogContent
-                    style={{
-                        height: '90%',
-                        width: '100%',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '2rem auto',
-                    }}
+                style={{display:'flex', flexDirection:'column', alignItems:'center',}}
+
                 >
+                                       <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleDownloadQR(`/images/luckyqr.jpg`)}
+                        style={{ marginBottom: '1rem', marginTop:'1rem', border:'10x solid red' }}
+                    >
+                        Download QR Code
+                    </Button>
                     {/* Render your QR code here */}
-                    <div style={{ width: '50%', height: 'auto', textAlign: 'center' }}>
+                    <div style={{ width: '100%', height: 'auto', textAlign: 'center' }}>
                         <Image
                             width={805}
                             height={799}
