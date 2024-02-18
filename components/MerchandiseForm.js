@@ -9,7 +9,7 @@ import MuiAlert from '@mui/material/Alert';
 import { useRouter } from 'next/router';
 import { Dialog, DialogContent } from '@mui/material';
 import Image from 'next/image';
-
+import { saveAs } from 'file-saver';
 const itemDetails = {
     diary: {
         item: 'diary',
@@ -247,7 +247,7 @@ const MerchandiseForm = ({ item }) => {
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
                 setFormData({
-        
+
                     college: '',
                     fullname: '',
                     email: '',
@@ -275,6 +275,11 @@ const MerchandiseForm = ({ item }) => {
 
     const handleWarningClose = () => {
         setShowWarning(false);
+    };
+
+    const handleDownloadQR = (qrImageUrl) => {
+        // Use the file-saver library to trigger the download
+        saveAs(qrImageUrl, `Technika24_QRCode_for_${itemKiDetails.heading}.png`);
     };
 
     return (
@@ -546,19 +551,20 @@ const MerchandiseForm = ({ item }) => {
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
-                maxWidth="md"
-                fullWidth
             >
                 <DialogContent
-                    style={{
-                        height: '90%',
-                        width: 'auto',
-                        display: 'flex',
-                        justifyContent: 'center',
-                        alignItems: 'center',
-                        padding: '2rem auto',
-                    }}
+                style={{display:'flex', flexDirection:'column', alignItems:'center', justifyContent:'center'}}
+
                 >
+                    <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleDownloadQR(itemKiDetails.qr)}
+                        style={{ marginBottom: '1rem', marginTop:'1rem', border:'10x solid red' }}
+                    >
+                        Download QR Code
+                    </Button>
+
                     {/* Render your QR code here */}
                     <div style={{ width: '60%', height: 'auto', textAlign: 'center' }}>
                         <Image
