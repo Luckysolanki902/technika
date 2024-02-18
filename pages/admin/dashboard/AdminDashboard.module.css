@@ -1,143 +1,70 @@
 /* AdminDashboard.module.css */
 
 .mainContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    color: white;
-    margin-top: 3rem; 
-    overflow: auto;
-background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), linear-gradient(180deg, rgba(143, 0, 255, 0.00) 0%, rgba(39, 0, 70, 0.49) 16.34%, #000 40.36%);
+  background-color: #0e0e0e;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
 
-    
+.container {
+  max-width: 1200px;
+  margin: 40px auto;
 }
 
 .technika {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    font-size: 4rem;
-    padding: 1rem;
-    color: white;
-    font-weight: 600;
-    font-family: 'Krona One';
-}
-
-
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: center; */
-    min-height: 80vh;
-    /* background-color: rgba(255, 255, 255, 0.153); */
-    color: white;
-    width: 90%;
-    padding: 1rem;
-    backdrop-filter: blur(8px);
-    border-radius: 2rem;
-margin-bottom: 2rem;
-padding-bottom: 3rem;
-
-    
-}
-
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-    width: 95%;
-    margin-top: 20px;
-    align-items: center;
-    height: auto;
-}
-
-.button {
-    margin-bottom: 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    background-color: transparent;
-    /* border: 2px solid white; */
-    background-color: rgba(255, 255, 255, 0.153);
-
-    color: rgb(255, 255, 255);
-    text-align: center;
-    text-decoration: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    border-radius: 1rem;
-    max-width: 50vw;
-    width: 90%;
-    font-family: 'Jost';
-    transition: all 0.3 ease;
-}
-
-.button:hover {
-    background-color: rgba(255, 255, 255, 0.179);
-    scale: 0.99;
+  font-size: 3.5rem;
+  color: #3498db;
+  margin-bottom: 20px;
 }
 
 .heading {
-    color: #f0f0f0;
-    text-align: center;
-    font-size: 2.5rem;
-    border-bottom: 2px solid #00eaff;
-    padding-bottom: 20px;
-  }
-  .description {
-    font-size: 1.8rem;
-    text-align: center;
-    color: #bebebe;
-    margin-top: 1rem;
-  }
-  .subheading {
-    font-size: 1.8rem;
-    text-align: center;
-    color: #bebebe;
-    margin-top: 1rem;
-    margin-bottom: 0rem;
-  }
-
-  
-  
-@media (max-width: 768px) {
-    .technika {
-        font-size: 2rem;
-        /* Example font size for smaller devices */
-    }
-    .heading {
-        font-size: 1.7rem; /* Example font size for smaller devices */
-      }
-    
-      .description {
-        font-size: 1.4rem; /* Example font size for smaller devices */
-      }
-      
-    
-      .subheading {
-        font-size: 1.4rem; /* Example font size for smaller devices */
-      }
+  font-size: 2rem;
+  color: #2ecc71;
+  margin-bottom: 10px;
 }
 
-@media (max-width: 448px) {
-    .technika {
-        font-size: 1.8rem;
-        /* Example font size for smaller devices */
-    }
-    .heading {
-        font-size: 1.4rem; /* Example font size for smaller devices */
-      }
-    
-      .description {
-        font-size: 1rem; /* Example font size for smaller devices */
-      }
-      .button{
-        font-size: 1rem;
-      }
-      .subheading {
-        font-size: 1rem; /* Example font size for smaller devices */
-      }
+.description {
+  font-size: 1rem;
+  color: #7f8c8d;
+  margin-bottom: 30px;
 }
+
+.card {
+  background-color: #ffffff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  transition: box-shadow 0.3s ease-out;
+}
+
+.card:hover {
+transform: scale(0.96);
+opacity: 0.8;
+}
+
+.cardContent {
+  padding: 20px;
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.subheading {
+  font-size: 1.5rem;
+  color: #3498db;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-size: 2rem;
+}
+
+/* Add any additional styling as needed */

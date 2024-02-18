@@ -38,6 +38,7 @@ const RegistrationPage = () => {
 
     const handleSearchFieldOptionChange = (event) => {
         setSearchFieldOption(event.target.value);
+        filterBySearchField(eventFilter, event.target.value, searchQuery);
     };
 
     const fetchRegistrations = async () => {
@@ -52,32 +53,39 @@ const RegistrationPage = () => {
     };
 
     const handleEventFilterChange = (event) => {
-        setEventFilter(event.target.value);
-        filterRegistrations(event.target.value, searchQuery);
+        const eventValue = event.target.value;
+        setEventFilter(eventValue);
+        filterByEvent(eventValue);
     };
 
     const handleSearchInputChange = (event) => {
+        const searchValue = event.target.value;
         setSearchField(event.target.value);
-        setSearchQuery(event.target.value);
-        filterRegistrations(eventFilter, event.target.value);
+        setSearchQuery(searchValue);
+        filterBySearchField(eventFilter, searchFieldOption, searchValue);
     };
 
-    const filterRegistrations = (eventFilter, searchQuery) => {
+    const filterByEvent = (eventFilterValue) => {
         let filtered = registrations;
-
-        if (eventFilter) {
-            filtered = filtered.filter((reg) => reg.eventName === eventFilter);
+        if (eventFilterValue) {
+            filtered = registrations.filter((reg) => reg.eventName === eventFilterValue);
         }
+        setFilteredRegistrations(filtered || []);
+        setCurrentPage(1);
+    };
 
-        if (searchQuery && filtered) {
-            const normalizedSearchQuery = searchQuery.toLowerCase();
-
+    const filterBySearchField = (eventFilterValue, searchFieldOptionValue, searchQueryValue) => {
+        let filtered = registrations;
+        if (eventFilterValue) {
+            filtered = filtered.filter((reg) => reg.eventName === eventFilterValue);
+        }
+        if (searchQueryValue && filtered) {
+            const normalizedSearchQuery = searchQueryValue.toLowerCase();
             filtered = filtered.filter((reg) => {
-                const fieldValue = reg[searchFieldOption].toLowerCase();
+                const fieldValue = reg[searchFieldOptionValue].toLowerCase();
                 return fieldValue.includes(normalizedSearchQuery);
             });
         }
-
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
@@ -103,52 +111,52 @@ const RegistrationPage = () => {
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
             <Container style={{ minHeight: '100vh' }}>
-                <Typography variant="h2" gutterBottom style={{textAlign:'center'}}>
+                <Typography variant="h2" gutterBottom style={{ textAlign: 'center' }}>
                     Event Registrations
                 </Typography>
 
                 <div>
-                    <div style={{width:'100%', display:'flex', justifyContent:'center', padding:'0 30% 2rem 30%', height:'auto'}}>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 30% 2rem 30%', height: 'auto' }}>
 
-                    <TextField
-                        select
-                        label="Filter by Event"
-                        value={eventFilter}
-                        onChange={handleEventFilterChange}
-                        fullWidth
-                    >
-                        <MenuItem value="">All Events</MenuItem>
-                        {registrations && registrations.length > 0 && Array.from(
-                            new Set(registrations.map((reg) => reg.eventName))
-                        ).map((eventName) => (
-                            <MenuItem key={eventName} value={eventName}>
-                                {eventName}
-                            </MenuItem>
-                        ))}
-                    </TextField>
+                        <TextField
+                            select
+                            label="Filter by Event"
+                            value={eventFilter}
+                            onChange={handleEventFilterChange}
+                            fullWidth
+                        >
+                            <MenuItem value="">All Events</MenuItem>
+                            {registrations && registrations.length > 0 && Array.from(
+                                new Set(registrations.map((reg) => reg.eventName))
+                            ).map((eventName) => (
+                                <MenuItem key={eventName} value={eventName}>
+                                    {eventName}
+                                </MenuItem>
+                            ))}
+                        </TextField>
                     </div>
-<div style={{marginTop:'2rem', marginBottom:'2rem'}}>
-    
-                    <TextField
-                        select
-                        label="Search Field"
-                        value={searchFieldOption}
-                        onChange={handleSearchFieldOptionChange}
-                        style={{marginRight:'2rem'}}
-                    >
-                        <MenuItem value="fullname">Full Name</MenuItem>
-                        <MenuItem value="email">Email</MenuItem>
-                        <MenuItem value="branch">Branch</MenuItem>
-                        <MenuItem value="gender">Gender</MenuItem>
-                    </TextField>
+                    <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
 
-                    <TextField
-                        label={`Search by ${searchFieldOption}`}
-                        variant="outlined"
-                        value={searchField}
-                        onChange={handleSearchInputChange}
-                    />
-</div>
+                        <TextField
+                            select
+                            label="Search Field"
+                            value={searchFieldOption}
+                            onChange={handleSearchFieldOptionChange}
+                            style={{ marginRight: '2rem', marginBottom: '1rem' }}
+                        >
+                            <MenuItem value="fullname">Full Name</MenuItem>
+                            <MenuItem value="email">Email</MenuItem>
+                            <MenuItem value="branch">Branch</MenuItem>
+                            <MenuItem value="gender">Gender</MenuItem>
+                        </TextField>
+
+                        <TextField
+                            label={`Search by ${searchFieldOption}`}
+                            variant="outlined"
+                            value={searchField}
+                            onChange={handleSearchInputChange}
+                        />
+                    </div>
                 </div>
 
                 <TableContainer component={Paper}>
@@ -175,14 +183,14 @@ const RegistrationPage = () => {
                                         <TableCell>{registration.gender}</TableCell>
                                         <TableCell>
                                             {registration.college === 'HBTU Kanpur' ? (
-                                                'Not Needed'
+                                                'Free'
                                             ) : (
-                                                <button
+                                                <div style={{ color: 'skyblue', cursor: 'default' }}
                                                     onClick={() => handleImageClick(registration.imageUrl)}
                                                     disabled={registration.college === 'HBTU Kanpur'}
                                                 >
                                                     Show Payment Receipt
-                                                </button>
+                                                </div>
                                             )}
                                         </TableCell>
                                     </TableRow>

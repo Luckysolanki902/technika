@@ -27,18 +27,14 @@ const darkTheme = createTheme({
 const RegistrationPage = () => {
     const [registrations, setRegistrations] = useState([]);
     const [filteredRegistrations, setFilteredRegistrations] = useState([]);
-    const [eventFilter, setEventFilter] = useState('');
+    const [itemFilter, setItemFilter] = useState('');
     const [searchField, setSearchField] = useState('');
     const [searchQuery, setSearchQuery] = useState('');
     const [currentPage, setCurrentPage] = useState(1);
-    const [pageSize] = useState(10);
+    const [pageSize] = useState(20);
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
-
-    const handleSearchFieldOptionChange = (event) => {
-        setSearchFieldOption(event.target.value);
-    };
 
     const fetchRegistrations = async () => {
         try {
@@ -51,33 +47,45 @@ const RegistrationPage = () => {
         }
     };
 
-    const handleEventFilterChange = (event) => {
-        setEventFilter(event.target.value);
-        filterRegistrations(event.target.value, searchQuery);
+    const handleItemFilterChange = (event) => {
+        const itemValue = event.target.value;
+        setItemFilter(itemValue);
+        filterByItem(itemValue);
     };
 
     const handleSearchInputChange = (event) => {
+        const searchValue = event.target.value;
         setSearchField(event.target.value);
-        setSearchQuery(event.target.value);
-        filterRegistrations(eventFilter, event.target.value);
+        setSearchQuery(searchValue);
+        filterBySearchField(itemFilter, searchFieldOption, searchValue);
     };
 
-    const filterRegistrations = (eventFilter, searchQuery) => {
+    const filterByItem = (itemFilterValue) => {
         let filtered = registrations;
-
-        if (eventFilter) {
-            filtered = filtered.filter((reg) => reg.eventName === eventFilter);
+        if (itemFilterValue) {
+            filtered = registrations.filter((reg) => reg.item === itemFilterValue);
         }
+        setFilteredRegistrations(filtered || []);
+        setCurrentPage(1);
+    };
 
-        if (searchQuery && filtered) {
-            const normalizedSearchQuery = searchQuery.toLowerCase();
+    const handleSearchFieldOptionChange = (event) => {
+        setSearchFieldOption(event.target.value);
+        filterBySearchField(itemFilter, event.target.value, searchQuery);
+    };
 
+    const filterBySearchField = (itemFilterValue, searchFieldOptionValue, searchQueryValue) => {
+        let filtered = registrations;
+        if (itemFilterValue) {
+            filtered = filtered.filter((reg) => reg.item === itemFilterValue);
+        }
+        if (searchQueryValue && filtered) {
+            const normalizedSearchQuery = searchQueryValue.toLowerCase();
             filtered = filtered.filter((reg) => {
-                const fieldValue = reg[searchFieldOption].toLowerCase();
+                const fieldValue = reg[searchFieldOptionValue].toLowerCase();
                 return fieldValue.includes(normalizedSearchQuery);
             });
         }
-
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
@@ -104,7 +112,7 @@ const RegistrationPage = () => {
             <CssBaseline />
             <Container style={{ minHeight: '100vh' }}>
                 <Typography variant="h2" gutterBottom style={{ textAlign: 'center' }}>
-                    Event Registrations
+                    Merchandise Payments
                 </Typography>
 
                 <div>
@@ -112,17 +120,17 @@ const RegistrationPage = () => {
 
                         <TextField
                             select
-                            label="Filter by Event"
-                            value={eventFilter}
-                            onChange={handleEventFilterChange}
+                            label="Filter by Items"
+                            value={itemFilter}
+                            onChange={handleItemFilterChange}
                             fullWidth
                         >
-                            <MenuItem value="">All Events</MenuItem>
+                            <MenuItem value="">All Items</MenuItem>
                             {registrations && registrations.length > 0 && Array.from(
-                                new Set(registrations.map((reg) => reg.eventName))
-                            ).map((eventName) => (
-                                <MenuItem key={eventName} value={eventName}>
-                                    {eventName}
+                                new Set(registrations.map((reg) => reg.item))
+                            ).map((item) => (
+                                <MenuItem key={item} value={item}>
+                                    {item}
                                 </MenuItem>
                             ))}
                         </TextField>
@@ -134,9 +142,9 @@ const RegistrationPage = () => {
                             label="Search Field"
                             value={searchFieldOption}
                             onChange={handleSearchFieldOptionChange}
-                            style={{ marginRight: '2rem' }}
+                            style={{ marginRight: '2rem', marginBottom: '1rem' }}
                         >
-                            <MenuItem value="item">Item</MenuItem>
+                            <MenuItem value="year">Year</MenuItem>
                             <MenuItem value="fullname">Full Name</MenuItem>
                             <MenuItem value="email">Email</MenuItem>
                             <MenuItem value="branch">Branch</MenuItem>
@@ -161,6 +169,7 @@ const RegistrationPage = () => {
                                 <TableCell>Fullname</TableCell>
                                 <TableCell>Email</TableCell>
                                 <TableCell>Branch</TableCell>
+                                <TableCell>Year</TableCell>
                                 <TableCell>Gender</TableCell>
                                 <TableCell>Payment</TableCell>
                             </TableRow>
@@ -174,13 +183,15 @@ const RegistrationPage = () => {
                                         <TableCell>{registration.fullname}</TableCell>
                                         <TableCell>{registration.email}</TableCell>
                                         <TableCell>{registration.branch}</TableCell>
+                                        <TableCell>{registration.year}</TableCell>
                                         <TableCell>{registration.gender}</TableCell>
                                         <TableCell>
-                                            <button
+                                            <div style={{ color: 'skyblue', cursor: 'default' }}
+
                                                 onClick={() => handleImageClick(registration.imageUrl)}
                                             >
                                                 Show Payment Receipt
-                                            </button>
+                                            </div>
                                         </TableCell>
                                     </TableRow>
                                 ))}
