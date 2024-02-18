@@ -35,7 +35,7 @@ const itemDetails = {
         price: '₹129',
         details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
         image: '/images/merch/noteopen.webp',
-        qr: '/images/merchqr/coffeemug.jpg'
+        qr: '/images/merchqr/cup.jpg'
 
 
     },
