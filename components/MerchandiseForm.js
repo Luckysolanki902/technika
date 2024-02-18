@@ -206,7 +206,7 @@ const MerchandiseForm = ({ item }) => {
                 return;
             }
 
-            if (formData.college !== 'HBTU Kanpur' && !imageFile) {
+            if (!imageFile) {
                 // Show warning if college is not HBTU and no image is uploaded
                 setSeverity('warning')
                 setShowWarning(true);
