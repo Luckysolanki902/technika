@@ -66,17 +66,30 @@ export default function App({ Component, pageProps }) {
   }, []);
 
 
-  useEffect(() => {
-    if (isAdminPage) {
-      const checkLoggedInStatus = () => {
-        const loggedIn = localStorage.getItem('isLoggedIn');
-        setIsLoggedIn(loggedIn === 'true');
-        setLoading(false);
-      };
 
-      checkLoggedInStatus();
+  useEffect(() => {
+    const fetchLoginFlag = async () => {
+      try {
+        const response = await fetch('/api/get-login-flag');
+        const data = await response.json();
+
+        if (data.success) {
+          const loginFlag = localStorage.getItem('loginFlag');
+          setIsLoggedIn(loginFlag === data.loginFlag);
+        }
+
+        setLoading(false);
+      } catch (error) {
+        console.error('Error fetching login flag:', error);
+        setLoading(false);
+      }
+    };
+
+    if (isAdminPage) {
+      fetchLoginFlag();
     }
   }, [isAdminPage]);
+
 
   const handleLogin = () => {
     setIsLoggedIn(true);
@@ -141,21 +154,21 @@ export default function App({ Component, pageProps }) {
           </style>
         </ThemeProvider>
       ) : (
-        <div style={{position:'relative'}}>
+        <div style={{ position: 'relative' }}>
           {!isAdminPage && <>
-            {isLargeScreen &&<div style={{height:'0'}}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55'/>
-              <div style={{top:"0",height:"3rem",width:"100%",position:"absolute",zIndex:1}}> 
-            <Navbar onNavbarLinkClick={handleNavbarLinkClick} /> 
+            {isLargeScreen && <div style={{ height: '0' }}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55' />
+              <div style={{ top: "0", height: "3rem", width: "100%", position: "absolute", zIndex: 1 }}>
+                <Navbar onNavbarLinkClick={handleNavbarLinkClick} />
 
-             </div>
-        
-        </div> }
+              </div>
+
+            </div>}
             <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '999' }}>
               <Sidebar onNavbarLinkClick={handleNavbarLinkClick} />
             </div>
           </>}
           <div>
-            <Component {...pageProps} navbarLinkClicked={navbarLinkClicked}/>
+            <Component {...pageProps} navbarLinkClicked={navbarLinkClicked} />
           </div>
         </div>
       )}

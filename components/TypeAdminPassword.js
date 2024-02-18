@@ -14,6 +14,10 @@ const TypeAdminPassword = ({ onLogin }) => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         try {
+            // Fetch login flag from API
+            const flagResponse = await fetch('/api/get-login-flag');
+            const flagData = await flagResponse.json();
+
             const response = await fetch('/api/validate-password', {
                 method: 'POST',
                 headers: {
@@ -25,7 +29,8 @@ const TypeAdminPassword = ({ onLogin }) => {
             const data = await response.json();
 
             if (data.success) {
-                localStorage.setItem('isLoggedIn', 'true');
+                // Update to use the login flag from API response
+                localStorage.setItem('loginFlag', flagData.loginFlag);
                 console.log('logged in successfully');
                 onLogin();
             } else {
@@ -35,6 +40,7 @@ const TypeAdminPassword = ({ onLogin }) => {
             console.error('Error validating password:', error);
         }
     };
+
 
     const toggleShowPassword = () => {
         setShowPassword(!showPassword);
