@@ -15,6 +15,8 @@ import Paper from '@mui/material/Paper';
 import Pagination from '@mui/material/Pagination';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
+import * as XLSX from 'xlsx';
+import { Button } from '@mui/material';
 
 const API_ENDPOINT = '/api/getmerchandisepayments';
 
@@ -106,7 +108,28 @@ const RegistrationPage = () => {
     useEffect(() => {
         fetchRegistrations();
     }, []);
-
+    const exportToExcel = () => {
+        const formattedData = filteredRegistrations.map(({ _id, __v, imageUrl, createdAt, updatedAt, ...rest }) => ({
+          ...rest,
+          Date: new Date(createdAt).toLocaleString('en-IN', {
+            timeZone: 'Asia/Kolkata',
+            weekday: 'long', // Display day name (e.g., Monday)
+            year: 'numeric',
+            month: 'long', // Display month name (e.g., February)
+            day: 'numeric',
+            hour: 'numeric',
+            minute: 'numeric',
+            second: 'numeric',
+            hour12: true, // Use 12-hour clock with AM/PM
+          }),
+        }));
+      
+        const ws = XLSX.utils.json_to_sheet(formattedData);
+        const wb = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(wb, ws, 'merchandisePayments');
+        XLSX.writeFile(wb, 'merchandisepayments.xlsx');
+      };
+      
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
@@ -198,7 +221,12 @@ const RegistrationPage = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-
+                {filteredRegistrations.length === 0 && <div style={{textAlign:'center', marginTop:"1rem"}}>No Purchase</div>}
+                <div style={{ marginTop: '2rem', marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
+                            <Button variant="contained" color="primary" onClick={exportToExcel}>
+                                Export to Excel
+                            </Button>
+                        </div>
                 <Pagination
                     count={Math.ceil(filteredRegistrations?.length / pageSize)}
                     page={currentPage}

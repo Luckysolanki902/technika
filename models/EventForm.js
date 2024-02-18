@@ -10,8 +10,9 @@ const eventFormSchema = new mongoose.Schema({
     gender: String,
     college: String,
     imageUrl: String,
+}, {
+    timestamps: true // This option adds createdAt and updatedAt fields to your schema
 });
-
 mongoose.models = {}
 const EventForm = mongoose.model('EventForm', eventFormSchema);
 
