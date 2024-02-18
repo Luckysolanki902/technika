@@ -196,6 +196,8 @@ const FormTab = ({ updatedEventName }) => {
                 setSnackbarMessage(`Congratulations! You've been successfully registered for this event. Get ready for an amazing experience!`)
 
                 console.log('Form submitted successfully');
+                router.push('/thankyou')
+
             } else {
                 console.error('Error submitting form:', response.statusText);
             }
