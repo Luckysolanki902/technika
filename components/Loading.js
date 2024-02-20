@@ -1,28 +1,47 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import { useMediaQuery } from '@mui/material';
 import Image from 'next/image';
+
+// Constants for image dimensions and timing
+const IMAGE_WIDTH = 1080 / 5;
+const IMAGE_HEIGHT = 1080 / 5;
+const FADE_OUT_DURATION = 1000; // in milliseconds
+const LOADING_SCREEN_DELAY = 3000; // in milliseconds
 
 const Loading = () => {
   const [isVisible, setIsVisible] = useState(true);
   const isMediumScreen = useMediaQuery('(max-width:800px)');
   const isSmallScreen = useMediaQuery('(max-width:500px)');
-
+  const audioRef = useRef(null);
   useEffect(() => {
+    if (audioRef.current) {
+      audioRef.current.play();
+    }
     const timeout = setTimeout(() => {
       setIsVisible(false);
-    }, 3000);
+    }, LOADING_SCREEN_DELAY);
 
     return () => {
       clearTimeout(timeout);
+      if (audioRef.current) {
+        audioRef.current.pause(); 
+      }
     };
   }, []);
 
-  const widthPercentage = isMediumScreen ? (isSmallScreen ? 80 : 60) : 50;
+  // Calculate a responsive width percentage for the image
+  const widthPercentage = isMediumScreen 
+                         ? (isSmallScreen ? 80 : 60)
+                         : 50; 
 
+  // Define fade-out animation with descriptive options
   const fadeOut = useSpring({
     opacity: isVisible ? 1 : 0,
-    config: { ...config.default, duration: 1000, reset: true },
+    config: { 
+      duration: FADE_OUT_DURATION,
+      ...config.gentle // Use a slightly eased animation 
+    },
   });
 
   return (
@@ -44,14 +63,15 @@ const Loading = () => {
       <Image
         src="/intro/intro.gif"
         alt="Loading"
-        width={1080/5}
-        height={1080/5}
+        width={IMAGE_WIDTH}
+        height={IMAGE_HEIGHT}
         style={{
           width: `${widthPercentage}%`,
           height: 'auto',
           objectFit: 'cover',
         }}
       />
+       <audio ref={audioRef} src="/intro/intro.mp3" style={{ display: 'none' }} />
     </animated.div>
   );
 };
