@@ -1,4 +1,4 @@
-import React, { useEffect, useState,useRef } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { useSpring, animated, config } from 'react-spring';
 import { useMediaQuery } from '@mui/material';
 import Image from 'next/image';
@@ -14,10 +14,13 @@ const Loading = () => {
   const isMediumScreen = useMediaQuery('(max-width:800px)');
   const isSmallScreen = useMediaQuery('(max-width:500px)');
   const audioRef = useRef(null);
+  const buttonRef = useRef(null);
+
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.play();
     }
+
     const timeout = setTimeout(() => {
       setIsVisible(false);
     }, LOADING_SCREEN_DELAY);
@@ -25,22 +28,38 @@ const Loading = () => {
     return () => {
       clearTimeout(timeout);
       if (audioRef.current) {
-        audioRef.current.pause(); 
+        audioRef.current.pause();
       }
     };
   }, []);
 
+  useEffect(() => {
+    // Set a timer with a delay of 100ms before simulating a click
+    const timer = setTimeout(() => {
+      if (buttonRef.current) {
+        const event = new MouseEvent('click', {
+          bubbles: true,
+          cancelable: true,
+          view: window
+        });
+        buttonRef.current.dispatchEvent(event);
+      }
+    }, 100);
+  
+    // Cleanup the timer on component unmount
+    return () => clearTimeout(timer);
+  }, []);
+  
+
   // Calculate a responsive width percentage for the image
-  const widthPercentage = isMediumScreen 
-                         ? (isSmallScreen ? 80 : 60)
-                         : 50; 
+  const widthPercentage = isMediumScreen ? (isSmallScreen ? 80 : 60) : 50;
 
   // Define fade-out animation with descriptive options
   const fadeOut = useSpring({
     opacity: isVisible ? 1 : 0,
-    config: { 
+    config: {
       duration: FADE_OUT_DURATION,
-      ...config.gentle // Use a slightly eased animation 
+      ...config.gentle, // Use a slightly eased animation
     },
   });
 
@@ -71,7 +90,16 @@ const Loading = () => {
           objectFit: 'cover',
         }}
       />
-       <audio ref={audioRef} src="/intro/intro.mp3" style={{ display: 'none' }} />
+      <button
+        ref={buttonRef}
+        onClick={() => {
+          // This click handler can be empty since it's just a simulated click
+        }}
+        style={{ display: 'none' }}
+      >
+        Start Audio
+      </button>
+      <audio ref={audioRef} src="/intro/intro.mp3" style={{ display: 'none' }} />
     </animated.div>
   );
 };
