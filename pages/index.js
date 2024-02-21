@@ -76,10 +76,8 @@ export default function Home({ navbarLinkClicked }) {
 
         </div>
         {/* <Merch /> */}
-        <animated.div ref={refMerchandiseSlider} style={inViewMerchandiseSlider ? animationProps : {}}>
           {/* <CarouselTop /> */}
           <MerchandiseSlider />
-        </animated.div>
 
         {/* <CarouselTop /> */}
         <Events />
