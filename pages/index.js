@@ -83,14 +83,49 @@ export default function Home({ navbarLinkClicked }) {
 
         {/* <CarouselTop /> */}
         <Events />
-          {/* <CarouselTop /> */}
-          <Team showThreeDepartments={true} />
+        {/* <CarouselTop /> */}
+        <Team showThreeDepartments={true} />
         <Sponsors />
         <animated.div ref={refFooter} style={inViewFooter ? translateinx2 : {}}>
           <Footer />
 
         </animated.div>
 
+        < script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "Technika'24",
+            "url": "https://www.technika.ae.org",
+            "logo": "https://www.technika.ae.org/fav2.png",
+            "description": "Empowering students with technical skills and fostering innovation within the college community.",
+            "contactPoint": [
+              {
+                "@type": "ContactPoint",
+                "telephone": "+91-9120657951",
+                "contactType": "technical support"
+              },
+            ]
+          })
+        }} />
+
+        < script type="application/ld+json" dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "url": "https://www.technika.ae.org",
+            "name": "Technika'24",
+            "description": "Empowering students with technical skills and fostering innovation within the college community.",
+            "publisher": {
+              "@type": "Organization",
+              "name": "Technika'24",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://www.technika.ae.org/images/logo.png"
+              }
+            }
+          })
+        }} />
 
       </div>
     </div>
