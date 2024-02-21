@@ -1,6 +1,7 @@
 import connectToMongo from '@/middleware/middleware';
 import MerchandiseForm from '@/models/MerchandiseForm';
 import nodemailer from 'nodemailer';
+import CouponCode from '@/models/CouponCode';
 
 const handler = async (req, res) => {
     try {
@@ -17,6 +18,19 @@ const handler = async (req, res) => {
                 pass: process.env.MAIL_PASS,
             },
         });
+        if (updatedFormData.couponCode) {
+            // Find the coupon in MongoDB based on the coupon code
+            const coupon = await CouponCode.findOne({ coupon_code: updatedFormData.couponCode });
+        
+            if (coupon) {
+                // If coupon exists, update its hasApplied property
+                await CouponCode.findByIdAndUpdate(coupon._id, { hasApplied: true });
+            } else {
+                console.error('Coupon not found for code:', updatedFormData.couponCode);
+                // Handle the case where the coupon is not found (log an error, or take appropriate action)
+            }
+        }
+        
 
         const mailOptions = {
             from: process.env.MAIL_USER,

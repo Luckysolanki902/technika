@@ -10,6 +10,10 @@ const merchandiseformSchema = new mongoose.Schema({
     gender: String,
     college: String,
     imageUrl: String,
+    size: String,
+    nameOnTshirt: String,
+    couponCode: String,
+    tshirtVariant: String,
 }, {
     timestamps: true // This option adds createdAt and updatedAt fields to your schema
 });

@@ -2,6 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import styles from './compstyles/merchandiseslider.module.css';
 import Link from 'next/link';
+import TshirtSlider from './TshirtSlider';
 
 const merchandiseItems = [
   {
@@ -34,6 +35,7 @@ const merchandiseItems = [
 const MerchandiseSlider = () => {
   return (
     <div className={styles.main}>
+      <TshirtSlider/>
       <div className={styles.slider}>
         {merchandiseItems.map((item, index) => (
           <div className={styles.slide} key={index}>

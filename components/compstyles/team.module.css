@@ -231,3 +231,28 @@
   }
 
 }
+
+
+.videoContainer{
+  display: flex;
+  justify-content: space-evenly;
+  width: 100vw;
+  margin-bottom: 4rem;
+  flex-direction: row;
+  gap: 3rem;
+}
+
+.video{
+  width: 40vw;
+  margin: auto;
+  height: auto;
+}
+
+@media (width<600px){
+  .video{
+    width: 90vw;
+  }
+  .videoContainer{
+    flex-direction: column;
+  }
+}

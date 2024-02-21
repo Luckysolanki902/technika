@@ -9,12 +9,17 @@ import TypeAdminPassword from '@/components/TypeAdminPassword';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import LoadingBar from 'react-top-loading-bar';
 import Navbar from '@/components/Navbar'
+import CssBaseline from '@mui/material';
 
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
+    primary: {
+      main: '#ffffff', // white color
+    },
   },
 });
+
 export default function App({ Component, pageProps }) {
   const isLargeScreen = useMediaQuery('(min-width: 1000px)');
 
@@ -154,23 +159,26 @@ export default function App({ Component, pageProps }) {
           </style>
         </ThemeProvider>
       ) : (
-        <div style={{ position: 'relative' }}>
-          {!isAdminPage && <>
-            {isLargeScreen && <div style={{ height: '0' }}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55' />
-              <div style={{ top: "0", height: "3rem", width: "100%", position: "absolute", zIndex: 1 }}>
-                <Navbar onNavbarLinkClick={handleNavbarLinkClick} />
+        <ThemeProvider theme={darkTheme}>
+          <div style={{ position: 'relative' }}>
+            {!isAdminPage && <>
+              {isLargeScreen && <div style={{ height: '0' }}><Cursor isGelly={true} cursorBackgrounColor='#ffffff55' />
+                <div style={{ top: "0", height: "3rem", width: "100%", position: "absolute", zIndex: 1 }}>
+                  <Navbar onNavbarLinkClick={handleNavbarLinkClick} />
 
+                </div>
+
+              </div>}
+              <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '999' }}>
+                <Sidebar onNavbarLinkClick={handleNavbarLinkClick} />
               </div>
-
-            </div>}
-            <div style={{ position: 'absolute', top: '0', right: '0', zIndex: '999' }}>
-              <Sidebar onNavbarLinkClick={handleNavbarLinkClick} />
+            </>}
+            <div>
+              <Component {...pageProps} navbarLinkClicked={navbarLinkClicked} />
             </div>
-          </>}
-          <div>
-            <Component {...pageProps} navbarLinkClicked={navbarLinkClicked} />
           </div>
-        </div>
+        </ThemeProvider>
+
       )}
     </>
   );

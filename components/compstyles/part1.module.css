@@ -166,6 +166,28 @@
     padding: 2rem;
      width: '50%'
 }
+
+.inpDiv select option {
+    transition: all 0.2s ease-in-out; /* Smooth transition on hover */
+  }
+
+.inpDiv select option {
+    color: white; /* Set the text color */
+    background-color: #2e2e2e; /* Set the background color */
+    border: 2px solid white; /* Set the border color and width */
+    padding: 8px; /* Adjust padding as needed */
+    border-radius: 4px; /* Add border-radius for rounded corners */
+  }
+  
+.inpDiv select option:focus{
+    color: white; /* Set the text color */
+    background-color: #2e2e2e; /* Set the background color */
+    border: 2px solid white; /* Set the border color and width */
+    padding: 8px; /* Adjust padding as needed */
+    border-radius: 4px; /* Add border-radius for rounded corners */
+  }
+
+
 @media (width> 1100px) {
 
     #radioinp div {

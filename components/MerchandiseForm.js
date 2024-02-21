@@ -59,6 +59,22 @@ const itemDetails = {
 
 
     },
+    tshirtb: {
+        item: 'tshirtb',
+        heading: 'Tshirt Boy Print',
+        price: 599,
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/tshirt.JPG',
+        qr: '/images/merchqr/tshirt.jpg',
+    },
+    tshirtg: {
+        item: 'tshirtg',
+        heading: 'Tshirt Girl Print',
+        price: 599,
+        details: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+        image: '/images/merch/tshirt.JPG',
+        qr: '/images/merchqr/tshirt.jpg'
+    },
 };
 
 
@@ -68,6 +84,7 @@ const MerchandiseForm = ({ item }) => {
     const router = useRouter()
     const freeforall = false;
     const [tabIndex, setTabIndex] = useState(0);
+
     const [formData, setFormData] = useState({
         college: '',
         fullname: '',
@@ -77,6 +94,10 @@ const MerchandiseForm = ({ item }) => {
         year: '1st',
         gender: 'male',
         imageUrl: '',
+        // Additional fields for t-shirt
+        size: 'S',
+        nameOnTshirt: '',
+        couponCode: '',
     });
     const [imageFile, setImageFile] = useState(null);
     const [openDialog, setOpenDialog] = useState(false);
@@ -85,6 +106,19 @@ const MerchandiseForm = ({ item }) => {
     const [snackbarMessage, setSnackbarMessage] = useState('')
     const [otherCollege, setOtherCollege] = useState('')
     const [severity, setSeverity] = useState('warning')
+    const [couponValidation, setCouponValidation] = useState({
+        loading: false,
+        success: false,
+        message: '',
+    });
+    const [openSizeChart, setOpenSizeChart] = useState(false);
+    const handleOpenSizeChart = () => {
+        setOpenSizeChart(true);
+    };
+
+    const handleCloseSizeChart = () => {
+        setOpenSizeChart(false);
+    };
 
 
 
@@ -218,6 +252,7 @@ const MerchandiseForm = ({ item }) => {
                 item: item,
                 college: formData.college === 'Other' ? otherCollege : formData.college,
             };
+
             if (imageFile) {
                 try {
                     const imageUrl = await uploadImage(imageFile);
@@ -233,6 +268,31 @@ const MerchandiseForm = ({ item }) => {
                     console.log(error)
                 }
             }
+
+            if (!couponValidation.success) {
+                // Clear couponCode if coupon validation is not successful
+                updatedFormData = {
+                    ...updatedFormData,
+                    couponCode: '',
+                     };
+            }
+
+            if (item === 'tshirtg') {
+                // Clear couponCode if coupon validation is not successful
+                updatedFormData = {
+                    ...updatedFormData,
+                    tshirtVariant: 'girl print'
+                     };
+            }
+
+            if (item === 'tshirtb') {
+                // Clear couponCode if coupon validation is not successful
+                updatedFormData = {
+                    ...updatedFormData,
+                    tshirtVariant: 'boy print'
+                     };
+            }
+
 
             // Make a POST request to submit the form data using fetch
             const response = await fetch('/api/buymerchandise', {
@@ -255,6 +315,9 @@ const MerchandiseForm = ({ item }) => {
                     phone: '',
                     year: '1st',
                     gender: 'male',
+                    nameOnTshirt: '',
+                    couponCode: '',
+
                 });
                 setImageFile(null)
                 setSeverity('success')
@@ -277,10 +340,53 @@ const MerchandiseForm = ({ item }) => {
         setShowWarning(false);
     };
 
-    const handleDownloadQR = (qrImageUrl) => {
+    const handleDownloadQR = () => {
+        let qrImageUrl = itemKiDetails?.qr; // Default QR code
+
+        if (couponValidation.success) {
+            // Use a different QR code if the coupon is successfully applied
+            qrImageUrl = '/images/merchqr/tshirtwithcoupon.jpg';
+        }
+
         // Use the file-saver library to trigger the download
-        saveAs(qrImageUrl, `Technika24_QRCode_for_${itemKiDetails.heading}.png`);
+        saveAs(qrImageUrl, `Technika24_QRCode_for_${itemKiDetails?.heading}.png`);
     };
+
+    const handleApplyCoupon = async () => {
+        try {
+            setCouponValidation({ loading: true, success: false, message: '' });
+
+            // Make a POST request to validate the coupon code
+            const response = await fetch('/api/validate-couponcode', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ couponCode: formData.couponCode }),
+            });
+
+            const result = await response.json();
+
+            if (response.ok) {
+                setCouponValidation({ loading: false, success: true, message: 'Coupon Code Applied Successfully' });
+
+                // Update the form data with coupon details
+                setFormData((prevData) => ({
+                    ...prevData,
+                    coupon: {
+                        code: formData.couponCode,
+                        price: itemKiDetails?.price,
+                    },
+                }));
+            } else {
+                setCouponValidation({ loading: false, success: false, message: result.message });
+            }
+        } catch (error) {
+            console.error('Error applying coupon code:', error.message);
+            setCouponValidation({ loading: false, success: false, message: 'Internal Server Error' });
+        }
+    };
+
 
     return (
         <div className={styles.mainbg}>
@@ -288,7 +394,7 @@ const MerchandiseForm = ({ item }) => {
                 <div style={{ padding: '20px' }}>
                     <h1 className={styles.mainHeading}>Your Merchandise Awaits</h1>
 
-                    <h2 className={styles.formTitle}>{itemKiDetails.heading}</h2>
+                    <h2 className={styles.formTitle}>{itemKiDetails?.heading}</h2>
                     <div style={{ display: "flex" }}>
                         <div
                             className={styles.tabIndexDiv}
@@ -481,6 +587,107 @@ const MerchandiseForm = ({ item }) => {
                                         <option value="Other">Other</option>
                                     </select>
                                 </div>
+
+                                {/* Additional options for T-shirt */}
+                                {(item === 'tshirtg' || item === 'tshirtb') && (
+                                    <>
+                                        <div className={styles.inpDiv}>
+                                            <div style={{display:'flex', gap:'2rem', alignItems:'center'}}>
+                                            <label htmlFor="size">Size</label>
+<div>
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={handleOpenSizeChart}
+                                            >
+                                                Size Chart
+                                            </Button>
+
+</div>
+
+                                            </div>
+                                            <select
+                                                className={styles.inputBox}
+                                                name="size"
+                                                id="size"
+                                                value={formData.size}
+                                                onChange={handleInputChange}
+                                                required
+                                            >
+                                                <option value="S">S - Small</option>
+                                                <option value="M">M - Medium</option>
+                                                <option value="L">L - Large</option>
+                                                <option value="XL">XL - Extra Large</option>
+                                                <option value="XXL">XXL - Extra Large</option>
+                                            </select>
+                                        </div>
+                                        <div className={styles.inpDiv}>
+                                            <label htmlFor="nameOnTshirt">Name on T-shirt (Max 10 characters)</label>
+                                            <input
+                                                className={styles.inputBox}
+                                                type="text"
+                                                name="nameOnTshirt"
+                                                id="nameOnTshirt"
+                                                value={formData.nameOnTshirt}
+                                                onChange={(e) => {
+                                                    // Limit input to 10 characters
+                                                    if (e.target.value.length <= 10) {
+                                                        handleInputChange(e);
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                        <div className={styles.inpDiv}>
+                                            <label htmlFor="couponCode">Coupon Code</label>
+                                            <input
+                                                className={styles.inputBox}
+                                                type="text"
+                                                name="couponCode"
+                                                id="couponCode"
+                                                value={formData.couponCode}
+                                                onChange={handleInputChange}
+                                            />
+                                            {/* You can add additional validation logic for coupon code */}
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                onClick={handleApplyCoupon}
+                                                style={{ marginLeft: '0.5rem', minWidth: '30%' }}
+                                            >
+                                                {couponValidation.loading ? 'Verifying' : 'Apply'}
+                                            </Button>
+                                            {couponValidation.message && (
+                                                <>
+                                                    <div style={{ color: couponValidation.success ? 'green' : 'red', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+                                                        {couponValidation.message}
+                                                    </div>
+                                                    {couponValidation.success && <>
+                                                        <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+                                                            40% discount on ₹599
+                                                        </div>
+
+                                                    </>}
+                                                </>
+                                            )}
+
+                                        </div>
+                                        {couponValidation.success ? (
+                                            <>
+                                                <div style={{ marginTop: '0.5rem' }}>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amout Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹{parseInt(itemKiDetails?.price) * 0.6}</div>
+                                                </div>
+                                            </>
+                                        ) : <>
+                                            <div style={{ marginTop: '0.5rem' }}>
+                                                <div style={{ marginTop: '3rem', color: 'white' }}>Amout Payable: ₹{itemKiDetails?.price}</div>
+                                            </div>
+                                        </>}
+                                    </>
+                                )}
+
+
+
+
                                 {formData.college === 'Other' && <>
                                     <div className={styles.inpDiv}>
                                         <label htmlFor="othercollegename">College Name</label>
@@ -502,8 +709,8 @@ const MerchandiseForm = ({ item }) => {
                                             <div><QrCode2Icon style={{ width: '2.5rem', height: '2.5rem' }} /></div>
                                         </div>
                                     </div>
-                                    <p style={{ color: 'white', marginTop: '2rem' }} className={styles.dndheading}>
-                                        Upload or Drag the Payment Recipt below
+                                    <p style={{ color: 'white', marginTop: '2rem', textAlign: 'center' }} className={styles.dndheading}>
+                                        Upload or Drag and Drop the Payment Recipt below
                                     </p>
                                     {!imageFile && (
 
@@ -551,17 +758,17 @@ const MerchandiseForm = ({ item }) => {
             <Dialog
                 open={openDialog}
                 onClose={handleCloseDialog}
-                
+
             >
                 <DialogContent
-                style={{display:'flex', flexDirection:'column', alignItems:'center',}}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}
 
                 >
                     <Button
                         variant="contained"
                         color="primary"
-                        onClick={() => handleDownloadQR(itemKiDetails.qr)}
-                        style={{ marginBottom: '1rem', marginTop:'1rem', border:'10x solid red' }}
+                        onClick={() => handleDownloadQR(itemKiDetails?.qr)}
+                        style={{ marginBottom: '1rem', marginTop: '1rem', border: '10x solid red' }}
                     >
                         Download QR Code
                     </Button>
@@ -571,13 +778,40 @@ const MerchandiseForm = ({ item }) => {
                         <Image
                             width={805}
                             height={799}
-                            src={itemKiDetails.qr}
+                            src={couponValidation.success ? '/images/merchqr/tshirtwithcoupon.jpg' : itemKiDetails?.qr}
                             alt="QR Code"
                             style={{ width: '100%', height: 'auto' }}
                         />
                     </div>
                 </DialogContent>
             </Dialog>
+
+
+            {/* size chart */}
+            <Dialog
+                open={openSizeChart}
+                onClose={handleCloseSizeChart}
+
+            >
+                <DialogContent
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}
+
+                >
+
+                    {/* Render your QR code here */}
+                    <div style={{ width: '100%', height: 'auto', textAlign: 'center' }}>
+                        <Image
+                            width={805}
+                            height={799}
+                            src={'/images/sizechart.png'}
+                            alt="QR Code"
+                            style={{ width: '100%', height: 'auto' }}
+                        />
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+
             <Snackbar
                 open={showWarning}
                 autoHideDuration={6000}

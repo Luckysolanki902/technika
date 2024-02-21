@@ -2,6 +2,7 @@ import styles from './compstyles/merch.module.css';
 import React from 'react'
 import Link from 'next/link';
 import Image from 'next/image';
+import TshirtSlider from './TshirtSlider';
 
 
 const data = [
@@ -35,6 +36,7 @@ const data = [
 const Merch = () => {
     return (
         <>
+            <TshirtSlider />
             <div className={styles.main2}>
                 {
                     data.map((item, index) => (
@@ -58,7 +60,7 @@ const Merch = () => {
 
                 <Link href={`/merchandiseform/combo`} style={{ textDecoration: 'none' }}>
                     <div className={styles.box}>
-                        <div className={styles.in} style={{ position: 'relative', backgroundColor:'#DDDFE5' }}>
+                        <div className={styles.in} style={{ position: 'relative', backgroundColor: '#DDDFE5' }}>
                             <img src={'/images/specialoffer.png'} width={512 / 3} height={512 / 3} alt='' className={styles.specialoffer} />
 
                             <img src={'/images/merch/combo.JPG'} className={styles.merchimg} alt="" />
