@@ -14,8 +14,10 @@ const handler = async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS,
+                // user: process.env.MAIL_USER,
+                // pass: process.env.MAIL_PASS,
+                user: "technicalsubcouncil@hbtu.ac.in",
+                pass: "yjfpgeifuqtzsvia",
             },
         });
         if (updatedFormData.couponCode) {
@@ -33,7 +35,8 @@ const handler = async (req, res) => {
         
 
         const mailOptions = {
-            from: process.env.MAIL_USER,
+            // from: process.env.MAIL_USER,
+            from: "technicalsubcouncil@hbtu.ac.in",
             to: updatedFormData.email, // assuming your form has an 'email' field
             subject: 'Confirmation of Purchase Registration for Techikka Sub-Council Merchandise',
             text: `We are delighted to inform you that your recent purchase of merchandise from the Technical Sub-Council has been successfully registered. Thank you for choosing our products. We truly appreciate your support and are committed to providing you with high-quality products.\n\nWe will verify your payment and reach out to you within 48 hours to deliver your merchandise to you. ✨✨\n\nBest regards,\nTechnical Sub-Council\nHBTU, Kanpur`,
