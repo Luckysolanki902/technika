@@ -674,12 +674,12 @@ const MerchandiseForm = ({ item }) => {
                                         {couponValidation.success ? (
                                             <>
                                                 <div style={{ marginTop: '0.5rem' }}>
-                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amout Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹{parseInt(itemKiDetails?.price) * 0.6}</div>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹{parseInt(itemKiDetails?.price) * 0.6}</div>
                                                 </div>
                                             </>
                                         ) : <>
                                             <div style={{ marginTop: '0.5rem' }}>
-                                                <div style={{ marginTop: '3rem', color: 'white' }}>Amout Payable: ₹{itemKiDetails?.price}</div>
+                                                <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹499</div>
                                             </div>
                                         </>}
                                     </>

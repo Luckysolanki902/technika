@@ -14,13 +14,15 @@ const handler = async (req, res) => {
         const transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: process.env.MAIL_USER,
-                pass: process.env.MAIL_PASS,
+                // user: process.env.MAIL_USER,
+                // pass: process.env.MAIL_PASS,
+                user: 'technicalsubcouncil@hbtu.ac.in',
+                pass: 'yjfpgeifuqtzsvia',
             },
         });
 
         const mailOptions = {
-            from: process.env.MAIL_USER,
+            from: 'technicalsubcouncil@hbtu.ac.in',
             to: updatedFormData.email, // assuming your form has an 'email' field
             subject: 'Successful Registration of Technical Sub-Council Event',
             text: `We are thrilled to inform you that your registration for the upcoming event of Technical Sub-Council has been successfully completed. Your presence at the event is highly appreciated, and we are confident that it will be an enriching experience for you.\n\nIf you have any queries or require further information regarding the event, feel free to contact us.\n\nWe look forward to welcoming you at the event and fostering meaningful connections within our Technical community.\n\nBest Regards,\nTechnical Sub-Council`,
