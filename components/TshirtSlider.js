@@ -6,13 +6,13 @@ import Link from 'next/link';
 const tshirts = [
   {
     itemName: 'tshirtb',
-    imageSrc: '/images/merch/tshirtb.gif',
+    imageSrc: '/images/merch/boy2.gif',
     price: '₹499',
     variant:'Boy Print'
   },
   {
     itemName: 'tshirtg',
-    imageSrc: '/images/merch/tshirtg.gif',
+    imageSrc: '/images/merch/girl2.gif',
     price: '₹499',
     variant:'Girl Print'
 
@@ -27,7 +27,7 @@ const TshirtSlider = () => {
   {tshirts.map((item, index) => (
     <div className={styles.slide} key={index}>
       <Link href={`/merchandiseform/${item.itemName}`} style={{ textDecoration: 'none' }}>
-        <Image className={styles.image} src={item.imageSrc} width={600} height={399} alt='tshirt' />
+        <Image className={styles.image} src={item.imageSrc} width={1080/1.5} height={710/1.5} alt='tshirt' />
         <div className={styles.details}>
            <div className={styles.keemat}>{item.variant}</div>           
         </div>

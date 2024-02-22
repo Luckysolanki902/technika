@@ -274,7 +274,7 @@ const MerchandiseForm = ({ item }) => {
                 updatedFormData = {
                     ...updatedFormData,
                     couponCode: '',
-                     };
+                };
             }
 
             if (item === 'tshirtg') {
@@ -282,7 +282,7 @@ const MerchandiseForm = ({ item }) => {
                 updatedFormData = {
                     ...updatedFormData,
                     tshirtVariant: 'girl print'
-                     };
+                };
             }
 
             if (item === 'tshirtb') {
@@ -290,7 +290,7 @@ const MerchandiseForm = ({ item }) => {
                 updatedFormData = {
                     ...updatedFormData,
                     tshirtVariant: 'boy print'
-                     };
+                };
             }
 
 
@@ -568,8 +568,6 @@ const MerchandiseForm = ({ item }) => {
 
                         {/* _______________________part2__________________________ */}
 
-
-
                         <form onSubmit={handleSubmit}>
                             <div className={styles.partContent}>
                                 <div className={styles.inpDiv}>
@@ -588,22 +586,37 @@ const MerchandiseForm = ({ item }) => {
                                     </select>
                                 </div>
 
+                                {formData.college === 'Other' && <>
+                                    <div className={styles.inpDiv}>
+                                        <label htmlFor="othercollegename">College Name</label>
+                                        <input
+                                            className={styles.inputBox}
+                                            type="text"
+                                            name="othercollegename"
+                                            id="othercollegename"
+                                            value={formData.firstname}
+                                            onChange={handleOtherCollegeNameChange}
+                                            required
+                                        />
+                                    </div>
+                                </>}
+
                                 {/* Additional options for T-shirt */}
                                 {(item === 'tshirtg' || item === 'tshirtb') && (
                                     <>
                                         <div className={styles.inpDiv}>
-                                            <div style={{display:'flex', gap:'2rem', alignItems:'center'}}>
-                                            <label htmlFor="size">Size</label>
-<div>
-                                            <Button
-                                                variant="contained"
-                                                color="primary"
-                                                onClick={handleOpenSizeChart}
-                                            >
-                                                Size Chart
-                                            </Button>
+                                            <div style={{ display: 'flex', gap: '2rem', alignItems: 'center' }}>
+                                                <label htmlFor="size">Size</label>
+                                                <div>
+                                                    <Button
+                                                        variant="contained"
+                                                        color="primary"
+                                                        onClick={handleOpenSizeChart}
+                                                    >
+                                                        Size Chart
+                                                    </Button>
 
-</div>
+                                                </div>
 
                                             </div>
                                             <select
@@ -688,20 +701,6 @@ const MerchandiseForm = ({ item }) => {
 
 
 
-                                {formData.college === 'Other' && <>
-                                    <div className={styles.inpDiv}>
-                                        <label htmlFor="othercollegename">College Name</label>
-                                        <input
-                                            className={styles.inputBox}
-                                            type="text"
-                                            name="othercollegename"
-                                            id="othercollegename"
-                                            value={formData.firstname}
-                                            onChange={handleOtherCollegeNameChange}
-                                            required
-                                        />
-                                    </div>
-                                </>}
                                 {(!freeforall) ? <>
                                     <div className={styles.inpDiv}>
                                         <div className={styles.qrdiv} onClick={handleOpenDialog}>
