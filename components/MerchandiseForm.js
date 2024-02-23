@@ -270,14 +270,45 @@ const MerchandiseForm = ({ item }) => {
                 }
             }
 
+            const itemKiDetails = itemDetails[item];
+
+            // Remove the rupee symbol from the price if present
+            const cleanPrice = typeof itemKiDetails?.price === 'string'
+                ? parseInt(itemKiDetails?.price.replace('₹', ''), 10)
+                : itemKiDetails?.price;
+
             if (!couponValidation.success) {
-                // Clear couponCode if coupon validation is not successful
+                // Use itemKiDetails.price if no coupon code or unsuccessful coupon validation
                 updatedFormData = {
                     ...updatedFormData,
                     couponCode: '',
+                    price: cleanPrice, // Adjust the default price as needed
+                };
+            } else {
+                // Apply discount based on coupon code
+                let discountedPrice;
+
+                if (couponName === 'GRUV') {
+                    discountedPrice = 401.33;
+                } else {
+                    // Add logic for other coupon codes if needed
+                    discountedPrice = 349.40;
+                }
+
+                updatedFormData = {
+                    ...updatedFormData,
+                    couponCode: couponValidation.success ? couponName : '',
+                    price: discountedPrice,
                 };
             }
 
+            // If the final price is 599, set it to 499
+            if (updatedFormData.price === 599) {
+                updatedFormData.price = 499;
+            }
+
+
+            console.log(updatedFormData.price)
             if (item === 'tshirtg') {
                 // Clear couponCode if coupon validation is not successful
                 updatedFormData = {
@@ -307,26 +338,27 @@ const MerchandiseForm = ({ item }) => {
             // Check if the request was successful (status code 2xx)
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
-                setFormData({
 
-                    college: '',
-                    fullname: '',
-                    email: '',
-                    branch: '',
-                    phone: '',
-                    year: '1st',
-                    gender: 'male',
-                    nameOnTshirt: '',
-                    couponCode: '',
+                // setFormData({
 
-                });
-                setImageFile(null)
-                setSeverity('success')
-                setShowWarning(true);
-                setSnackbarMessage(`Congratulations! on your order`)
+                //     college: '',
+                //     fullname: '',
+                //     email: '',
+                //     branch: '',
+                //     phone: '',
+                //     year: '1st',
+                //     gender: 'male',
+                //     nameOnTshirt: '',
+                //     couponCode: '',
 
-                console.log('Form submitted successfully');
-                router.push('/thankyou')
+                // });
+                // setImageFile(null)
+                // setSeverity('success')
+                // setShowWarning(true);
+                // setSnackbarMessage(`Congratulations! on your order`)
+
+                // console.log('Form submitted successfully');
+                // router.push('/thankyou')
             } else {
                 console.error('Error submitting form:', response.statusText);
             }
@@ -342,18 +374,18 @@ const MerchandiseForm = ({ item }) => {
     };
     const handleDownloadQR = () => {
         let qrImageUrl = itemKiDetails?.qr; // Default QR code
-    
+
         if (couponValidation.success) {
             // Use a different QR code if the coupon is successfully applied
             qrImageUrl = couponName === 'GRUV'
                 ? '/images/merchqr/tshirtwithgruvcoupon.jpg'
                 : '/images/merchqr/tshirtwithcoupon.jpg';
         }
-    
+
         // Use the file-saver library to trigger the download
         saveAs(qrImageUrl, `Technika24_QRCode_for_${itemKiDetails?.heading}.png`);
     };
-    
+
     const handleApplyCoupon = async () => {
         try {
             setCouponValidation({ loading: true, success: false, message: '' });
@@ -678,31 +710,31 @@ const MerchandiseForm = ({ item }) => {
                                                 {couponValidation.loading ? 'Verifying' : 'Apply'}
                                             </Button>
                                             {couponValidation.message && (
-  <>
-    <div style={{ color: couponValidation.success ? 'green' : 'red', marginTop: '0.5rem', fontSize: '0.8rem' }}>
-      {couponValidation.message}
-    </div>
+                                                <>
+                                                    <div style={{ color: couponValidation.success ? 'green' : 'red', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+                                                        {couponValidation.message}
+                                                    </div>
 
-    {couponValidation.success && couponName === 'GRUV' && (
-      <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
-        33% discount on ₹599
-      </div>
-    )}
+                                                    {couponValidation.success && couponName === 'GRUV' && (
+                                                        <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+                                                            33% discount on ₹599
+                                                        </div>
+                                                    )}
 
-    {couponValidation.success && couponName !== 'GRUV' && (
-      <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
-        40% discount on ₹599
-      </div>
-    )}
-  </>
-)}
+                                                    {couponValidation.success && couponName !== 'GRUV' && (
+                                                        <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+                                                            40% discount on ₹599
+                                                        </div>
+                                                    )}
+                                                </>
+                                            )}
 
 
                                         </div>
                                         {couponValidation.success && couponName !== 'GRUV' &&
                                             <>
                                                 <div style={{ marginTop: '0.5rem' }}>
-                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹359..40</div>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹359.40</div>
                                                 </div>
                                             </>
 
