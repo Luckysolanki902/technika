@@ -259,6 +259,7 @@ const RegistrationPage = () => {
                         <TableHead>
                             <TableRow>
                                 <TableCell>Item</TableCell>
+                                <TableCell>Price</TableCell>
                                 <TableCell>College</TableCell>
                                 <TableCell>Fullname</TableCell>
                                 <TableCell>Email</TableCell>
@@ -281,6 +282,7 @@ const RegistrationPage = () => {
                                 .map((registration) => (
                                     <TableRow key={registration._id}>
                                         <TableCell>{registration.item}</TableCell>
+                                        <TableCell>{registration.price}</TableCell>
                                         <TableCell>{registration.college}</TableCell>
                                         <TableCell>{registration.fullname}</TableCell>
                                         <TableCell>{registration.email}</TableCell>

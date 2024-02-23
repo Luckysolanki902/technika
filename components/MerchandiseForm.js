@@ -297,7 +297,7 @@ const MerchandiseForm = ({ item }) => {
 
                 updatedFormData = {
                     ...updatedFormData,
-                    couponCode: couponValidation.success ? couponName : '',
+                    couponCode: couponValidation.success ? couponCode : '',
                     price: discountedPrice,
                 };
             }
@@ -339,26 +339,26 @@ const MerchandiseForm = ({ item }) => {
             if (response.ok) {
                 // Optionally, reset form data or perform other actions upon successful submission
 
-                // setFormData({
+                setFormData({
 
-                //     college: '',
-                //     fullname: '',
-                //     email: '',
-                //     branch: '',
-                //     phone: '',
-                //     year: '1st',
-                //     gender: 'male',
-                //     nameOnTshirt: '',
-                //     couponCode: '',
+                    college: '',
+                    fullname: '',
+                    email: '',
+                    branch: '',
+                    phone: '',
+                    year: '1st',
+                    gender: 'male',
+                    nameOnTshirt: '',
+                    couponCode: '',
 
-                // });
-                // setImageFile(null)
-                // setSeverity('success')
-                // setShowWarning(true);
-                // setSnackbarMessage(`Congratulations! on your order`)
+                });
+                setImageFile(null)
+                setSeverity('success')
+                setShowWarning(true);
+                setSnackbarMessage(`Congratulations! on your order`)
 
-                // console.log('Form submitted successfully');
-                // router.push('/thankyou')
+                console.log('Form submitted successfully');
+                router.push('/thankyou')
             } else {
                 console.error('Error submitting form:', response.statusText);
             }
