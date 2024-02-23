@@ -553,6 +553,12 @@ const MerchandiseForm = ({ item }) => {
                                         <option value="BE">BE</option>
                                         <option value="LT">LT</option>
                                         <option value="BBA">BBA</option>
+                                        <option value="BCA">BCA</option>
+                                        <option value="MBA">MBA</option>
+                                        <option value="MCA">MCA</option>
+                                        <option value="M.tech">M.tech</option>
+                                        <option value="M.sc">M.sc</option>
+                                        <option value="PhD">PhD</option>
                                     </select>
                                 </div>
 
