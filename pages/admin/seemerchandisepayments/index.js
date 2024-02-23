@@ -17,6 +17,8 @@ import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import * as XLSX from 'xlsx';
 import { Button } from '@mui/material';
+import Switch from '@mui/material/Switch';
+
 
 const API_ENDPOINT = '/api/getmerchandisepayments';
 
@@ -37,6 +39,8 @@ const RegistrationPage = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
+    const [tshirtMode, setTshirtMode] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
 
     const fetchRegistrations = async () => {
         try {
@@ -46,6 +50,8 @@ const RegistrationPage = () => {
             setFilteredRegistrations(data.events);
         } catch (error) {
             console.error('Error fetching registrations:', error);
+        }finally {
+            setIsLoading(false); // Set loading to false when fetching is complete
         }
     };
 
@@ -70,6 +76,21 @@ const RegistrationPage = () => {
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
+
+    useEffect(() => {
+        if (tshirtMode) {
+            let filtered = registrations.filter((reg) => reg.item.toLowerCase().startsWith('tshirt'));
+            setFilteredRegistrations(filtered || []);
+            setCurrentPage(1);
+        } else {
+            // If T-shirt mode is off, reset to the original registrations
+            setFilteredRegistrations(registrations);
+            setCurrentPage(1);
+        }
+        setSearchQuery('')
+        setItemFilter('')
+        setSearchField('')
+    }, [tshirtMode])
 
     const handleSearchFieldOptionChange = (event) => {
         setSearchFieldOption(event.target.value);
@@ -110,36 +131,44 @@ const RegistrationPage = () => {
     }, []);
     const exportToExcel = () => {
         const formattedData = filteredRegistrations.map(({ _id, __v, imageUrl, createdAt, updatedAt, ...rest }) => ({
-          ...rest,
-          Date: new Date(createdAt).toLocaleString('en-IN', {
-            timeZone: 'Asia/Kolkata',
-            weekday: 'long', // Display day name (e.g., Monday)
-            year: 'numeric',
-            month: 'long', // Display month name (e.g., February)
-            day: 'numeric',
-            hour: 'numeric',
-            minute: 'numeric',
-            second: 'numeric',
-            hour12: true, // Use 12-hour clock with AM/PM
-          }),
+            ...rest,
+            Date: new Date(createdAt).toLocaleString('en-IN', {
+                timeZone: 'Asia/Kolkata',
+                weekday: 'long', // Display day name (e.g., Monday)
+                year: 'numeric',
+                month: 'long', // Display month name (e.g., February)
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                hour12: true, // Use 12-hour clock with AM/PM
+            }),
         }));
-      
+
         const ws = XLSX.utils.json_to_sheet(formattedData);
         const wb = XLSX.utils.book_new();
         XLSX.utils.book_append_sheet(wb, ws, 'merchandisePayments');
         XLSX.writeFile(wb, 'merchandisepayments.xlsx');
-      };
-      
+    };
+
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <Container style={{ minHeight: '100vh' }}>
-                <Typography variant="h2" gutterBottom style={{ textAlign: 'center' }}>
+            <Container style={{ minHeight: '100vh', maxWidth:'100vw' }}>
+                <h1 style={{ fontSize: '3rem', textAlign: 'center' }}>
                     Merchandise Payments
-                </Typography>
+
+                </h1>
+
 
                 <div>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', padding: '0 30% 2rem 30%', height: 'auto' }}>
+                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', height: 'auto', alignItems: 'center' }}>
+                        <Switch
+                            checked={tshirtMode}
+                            onChange={() => { setTshirtMode(!tshirtMode) }}
+                            color="primary"
+                        />
+                        <span style={{ marginRight: '1rem' }}>T-shirt Mode</span>
 
                         <TextField
                             select
@@ -194,6 +223,14 @@ const RegistrationPage = () => {
                                 <TableCell>Branch</TableCell>
                                 <TableCell>Year</TableCell>
                                 <TableCell>Gender</TableCell>
+                                {tshirtMode && (
+                                    <>
+                                        <TableCell>Size</TableCell>
+                                        <TableCell>NameonTshirt</TableCell>
+                                        <TableCell>Coupon</TableCell>
+                                        <TableCell>Variant</TableCell>
+                                    </>
+                                )}
                                 <TableCell>Payment</TableCell>
                             </TableRow>
                         </TableHead>
@@ -208,6 +245,14 @@ const RegistrationPage = () => {
                                         <TableCell>{registration.branch}</TableCell>
                                         <TableCell>{registration.year}</TableCell>
                                         <TableCell>{registration.gender}</TableCell>
+                                        {tshirtMode && (
+                                            <>
+                                                <TableCell>{registration.size}</TableCell>
+                                                <TableCell>{registration.nameOnTshirt}</TableCell>
+                                                <TableCell style={{textAlign:'center'}}>{registration.couponCode ? registration.couponCode :'-'}</TableCell>
+                                                <TableCell>{registration.tshirtVariant}</TableCell>
+                                            </>
+                                        )}
                                         <TableCell>
                                             <div style={{ color: 'skyblue', cursor: 'default' }}
 
@@ -221,12 +266,13 @@ const RegistrationPage = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {filteredRegistrations.length === 0 && <div style={{textAlign:'center', marginTop:"1rem"}}>No Purchase</div>}
+                {filteredRegistrations.length === 0 && !isLoading && <div style={{ textAlign: 'center', marginTop: "1rem" }}>No Purchase</div>}
+                {isLoading && <div style={{ textAlign: 'center', marginTop: "1rem" }}>Loading Data</div>}
                 <div style={{ marginTop: '2rem', marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
-                            <Button variant="contained" color="primary" onClick={exportToExcel}>
-                                Export to Excel
-                            </Button>
-                        </div>
+                    <Button variant="contained" color="primary" onClick={exportToExcel}>
+                        Export to Excel
+                    </Button>
+                </div>
                 <Pagination
                     count={Math.ceil(filteredRegistrations?.length / pageSize)}
                     page={currentPage}

@@ -15,7 +15,7 @@ const merchandiseformSchema = new mongoose.Schema({
     couponCode: String,
     tshirtVariant: String,
 }, {
-    timestamps: true // This option adds createdAt and updatedAt fields to your schema
+    timestamps: true 
 });
 
 mongoose.models = {}

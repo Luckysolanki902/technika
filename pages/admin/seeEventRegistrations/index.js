@@ -38,7 +38,7 @@ const RegistrationPage = () => {
     const [openDialog, setOpenDialog] = useState(false);
     const [selectedImage, setSelectedImage] = useState('');
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
-
+    const [isLoading, setIsLoading] = useState(true);
     const handleSearchFieldOptionChange = (event) => {
         setSearchFieldOption(event.target.value);
         filterBySearchField(eventFilter, event.target.value, searchQuery);
@@ -52,6 +52,8 @@ const RegistrationPage = () => {
             setFilteredRegistrations(data.events);
         } catch (error) {
             console.error('Error fetching registrations:', error);
+        }finally {
+            setIsLoading(false); // Set loading to false when fetching is complete
         }
     };
 
@@ -222,7 +224,8 @@ const RegistrationPage = () => {
                         </TableBody>
                     </Table>
                 </TableContainer>
-                {filteredRegistrations.length === 0 && <div style={{textAlign:'center', marginTop:"1rem"}}>No Registrations</div>}
+                {filteredRegistrations.length === 0 && !isLoading && <div style={{textAlign:'center', marginTop:"1rem"}}>No Registrations</div>}
+                {isLoading && <div style={{ textAlign: 'center', marginTop: "1rem" }}>Loading Data</div>}
 
                 <div style={{ marginTop: '2rem', marginBottom: '2rem', display: 'flex', justifyContent: 'center' }}>
                             <Button variant="contained" color="primary" onClick={exportToExcel}>
