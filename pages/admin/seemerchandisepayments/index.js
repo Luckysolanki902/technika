@@ -114,12 +114,16 @@ const RegistrationPage = () => {
         setSearchFieldOption(event.target.value);
         filterBySearchField(itemFilter, event.target.value, searchQuery);
     };
-
     const filterBySearchField = (itemFilterValue, searchFieldOptionValue, searchQueryValue) => {
         let filtered = registrations;
-        if (itemFilterValue) {
+    
+        if (itemFilterValue && itemFilterValue !== 'non-tshirt') {
             filtered = filtered.filter((reg) => reg.item === itemFilterValue);
+        } else if (itemFilterValue === 'non-tshirt') {
+            // Filter for 'Non-Tshirt' items
+            filtered = filtered.filter((reg) => !reg.item.toLowerCase().startsWith('tshirt'));
         }
+    
         if (searchQueryValue && filtered) {
             const normalizedSearchQuery = searchQueryValue.toLowerCase();
             filtered = filtered.filter((reg) => {
@@ -127,9 +131,11 @@ const RegistrationPage = () => {
                 return fieldValue.includes(normalizedSearchQuery);
             });
         }
+    
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
+    
 
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
