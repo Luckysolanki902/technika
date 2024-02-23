@@ -559,6 +559,7 @@ const MerchandiseForm = ({ item }) => {
                                         <option value="M.tech">M.tech</option>
                                         <option value="M.sc">M.sc</option>
                                         <option value="PhD">PhD</option>
+                                        <option value="BSMS">BSMS</option>
                                     </select>
                                 </div>
 

@@ -20,6 +20,9 @@ import { Button } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
+import {Snackbar} from '@mui/material';
+import Alert from '@mui/material/Alert';
+
 
 
 const API_ENDPOINT = '/api/getmerchandisepayments';
@@ -43,7 +46,13 @@ const RegistrationPage = () => {
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
     const [tshirtMode, setTshirtMode] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-    const [selectedItems, setSelectedItems] = useState([]);
+
+    const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+    const handleSnackbarClose = () => {
+        setSnackbarOpen(false);
+    };
+
 
     const filterByItem = (itemFilterValue) => {
         let filtered = registrations;
@@ -56,6 +65,11 @@ const RegistrationPage = () => {
 
 
     const handleItemFilterChange = (event) => {
+        if (tshirtMode) {
+            setSnackbarOpen(true);
+            return;
+        }
+
         const itemValue = event.target.value;
         setItemFilter(itemValue);
         if (itemValue === 'non-tshirt') {
@@ -64,7 +78,6 @@ const RegistrationPage = () => {
             filterByItem(itemValue);
         }
     };
-
     const filterNonTshirtItems = () => {
         let filtered = registrations.filter((reg) => !reg.item.toLowerCase().startsWith('tshirt'));
         setFilteredRegistrations(filtered || []);
@@ -116,14 +129,14 @@ const RegistrationPage = () => {
     };
     const filterBySearchField = (itemFilterValue, searchFieldOptionValue, searchQueryValue) => {
         let filtered = registrations;
-    
+
         if (itemFilterValue && itemFilterValue !== 'non-tshirt') {
             filtered = filtered.filter((reg) => reg.item === itemFilterValue);
         } else if (itemFilterValue === 'non-tshirt') {
             // Filter for 'Non-Tshirt' items
             filtered = filtered.filter((reg) => !reg.item.toLowerCase().startsWith('tshirt'));
         }
-    
+
         if (searchQueryValue && filtered) {
             const normalizedSearchQuery = searchQueryValue.toLowerCase();
             filtered = filtered.filter((reg) => {
@@ -131,11 +144,11 @@ const RegistrationPage = () => {
                 return fieldValue.includes(normalizedSearchQuery);
             });
         }
-    
+
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
-    
+
 
     const handlePageChange = (event, value) => {
         setCurrentPage(value);
@@ -229,6 +242,7 @@ const RegistrationPage = () => {
                             <MenuItem value="email">Email</MenuItem>
                             <MenuItem value="branch">Branch</MenuItem>
                             <MenuItem value="gender">Gender</MenuItem>
+                            <MenuItem value="college">College</MenuItem>
                         </TextField>
 
                         <TextField
@@ -307,7 +321,11 @@ const RegistrationPage = () => {
                     onChange={handlePageChange}
                     style={{ margin: '20px 0' }}
                 />
-
+                <Snackbar open={snackbarOpen} autoHideDuration={6000} onClose={handleSnackbarClose}>
+                    <Alert onClose={handleSnackbarClose} severity="warning">
+                        Please turn off T-shirt mode to use tags.
+                    </Alert>
+                </Snackbar>
                 <Dialog open={openDialog} onClose={handleCloseDialog}>
                     <DialogContent>
                         <img
