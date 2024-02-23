@@ -227,7 +227,7 @@ const RegistrationPage = () => {
                                     <>
                                         <TableCell>Size</TableCell>
                                         <TableCell>NameonTshirt</TableCell>
-                                        <TableCell>Coupon</TableCell>
+                                        <TableCell style={{textAlign:'center'}}>Coupon</TableCell>
                                         <TableCell>Variant</TableCell>
                                     </>
                                 )}
