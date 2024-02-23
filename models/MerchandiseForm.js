@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const merchandiseformSchema = new mongoose.Schema({
     item: String,
+    price: Number,
     fullname: String,
     email: String,
     branch: String,
