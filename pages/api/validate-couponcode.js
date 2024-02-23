@@ -17,8 +17,13 @@ const handler = async (req, res) => {
     if (existingCoupon.hasApplied) {
       return res.status(400).json({ success: false, message: 'Coupon code has already been applied' });
     }
+    let name = 'OFFER40'
 
-    res.status(200).json({ success: true, message: 'Coupon code applied successfully' });
+    if (existingCoupon.name) {
+      name = existingCoupon.name
+    }
+    console.log(name)
+    res.status(200).json({ success: true, message: 'Coupon code applied successfully', name: name });
   } catch (error) {
     console.error('Error validating coupon code:', error.message);
     res.status(500).json({ success: false, error: 'Internal Server Error' });

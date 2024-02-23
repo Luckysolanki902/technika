@@ -106,6 +106,7 @@ const MerchandiseForm = ({ item }) => {
     const [snackbarMessage, setSnackbarMessage] = useState('')
     const [otherCollege, setOtherCollege] = useState('')
     const [severity, setSeverity] = useState('warning')
+    const [couponName, setCouponName] = useState('')
     const [couponValidation, setCouponValidation] = useState({
         loading: false,
         success: false,
@@ -339,19 +340,20 @@ const MerchandiseForm = ({ item }) => {
     const handleWarningClose = () => {
         setShowWarning(false);
     };
-
     const handleDownloadQR = () => {
         let qrImageUrl = itemKiDetails?.qr; // Default QR code
-
+    
         if (couponValidation.success) {
             // Use a different QR code if the coupon is successfully applied
-            qrImageUrl = '/images/merchqr/tshirtwithcoupon.jpg';
+            qrImageUrl = couponName === 'GRUV'
+                ? '/images/merchqr/tshirtwithgruvcoupon.jpg'
+                : '/images/merchqr/tshirtwithcoupon.jpg';
         }
-
+    
         // Use the file-saver library to trigger the download
         saveAs(qrImageUrl, `Technika24_QRCode_for_${itemKiDetails?.heading}.png`);
     };
-
+    
     const handleApplyCoupon = async () => {
         try {
             setCouponValidation({ loading: true, success: false, message: '' });
@@ -366,10 +368,9 @@ const MerchandiseForm = ({ item }) => {
             });
 
             const result = await response.json();
-
             if (response.ok) {
                 setCouponValidation({ loading: false, success: true, message: 'Coupon Code Applied Successfully' });
-
+                setCouponName(result.name)
                 // Update the form data with coupon details
                 setFormData((prevData) => ({
                     ...prevData,
@@ -677,31 +678,50 @@ const MerchandiseForm = ({ item }) => {
                                                 {couponValidation.loading ? 'Verifying' : 'Apply'}
                                             </Button>
                                             {couponValidation.message && (
-                                                <>
-                                                    <div style={{ color: couponValidation.success ? 'green' : 'red', marginTop: '0.5rem', fontSize: '0.8rem' }}>
-                                                        {couponValidation.message}
-                                                    </div>
-                                                    {couponValidation.success && <>
-                                                        <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
-                                                            40% discount on ₹599
-                                                        </div>
+  <>
+    <div style={{ color: couponValidation.success ? 'green' : 'red', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+      {couponValidation.message}
+    </div>
 
-                                                    </>}
-                                                </>
-                                            )}
+    {couponValidation.success && couponName === 'GRUV' && (
+      <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+        33% discount on ₹599
+      </div>
+    )}
+
+    {couponValidation.success && couponName !== 'GRUV' && (
+      <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
+        40% discount on ₹599
+      </div>
+    )}
+  </>
+)}
+
 
                                         </div>
-                                        {couponValidation.success ? (
+                                        {couponValidation.success && couponName !== 'GRUV' &&
                                             <>
                                                 <div style={{ marginTop: '0.5rem' }}>
-                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹{parseInt(itemKiDetails?.price) * 0.6}</div>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹359..40</div>
                                                 </div>
                                             </>
-                                        ) : <>
-                                            <div style={{ marginTop: '0.5rem' }}>
-                                                <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹499</div>
-                                            </div>
-                                        </>}
+
+                                        }
+                                        {couponValidation.success && couponName && couponName === 'GRUV' &&
+
+                                            <div>
+                                                <div style={{ marginTop: '0.5rem' }}>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹401.33</div>
+                                                </div>
+                                            </div>}
+
+                                        {!couponValidation.success &&
+                                            <div>
+                                                <div style={{ marginTop: '0.5rem' }}>
+                                                    <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹499</div>
+                                                </div>
+                                            </div>}
+
                                     </>
                                 )}
 
@@ -784,7 +804,13 @@ const MerchandiseForm = ({ item }) => {
                         <Image
                             width={805}
                             height={799}
-                            src={couponValidation.success ? '/images/merchqr/tshirtwithcoupon.jpg' : itemKiDetails?.qr}
+                            src={
+                                couponValidation.success
+                                    ? couponName === 'GRUV'
+                                        ? '/images/merchqr/tshirtwithgruvcoupon.jpg'
+                                        : '/images/merchqr/tshirtwithcoupon.jpg'
+                                    : itemKiDetails?.qr
+                            }
                             alt="QR Code"
                             style={{ width: '100%', height: 'auto' }}
                         />

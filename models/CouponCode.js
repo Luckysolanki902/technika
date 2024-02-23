@@ -11,7 +11,13 @@ const couponCodeSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  name:{
+    type:String,
+    default:'OFFER40'
+  }
 });
+
+
 
 mongoose.models = {}
 const CouponCode = mongoose.model('CouponCode', couponCodeSchema);
