@@ -294,19 +294,21 @@ const MerchandiseForm = ({ item }) => {
                     // Add logic for other coupon codes if needed
                     discountedPrice = 349.40;
                 }
-
+                console.log('deb1')
                 updatedFormData = {
                     ...updatedFormData,
-                    couponCode: couponValidation.success ? couponCode : '',
+                    couponCode: couponValidation.success ? formData.couponCode : '',
                     price: discountedPrice,
                 };
             }
+            console.log('deb2')
 
             // If the final price is 599, set it to 499
             if (updatedFormData.price === 599) {
                 updatedFormData.price = 499;
             }
 
+            console.log('deb3')
 
             console.log(updatedFormData.price)
             if (item === 'tshirtg') {
@@ -325,7 +327,8 @@ const MerchandiseForm = ({ item }) => {
                 };
             }
 
-
+            console.log('deb4')
+            console.log(updatedFormData)
             // Make a POST request to submit the form data using fetch
             const response = await fetch('/api/buymerchandise', {
                 method: 'POST',
@@ -334,6 +337,8 @@ const MerchandiseForm = ({ item }) => {
                 },
                 body: JSON.stringify(updatedFormData),
             });
+
+            console.log('deb5')
 
             // Check if the request was successful (status code 2xx)
             if (response.ok) {
@@ -350,7 +355,6 @@ const MerchandiseForm = ({ item }) => {
                     gender: 'male',
                     nameOnTshirt: '',
                     couponCode: '',
-
                 });
                 setImageFile(null)
                 setSeverity('success')
