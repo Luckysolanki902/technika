@@ -18,6 +18,8 @@ import DialogContent from '@mui/material/DialogContent';
 import * as XLSX from 'xlsx';
 import { Button } from '@mui/material';
 import Switch from '@mui/material/Switch';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 
 const API_ENDPOINT = '/api/getmerchandisepayments';
@@ -41,32 +43,7 @@ const RegistrationPage = () => {
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
     const [tshirtMode, setTshirtMode] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
-
-    const fetchRegistrations = async () => {
-        try {
-            const response = await fetch(API_ENDPOINT);
-            const data = await response.json();
-            setRegistrations(data.events);
-            setFilteredRegistrations(data.events);
-        } catch (error) {
-            console.error('Error fetching registrations:', error);
-        }finally {
-            setIsLoading(false); // Set loading to false when fetching is complete
-        }
-    };
-
-    const handleItemFilterChange = (event) => {
-        const itemValue = event.target.value;
-        setItemFilter(itemValue);
-        filterByItem(itemValue);
-    };
-
-    const handleSearchInputChange = (event) => {
-        const searchValue = event.target.value;
-        setSearchField(event.target.value);
-        setSearchQuery(searchValue);
-        filterBySearchField(itemFilter, searchFieldOption, searchValue);
-    };
+    const [selectedItems, setSelectedItems] = useState([]);
 
     const filterByItem = (itemFilterValue) => {
         let filtered = registrations;
@@ -76,6 +53,47 @@ const RegistrationPage = () => {
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
+
+
+    const handleItemFilterChange = (event) => {
+        const itemValue = event.target.value;
+        setItemFilter(itemValue);
+        if (itemValue === 'non-tshirt') {
+            filterNonTshirtItems();
+        } else {
+            filterByItem(itemValue);
+        }
+    };
+
+    const filterNonTshirtItems = () => {
+        let filtered = registrations.filter((reg) => !reg.item.toLowerCase().startsWith('tshirt'));
+        setFilteredRegistrations(filtered || []);
+        setCurrentPage(1);
+    };
+
+
+    const fetchRegistrations = async () => {
+        try {
+            const response = await fetch(API_ENDPOINT);
+            const data = await response.json();
+            setRegistrations(data.events);
+            setFilteredRegistrations(data.events);
+        } catch (error) {
+            console.error('Error fetching registrations:', error);
+        } finally {
+            setIsLoading(false); // Set loading to false when fetching is complete
+        }
+    };
+
+
+    const handleSearchInputChange = (event) => {
+        const searchValue = event.target.value;
+        setSearchField(event.target.value);
+        setSearchQuery(searchValue);
+        filterBySearchField(itemFilter, searchFieldOption, searchValue);
+    };
+
+
 
     useEffect(() => {
         if (tshirtMode) {
@@ -154,7 +172,7 @@ const RegistrationPage = () => {
     return (
         <ThemeProvider theme={darkTheme}>
             <CssBaseline />
-            <Container style={{ minHeight: '100vh', maxWidth:'100vw' }}>
+            <Container style={{ minHeight: '100vh', maxWidth: '100vw' }}>
                 <h1 style={{ fontSize: '3rem', textAlign: 'center' }}>
                     Merchandise Payments
 
@@ -169,23 +187,27 @@ const RegistrationPage = () => {
                             color="primary"
                         />
                         <span style={{ marginRight: '1rem' }}>T-shirt Mode</span>
-
-                        <TextField
-                            select
-                            label="Filter by Items"
-                            value={itemFilter}
-                            onChange={handleItemFilterChange}
-                            fullWidth
-                        >
-                            <MenuItem value="">All Items</MenuItem>
-                            {registrations && registrations.length > 0 && Array.from(
-                                new Set(registrations.map((reg) => reg.item))
-                            ).map((item) => (
-                                <MenuItem key={item} value={item}>
-                                    {item}
-                                </MenuItem>
-                            ))}
-                        </TextField>
+                        <Stack direction="row" spacing={1} alignItems="center">
+                            <Chip
+                                label="All Items"
+                                onClick={() => handleItemFilterChange({ target: { value: '' } })}
+                                color={itemFilter === '' ? 'primary' : 'default'}
+                            />
+                            <Chip
+                                label="Non-Tshirt"
+                                onClick={() => handleItemFilterChange({ target: { value: 'non-tshirt' } })}
+                                color={itemFilter === 'non-tshirt' ? 'primary' : 'default'}
+                            />
+                            {registrations && registrations.length > 0 && Array.from(new Set(registrations.map((reg) => reg.item)))
+                                .map((item) => (
+                                    <Chip
+                                        key={item}
+                                        label={item}
+                                        onClick={() => handleItemFilterChange({ target: { value: item } })}
+                                        color={itemFilter === item ? 'primary' : 'default'}
+                                    />
+                                ))}
+                        </Stack>
                     </div>
                     <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
 
@@ -227,7 +249,7 @@ const RegistrationPage = () => {
                                     <>
                                         <TableCell>Size</TableCell>
                                         <TableCell>NameonTshirt</TableCell>
-                                        <TableCell style={{textAlign:'center'}}>Coupon</TableCell>
+                                        <TableCell style={{ textAlign: 'center' }}>Coupon</TableCell>
                                         <TableCell>Variant</TableCell>
                                     </>
                                 )}
@@ -249,7 +271,7 @@ const RegistrationPage = () => {
                                             <>
                                                 <TableCell>{registration.size}</TableCell>
                                                 <TableCell>{registration.nameOnTshirt}</TableCell>
-                                                <TableCell style={{textAlign:'center'}}>{registration.couponCode ? registration.couponCode :'-'}</TableCell>
+                                                <TableCell style={{ textAlign: 'center' }}>{registration.couponCode ? registration.couponCode : '-'}</TableCell>
                                                 <TableCell>{registration.tshirtVariant}</TableCell>
                                             </>
                                         )}
