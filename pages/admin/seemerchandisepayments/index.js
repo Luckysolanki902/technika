@@ -20,7 +20,7 @@ import { Button } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-import {Snackbar} from '@mui/material';
+import { Snackbar } from '@mui/material';
 import Alert from '@mui/material/Alert';
 
 
@@ -130,7 +130,11 @@ const RegistrationPage = () => {
     const filterBySearchField = (itemFilterValue, searchFieldOptionValue, searchQueryValue) => {
         let filtered = registrations;
 
-        if (itemFilterValue && itemFilterValue !== 'non-tshirt') {
+        if (tshirtMode) {
+            // Filter for 'T-shirt' items
+            filtered = filtered.filter((reg) => reg.item.toLowerCase().startsWith('tshirt'));
+        } else if (itemFilterValue && itemFilterValue !== 'non-tshirt') {
+            // Filter for specific item (excluding 'non-tshirt')
             filtered = filtered.filter((reg) => reg.item === itemFilterValue);
         } else if (itemFilterValue === 'non-tshirt') {
             // Filter for 'Non-Tshirt' items
@@ -148,6 +152,7 @@ const RegistrationPage = () => {
         setFilteredRegistrations(filtered || []);
         setCurrentPage(1);
     };
+
 
 
     const handlePageChange = (event, value) => {
@@ -199,34 +204,40 @@ const RegistrationPage = () => {
 
 
                 <div>
-                    <div style={{ width: '100%', display: 'flex', justifyContent: 'center', height: 'auto', alignItems: 'center' }}>
+                    <div style={{ width: '100vw', display: 'flex', justifyContent: 'center', height: 'auto', alignItems: 'center' }}>
                         <Switch
                             checked={tshirtMode}
                             onChange={() => { setTshirtMode(!tshirtMode) }}
                             color="primary"
                         />
                         <span style={{ marginRight: '1rem' }}>T-shirt Mode</span>
-                        <Stack direction="row" spacing={1} alignItems="center">
-                            <Chip
-                                label="All Items"
-                                onClick={() => handleItemFilterChange({ target: { value: '' } })}
-                                color={itemFilter === '' ? 'primary' : 'default'}
-                            />
-                            <Chip
-                                label="Non-Tshirt"
-                                onClick={() => handleItemFilterChange({ target: { value: 'non-tshirt' } })}
-                                color={itemFilter === 'non-tshirt' ? 'primary' : 'default'}
-                            />
-                            {registrations && registrations.length > 0 && Array.from(new Set(registrations.map((reg) => reg.item)))
-                                .map((item) => (
-                                    <Chip
-                                        key={item}
-                                        label={item}
-                                        onClick={() => handleItemFilterChange({ target: { value: item } })}
-                                        color={itemFilter === item ? 'primary' : 'default'}
-                                    />
-                                ))}
-                        </Stack>
+                        <div style={{ overflowX: 'auto' }}>
+
+                            <Stack direction="row" spacing={1} alignItems="center">
+                                <Chip
+                                    label="All Items"
+                                    onClick={() => handleItemFilterChange({ target: { value: '' } })}
+                                    color={itemFilter === '' ? 'primary' : 'default'}
+                                />
+                                <Chip
+                                    label="Non-Tshirt"
+                                    onClick={() => handleItemFilterChange({ target: { value: 'non-tshirt' } })}
+                                    color={itemFilter === 'non-tshirt' ? 'primary' : 'default'}
+                                />
+                                {registrations && registrations.length > 0 && Array.from(new Set(registrations.map((reg) => reg.item)))
+                                    .map((item) => (
+                                        <Chip
+                                            key={item}
+                                            label={item}
+                                            onClick={() => handleItemFilterChange({ target: { value: item } })}
+                                            color={itemFilter === item ? 'primary' : 'default'}
+                                        />
+                                    ))}
+                                <div style={{ width: '5rem', opacity:'0' }}>
+                                    alsfjdsf
+                                </div>
+                            </Stack>
+                        </div>
                     </div>
                     <div style={{ marginTop: '2rem', marginBottom: '2rem' }}>
 
