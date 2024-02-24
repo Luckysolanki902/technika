@@ -288,7 +288,7 @@ const MerchandiseForm = ({ item }) => {
                 // Apply discount based on coupon code
                 let discountedPrice;
 
-                if (couponName === 'GRUV') {
+                if (couponName === 'GRUV' || couponName === 'OFFER33') {
                     discountedPrice = 401.33;
                 } else {
                     // Add logic for other coupon codes if needed
@@ -381,7 +381,7 @@ const MerchandiseForm = ({ item }) => {
 
         if (couponValidation.success) {
             // Use a different QR code if the coupon is successfully applied
-            qrImageUrl = couponName === 'GRUV'
+            qrImageUrl = couponName === 'GRUV' || couponName === 'OFFER33'
                 ? '/images/merchqr/tshirtwithgruvcoupon.jpg'
                 : '/images/merchqr/tshirtwithcoupon.jpg';
         }
@@ -719,13 +719,13 @@ const MerchandiseForm = ({ item }) => {
                                                         {couponValidation.message}
                                                     </div>
 
-                                                    {couponValidation.success && couponName === 'GRUV' && (
+                                                    {couponValidation.success && (couponName === 'GRUV' || couponName === 'OFFER33') && (
                                                         <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
                                                             33% discount on ₹599
                                                         </div>
                                                     )}
 
-                                                    {couponValidation.success && couponName !== 'GRUV' && (
+                                                    {couponValidation.success && couponName !== 'GRUV' && couponName !== 'OFFER33' && (
                                                         <div style={{ color: 'green', marginTop: '0.5rem', fontSize: '0.8rem' }}>
                                                             40% discount on ₹599
                                                         </div>
@@ -735,7 +735,7 @@ const MerchandiseForm = ({ item }) => {
 
 
                                         </div>
-                                        {couponValidation.success && couponName !== 'GRUV' &&
+                                        {couponValidation.success && couponName !== 'GRUV'  && couponName !== 'OFFER33' &&
                                             <>
                                                 <div style={{ marginTop: '0.5rem' }}>
                                                     <div style={{ marginTop: '3rem', color: 'white' }}>Amount Payable: <span style={{ textDecoration: 'line-through', opacity: '0.8', fontWeight: '300' }}>599</span> ₹359.40</div>
@@ -743,7 +743,7 @@ const MerchandiseForm = ({ item }) => {
                                             </>
 
                                         }
-                                        {couponValidation.success && couponName && couponName === 'GRUV' &&
+                                        {couponValidation.success && couponName && (couponName === 'GRUV' || couponName === 'OFFER33') &&
 
                                             <div>
                                                 <div style={{ marginTop: '0.5rem' }}>
@@ -842,7 +842,7 @@ const MerchandiseForm = ({ item }) => {
                             height={799}
                             src={
                                 couponValidation.success
-                                    ? couponName === 'GRUV'
+                                    ? couponName === 'GRUV' || couponName === 'OFFER33'
                                         ? '/images/merchqr/tshirtwithgruvcoupon.jpg'
                                         : '/images/merchqr/tshirtwithcoupon.jpg'
                                     : itemKiDetails?.qr
