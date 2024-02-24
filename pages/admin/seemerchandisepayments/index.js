@@ -57,7 +57,7 @@ const RegistrationPage = () => {
         setOpenConfirmationDialog(true);
     };
 
-    
+
     const handleConfirmDelivery = async () => {
         try {
             setSelectedOrder((prevOrder) => ({ ...prevOrder, updating: true }));
@@ -68,7 +68,7 @@ const RegistrationPage = () => {
                 },
                 body: JSON.stringify({ orderId: selectedOrder._id, delivered: !selectedOrder.deliveredSuccessfully }),
             });
-    
+
             if (response.ok) {
                 setFilteredRegistrations((prevRegistrations) =>
                     prevRegistrations.map((order) =>
@@ -86,7 +86,7 @@ const RegistrationPage = () => {
             setOpenConfirmationDialog(false);
         }
     };
-    
+
 
 
 
@@ -213,7 +213,7 @@ const RegistrationPage = () => {
         fetchRegistrations();
     }, []);
     const exportToExcel = () => {
-        const formattedData = filteredRegistrations.map(({ _id, __v, imageUrl, createdAt, updatedAt, ...rest }) => ({
+        const formattedData = filteredRegistrations.map(({ _id, __v, imageUrl, createdAt, updatedAt, orderedSuccessfully, ...rest }) => ({
             ...rest,
             Date: new Date(createdAt).toLocaleString('en-IN', {
                 timeZone: 'Asia/Kolkata',
@@ -398,29 +398,29 @@ const RegistrationPage = () => {
                 </Snackbar>
 
                 <Dialog open={openConfirmationDialog} onClose={() => setOpenConfirmationDialog(false)}>
-    <DialogContent>
-        <Typography>
-            {selectedOrder?.deliveredSuccessfully
-                ? `Mark this order as undelivered?`
-                : `Confirm delivery for this order?`}
-        </Typography>
-        <Button
-            onClick={handleConfirmDelivery}
-            variant="contained"
-            color={selectedOrder?.deliveredSuccessfully ? 'error' : 'primary'}
-            sx={{ borderRadius: 2, mt: 2, width:'5.5rem' }}
-        >
-            {selectedOrder?.updating ? <CircularProgress size={20} style={{color:'white'}} /> : 'Confirm'}
-        </Button>
-        <Button
-            onClick={() => setOpenConfirmationDialog(false)}
-            variant="text"
-            sx={{ borderRadius: 2, mt: 2, ml: 2, color: 'white' }}
-        >
-            Cancel
-        </Button>
-    </DialogContent>
-</Dialog>
+                    <DialogContent>
+                        <Typography>
+                            {selectedOrder?.deliveredSuccessfully
+                                ? `Mark this order as undelivered?`
+                                : `Confirm delivery for this order?`}
+                        </Typography>
+                        <Button
+                            onClick={handleConfirmDelivery}
+                            variant="contained"
+                            color={selectedOrder?.deliveredSuccessfully ? 'error' : 'primary'}
+                            sx={{ borderRadius: 2, mt: 2, width: '5.5rem' }}
+                        >
+                            {selectedOrder?.updating ? <CircularProgress size={20} style={{ color: 'white' }} /> : 'Confirm'}
+                        </Button>
+                        <Button
+                            onClick={() => setOpenConfirmationDialog(false)}
+                            variant="text"
+                            sx={{ borderRadius: 2, mt: 2, ml: 2, color: 'white' }}
+                        >
+                            Cancel
+                        </Button>
+                    </DialogContent>
+                </Dialog>
 
 
 
