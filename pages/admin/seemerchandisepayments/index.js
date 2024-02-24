@@ -16,7 +16,7 @@ import Pagination from '@mui/material/Pagination';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import * as XLSX from 'xlsx';
-import { Button } from '@mui/material';
+import { Button, Checkbox, CircularProgress } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
@@ -27,7 +27,7 @@ import format from 'date-fns/format';
 
 
 const API_ENDPOINT = '/api/getmerchandisepayments';
-
+const API_UPDATE_ORDER_STATUS = '/api/update-order-status'
 const darkTheme = createTheme({
     palette: {
         mode: 'dark',
@@ -47,8 +47,48 @@ const RegistrationPage = () => {
     const [searchFieldOption, setSearchFieldOption] = useState('fullname');
     const [tshirtMode, setTshirtMode] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
+    const [openConfirmationDialog, setOpenConfirmationDialog] = useState(false);
 
+    const [selectedOrder, setSelectedOrder] = useState(null);
     const [snackbarOpen, setSnackbarOpen] = useState(false);
+    const handleDeliveredCheckboxChange = (order) => {
+        // Show confirmation dialog
+        setSelectedOrder(order);
+        setOpenConfirmationDialog(true);
+    };
+
+    
+    const handleConfirmDelivery = async () => {
+        try {
+            setSelectedOrder((prevOrder) => ({ ...prevOrder, updating: true }));
+            const response = await fetch(API_UPDATE_ORDER_STATUS, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ orderId: selectedOrder._id, delivered: !selectedOrder.deliveredSuccessfully }),
+            });
+    
+            if (response.ok) {
+                setFilteredRegistrations((prevRegistrations) =>
+                    prevRegistrations.map((order) =>
+                        order._id === selectedOrder._id
+                            ? { ...order, deliveredSuccessfully: !selectedOrder.deliveredSuccessfully, updating: false }
+                            : order
+                    )
+                );
+            } else {
+                console.error('Error updating order status:', response.statusText);
+            }
+        } catch (error) {
+            console.error('Error updating order status:', error);
+        } finally {
+            setOpenConfirmationDialog(false);
+        }
+    };
+    
+
+
 
     const handleSnackbarClose = () => {
         setSnackbarOpen(false);
@@ -234,7 +274,7 @@ const RegistrationPage = () => {
                                             color={itemFilter === item ? 'primary' : 'default'}
                                         />
                                     ))}
-                                <div style={{ width: '5rem', opacity:'0' }}>
+                                <div style={{ width: '5rem', opacity: '0' }}>
                                     alsfjdsf
                                 </div>
                             </Stack>
@@ -278,7 +318,7 @@ const RegistrationPage = () => {
                                 <TableCell>Branch</TableCell>
                                 <TableCell>Year</TableCell>
                                 <TableCell>Gender</TableCell>
-                                
+
                                 {tshirtMode && (
                                     <>
                                         <TableCell>Size</TableCell>
@@ -287,8 +327,9 @@ const RegistrationPage = () => {
                                         <TableCell>Variant</TableCell>
                                     </>
                                 )}
-                                  <TableCell>Date'n'Time</TableCell>
+                                <TableCell>Date'n'Time</TableCell>
                                 <TableCell>Payment</TableCell>
+                                <TableCell>Delivered Successfully</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
@@ -312,8 +353,8 @@ const RegistrationPage = () => {
                                             </>
                                         )}
                                         <TableCell>
-                                        {format(new Date(registration.createdAt), "eeee, do MMMM yyyy h:mm a", { timeZone: 'Asia/Kolkata' })}
-                                    </TableCell>
+                                            {format(new Date(registration.createdAt), "eeee, do MMMM yyyy h:mm a", { timeZone: 'Asia/Kolkata' })}
+                                        </TableCell>
                                         <TableCell>
                                             <div style={{ color: 'skyblue', cursor: 'default' }}
 
@@ -322,6 +363,15 @@ const RegistrationPage = () => {
                                                 Show Payment Receipt
                                             </div>
                                         </TableCell>
+                                        <TableCell>
+                                            {registration.updating ? (
+                                                <CircularProgress size={20} />
+                                            ) : (
+                                                <Checkbox
+                                                    checked={registration.deliveredSuccessfully}
+                                                    onChange={() => handleDeliveredCheckboxChange(registration)}
+                                                    disabled={registration.updating}
+                                                />)}</TableCell>
                                     </TableRow>
                                 ))}
                         </TableBody>
@@ -346,6 +396,35 @@ const RegistrationPage = () => {
                         Please turn off T-shirt mode to use tags.
                     </Alert>
                 </Snackbar>
+
+                <Dialog open={openConfirmationDialog} onClose={() => setOpenConfirmationDialog(false)}>
+    <DialogContent>
+        <Typography>
+            {selectedOrder?.deliveredSuccessfully
+                ? `Mark this order as undelivered?`
+                : `Confirm delivery for this order?`}
+        </Typography>
+        <Button
+            onClick={handleConfirmDelivery}
+            variant="contained"
+            color={selectedOrder?.deliveredSuccessfully ? 'error' : 'primary'}
+            sx={{ borderRadius: 2, mt: 2, width:'5.5rem' }}
+        >
+            {selectedOrder?.updating ? <CircularProgress size={20} style={{color:'white'}} /> : 'Confirm'}
+        </Button>
+        <Button
+            onClick={() => setOpenConfirmationDialog(false)}
+            variant="text"
+            sx={{ borderRadius: 2, mt: 2, ml: 2, color: 'white' }}
+        >
+            Cancel
+        </Button>
+    </DialogContent>
+</Dialog>
+
+
+
+
                 <Dialog open={openDialog} onClose={handleCloseDialog}>
                     <DialogContent>
                         <img

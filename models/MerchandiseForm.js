@@ -15,6 +15,10 @@ const merchandiseformSchema = new mongoose.Schema({
     nameOnTshirt: String,
     couponCode: String,
     tshirtVariant: String,
+    deliveredSuccessfully: {
+        type: Boolean,
+        default: false,
+    },
 }, {
     timestamps: true 
 });
