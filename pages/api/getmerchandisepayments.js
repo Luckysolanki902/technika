@@ -5,7 +5,10 @@ import MerchandiseForm from '@/models/MerchandiseForm';
 const getAllEventsHandler = async (req, res) => {
   if (req.method === 'GET') {
     try {
-      const events = await MerchandiseForm.find({});
+      // Assuming 'timestamp' is the field representing the timestamp
+      const events = await MerchandiseForm.find({})
+        .sort({ createdAt: -1 }); // Sort by the createdAt field in descending order
+
       res.status(200).json({ success: true, events });
     } catch (error) {
       console.error('Error fetching events:', error);

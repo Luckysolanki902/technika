@@ -22,6 +22,7 @@ import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
 import { Snackbar } from '@mui/material';
 import Alert from '@mui/material/Alert';
+import format from 'date-fns/format';
 
 
 
@@ -277,6 +278,7 @@ const RegistrationPage = () => {
                                 <TableCell>Branch</TableCell>
                                 <TableCell>Year</TableCell>
                                 <TableCell>Gender</TableCell>
+                                
                                 {tshirtMode && (
                                     <>
                                         <TableCell>Size</TableCell>
@@ -285,6 +287,7 @@ const RegistrationPage = () => {
                                         <TableCell>Variant</TableCell>
                                     </>
                                 )}
+                                  <TableCell>Date'n'Time</TableCell>
                                 <TableCell>Payment</TableCell>
                             </TableRow>
                         </TableHead>
@@ -309,6 +312,9 @@ const RegistrationPage = () => {
                                             </>
                                         )}
                                         <TableCell>
+                                        {format(new Date(registration.createdAt), "eeee, do MMMM yyyy h:mm a", { timeZone: 'Asia/Kolkata' })}
+                                    </TableCell>
+                                        <TableCell>
                                             <div style={{ color: 'skyblue', cursor: 'default' }}
 
                                                 onClick={() => handleImageClick(registration.imageUrl)}
@@ -328,6 +334,7 @@ const RegistrationPage = () => {
                         Export to Excel
                     </Button>
                 </div>
+                <h2>Total Registrations: {filteredRegistrations?.length}</h2>
                 <Pagination
                     count={Math.ceil(filteredRegistrations?.length / pageSize)}
                     page={currentPage}
